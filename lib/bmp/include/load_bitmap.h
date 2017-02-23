@@ -5,28 +5,25 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Jan 12 14:02:26 2017 Benjamin Viguier
-** Last update Fri Jan 13 20:25:50 2017 Benjamin Viguier
+** Last update Thu Feb  9 16:09:05 2017 Benjamin Viguier
 */
 
 #ifndef LOAD_BITMAP_H_
 # define LOAD_BITMAP_H_
 
-# ifndef WOLF_H_
-#  pragma pack(push, 1)
-# endif /* !WOLF_H_ */
-
 # define TYPE_BMP (0x4D42)
 
-typedef	struct		s_bmpfileheader
+struct			s_bmpfileheader
 {
   unsigned short	bf_type;
   unsigned int		bf_size;
   unsigned short	bf_reserved1;
   unsigned short	bf_reserved2;
   unsigned int		bf_offbit;
-}			t_bmpfileheader;
+}			__attribute__ ((packed));
+typedef s_bmpfileheader	t_bmpfileheader;
 
-typedef	struct		s_bmpmapheader
+struct			s_bmpmapheader
 {
   unsigned int		bm_size;
   unsigned int		bm_w;
@@ -39,16 +36,17 @@ typedef	struct		s_bmpmapheader
   unsigned int		bm_yppm;
   unsigned int		bm_clrused;
   unsigned int		bm_clrimp;
-}			t_bmpmapheader;
+}			__attribute__ ((packed));
+typedef s_bmpmapheader	t_bmpmapheader;
 
-typedef struct		s_my_bmp
+typedef struct		s_bmpdata
 {
   t_bmpmapheader	header;
   char			*palette;
   char			*buffer;
-}			t_my_bmp;
+  char			*com;
+}			t_bmpdata;
 
-int	load_bitmap(char *path, t_my_bmp *bmp);
-int	free_bitmap(t_my_bmp *bmp);
+int	itnl_load_bitmap(char *path, t_bmpdata *bmp);
 
 #endif /* !LOAD_BITMAP_H_ */
