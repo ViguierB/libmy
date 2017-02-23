@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Thu Feb 23 17:46:50 2017 Benjamin Viguier
+** Last update Thu Feb 23 18:04:06 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -105,6 +105,9 @@ int	my_strtod(char *str, int *res);
 /*
 ** my_fd functions
 */
+t_my_fd	*my_fdin(void);
+t_my_fd	*my_fdout(void);
+t_my_fd	*my_fderr(void);
 t_my_fd	*my_fd_from_fd(const int fd);
 t_my_fd	*my_fopen(char *path, int flags, ...);
 void	my_fclose(t_my_fd *to_free);
