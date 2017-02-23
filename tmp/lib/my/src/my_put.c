@@ -5,10 +5,11 @@
 ** Login   <benjamin.viguier@epitech.net>
 ** 
 ** Started on  Tue Nov  8 18:51:57 2016 Benjamin Viguier
-** Last update Thu Nov 24 18:17:28 2016 Benjamin Viguier
+** Last update Thu Feb 23 16:04:28 2017 Benjamin Viguier
 */
 
-#include "my.h"
+#include <unistd.h>
+#include "libmy.h"
 
 int	my_putchar(char c)
 {
@@ -23,11 +24,11 @@ int	my_putstr(char *str)
 void	my_put_nbr_rec(int nbr)
 {
   if (nbr > -10 && nbr < 10)
-    my_putchar(POS(nbr) + '0');
+    my_putchar(ABS(nbr) + '0');
   else
     {
       my_put_nbr_rec(nbr / 10);
-      my_putchar(POS(nbr % 10) + '0');
+      my_putchar(ABS(nbr % 10) + '0');
     }
 }
 

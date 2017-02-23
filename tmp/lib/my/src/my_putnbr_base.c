@@ -5,10 +5,10 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Jan 19 14:00:05 2017 Benjamin Viguier
-** Last update Thu Jan 19 14:00:07 2017 Benjamin Viguier
+** Last update Thu Feb 23 16:03:25 2017 Benjamin Viguier
 */
 
-#include "my.h"
+#include "libmy.h"
 
 static void rec_putnbr_base(unsigned nb, char *base, int lbase);
 

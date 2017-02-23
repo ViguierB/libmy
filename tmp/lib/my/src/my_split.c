@@ -5,10 +5,10 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Wed Dec  7 11:25:33 2016 Benjamin Viguier
-** Last update Mon Jan 30 16:51:53 2017 Benjamin Viguier
+** Last update Thu Feb 23 16:02:05 2017 Benjamin Viguier
 */
 
-#include "my.h"
+#include "libmy.h"
 
 char	**pass_two(char **res, char *tmp, char *inp, char sep)
 {

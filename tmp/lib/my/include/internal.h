@@ -5,13 +5,22 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Thu Feb 23 15:27:54 2017 Benjamin Viguier
+** Last update Thu Feb 23 17:45:41 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
 # define INTERNAL_H_
 
+# include "libmy.h"
+
 int	__libmy_sb_flush(t_strbuilder *sb);
 int	__libmy_sb_need_flush(t_strbuilder *sb);
+int	__libmy_fd_need_flush(t_my_fd *fd);
+  
+typedef struct	s_pf_data
+{
+  int		is_strbuffer;
+  t_strbuilder	*sb;
+}		t_pf_data;
 
 #endif /* !INTERNAL_H_ */

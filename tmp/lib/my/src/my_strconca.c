@@ -5,10 +5,11 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Nov 24 15:24:14 2016 Benjamin Viguier
-** Last update Fri Jan 13 10:20:01 2017 Benjamin Viguier
+** Last update Thu Feb 23 16:02:53 2017 Benjamin Viguier
 */
 
-#include "my.h"
+#include <stdarg.h>
+#include "libmy.h"
 
 char	*my_strconca(char *str1, char *str2)
 {

@@ -5,10 +5,9 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Wed Nov 23 17:41:40 2016 Benjamin Viguier
-** Last update Tue Dec 13 16:20:23 2016 Benjamin Viguier
+** Last update Thu Feb 23 16:03:09 2017 Benjamin Viguier
 */
 
-#include "my.h"
 #include "libmy.h"
 
 t_clist		*clist_push(t_clist *first, void *ptr)

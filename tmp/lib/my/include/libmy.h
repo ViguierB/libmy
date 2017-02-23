@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Thu Feb 23 15:34:38 2017 Benjamin Viguier
+** Last update Thu Feb 23 17:46:50 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -20,6 +20,7 @@
 # define PSQ(x) ((x) * (x))
 # define MIN(a, b) (((a) < (b)) ? (a) : (b))
 # define MAX(a, b) (((a) > (b)) ? (a) : (b))
+# define ABS(a) (((a) < 0) ? (-(a)) : (a))
 # define CLIST_NEXT(l, e) ((((e)->next) == (l)) ? ((void*) 0) : ((e)->next)) 
 
 typedef struct	s_my_fd
@@ -28,6 +29,8 @@ typedef struct	s_my_fd
   char		buf[MY_FD_BUFF_LEN];
   int		rest;
   int		len;
+  char		wbuf[MY_FD_BUFF_LEN];
+  int		wlen;
 }		t_my_fd;
 
 enum
@@ -74,7 +77,8 @@ void	clist_free_data(t_clist *l, void (*myfree)(void*));
 **		use NULL if u don't want to use it.
 */
 int	my_printf(char *fmt, ...);
-int	my_fprintf(int fd, char *fmt, ...);
+int	my_sbprintf(t_strbuilder *sb, char *fmt, ...);
+char	my_sprintf(char *fmt, ...);
 int	my_putchar(char c);
 int	my_putstr(char *str);
 int	my_puterror(char *error_str);
@@ -102,11 +106,13 @@ int	my_strtod(char *str, int *res);
 ** my_fd functions
 */
 t_my_fd	*my_fd_from_fd(const int fd);
-t_my_fd	*my_fopen(char *path, int flags);
+t_my_fd	*my_fopen(char *path, int flags, ...);
 void	my_fclose(t_my_fd *to_free);
 char	*my_getline(t_my_fd *pack);
 ssize_t	my_fread(t_my_fd *pack, char *buffer, size_t size);
 int	my_fread_to_end(t_my_fd *fd, char **res);
+off_t	my_fd_seek(t_my_fd *sb, off_t offset, int whence);
+ssize_t	my_fwrite(t_my_fd *fd, void *ptr, size_t size);
 
 /*
 ** my_strbuilder functions
@@ -115,5 +121,6 @@ t_strbuilder	*my_sb_init(void);
 char		*my_sb_get_str(t_strbuilder *sb);
 int		my_sb_write(t_strbuilder *sb, void *ptr, size_t size);
 off_t		my_sb_seek(t_strbuilder *sb, off_t offset, int whence);
+int		my_fflush(t_my_fd *fd);
 
 #endif /* !LIBMY_H_ */

@@ -5,56 +5,50 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Dec 22 16:23:15 2016 Benjamin Viguier
-** Last update Thu Jan 19 13:59:08 2017 Benjamin Viguier
+** Last update Thu Feb 23 17:46:23 2017 Benjamin Viguier
 */
 
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "libmy.h"
+#include <stdarg.h>
+#include "internal.h"
 
-t_my_fd		*my_fopen(char *path, int flags)
+t_my_fd		*my_fopen(char *path, int flags, ...)
 {
   t_my_fd	*res;
-  int		i;
+  va_list	va;
+  mode_t	mode;
 
   res = malloc(sizeof(t_my_fd));
   if (!res)
     return (NULL);
-  res->len = 0;
-  res->rest = 0;
-  res->fd = open(path, flags);
+  my_memset(res, 0, sizeof(t_my_fd));
+  if (flags & O_CREAT)
+    {
+      va_start(va, flags);
+      mode = va_arg(va, mode_t);
+      res->fd = open(path, flags, mode);
+    }
+  else
+    res->fd = open(path, flags);
   if (res->fd < 0)
     return (NULL);
-  i = 0;
-  while (i < MY_FD_BUFF_LEN)
-    {
-      res->buf[i] = 0;
-      i += 1;
-    }
   return (res);
 }
 
 t_my_fd		*my_fd_from_fd(const int fd)
 {
   t_my_fd	*res;
-  int		i;
 
   res = malloc(sizeof(t_my_fd));
   if (!res)
     return (NULL);
-  res->len = 0;
-  res->rest = 0;
+  my_memset(res, 0, sizeof(t_my_fd));
   res->fd = fd;
   if (res->fd < 0)
     return (NULL);
-  i = 0;
-  while (i < MY_FD_BUFF_LEN)
-    {
-      res->buf[i] = 0;
-      i += 1;
-    }
   return (res);
 }
 
@@ -62,6 +56,8 @@ void	my_fclose(t_my_fd *to_free)
 {
   if (to_free)
     {
+      if (to_free->wlen)
+        my_fflush(to_free);
       close(to_free->fd);
       free(to_free);
     }
