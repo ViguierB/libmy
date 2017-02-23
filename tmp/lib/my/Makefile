@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Tue Feb 21 10:17:57 2017 Benjamin Viguier
+## Last update Thu Feb 23 15:25:15 2017 Benjamin Viguier
 ##
 
 include $(shell pwd)/include/depend.mk
@@ -52,7 +52,9 @@ SRC	=	my_strlen.c		\
 		my_memcmp.c		\
 		my_memisempty.c		\
 		my_isnum.c		\
-		my_errno.c
+		my_errno.c		\
+		my_strbuilder.c		\
+		my_strbuilder_ext.c
 
 CFLAGS	+=	-I./include/
 

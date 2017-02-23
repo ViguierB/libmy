@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Thu Feb 23 12:34:58 2017 Benjamin Viguier
+** Last update Thu Feb 23 15:34:38 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -30,13 +30,21 @@ typedef struct	s_my_fd
   int		len;
 }		t_my_fd;
 
+enum
+  {
+    SBW_BEGIN,
+    SBW_POS,
+    SBW_END
+  };
+
 typedef struct	s_strbuilder
 {
   char		buf[MY_FD_BUFF_LEN];
-  int		len;
+  size_t	len;
   char		*res;
+  off_t		pos;
   size_t	res_len;
-}		t_strbuilder
+}		t_strbuilder;
 
 typedef struct		s_clist
 {
@@ -99,5 +107,13 @@ void	my_fclose(t_my_fd *to_free);
 char	*my_getline(t_my_fd *pack);
 ssize_t	my_fread(t_my_fd *pack, char *buffer, size_t size);
 int	my_fread_to_end(t_my_fd *fd, char **res);
+
+/*
+** my_strbuilder functions
+*/
+t_strbuilder	*my_sb_init(void);
+char		*my_sb_get_str(t_strbuilder *sb);
+int		my_sb_write(t_strbuilder *sb, void *ptr, size_t size);
+off_t		my_sb_seek(t_strbuilder *sb, off_t offset, int whence);
 
 #endif /* !LIBMY_H_ */
