@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Tue Feb 21 11:00:59 2017 Benjamin Viguier
+** Last update Thu Feb 23 12:34:58 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -30,6 +30,13 @@ typedef struct	s_my_fd
   int		len;
 }		t_my_fd;
 
+typedef struct	s_strbuilder
+{
+  char		buf[MY_FD_BUFF_LEN];
+  int		len;
+  char		*res;
+  size_t	res_len;
+}		t_strbuilder
 
 typedef struct		s_clist
 {
@@ -38,6 +45,7 @@ typedef struct		s_clist
   struct s_clist	*prev;
 }			t_clist;
 typedef t_clist		t_clist_elm;
+
 typedef unsigned long	t_ulong;
 typedef unsigned int	t_uint;
 typedef unsigned short	t_usht;
