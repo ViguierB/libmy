@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Thu Feb 23 18:04:06 2017 Benjamin Viguier
+** Last update Thu Feb 23 18:14:14 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -116,6 +116,7 @@ ssize_t	my_fread(t_my_fd *pack, char *buffer, size_t size);
 int	my_fread_to_end(t_my_fd *fd, char **res);
 off_t	my_fd_seek(t_my_fd *sb, off_t offset, int whence);
 ssize_t	my_fwrite(t_my_fd *fd, void *ptr, size_t size);
+int	my_fflush(t_my_fd *fd);
 
 /*
 ** my_strbuilder functions
@@ -124,6 +125,6 @@ t_strbuilder	*my_sb_init(void);
 char		*my_sb_get_str(t_strbuilder *sb);
 int		my_sb_write(t_strbuilder *sb, void *ptr, size_t size);
 off_t		my_sb_seek(t_strbuilder *sb, off_t offset, int whence);
-int		my_fflush(t_my_fd *fd);
+char		*my_sb_flush(t_strbuilder *sb);
 
 #endif /* !LIBMY_H_ */

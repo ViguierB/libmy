@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 12:20:16 2017 Benjamin Viguier
-** Last update Thu Feb 23 16:47:25 2017 Benjamin Viguier
+** Last update Thu Feb 23 18:13:29 2017 Benjamin Viguier
 */
 
 #include "libmy.h"
@@ -63,4 +63,18 @@ off_t	my_sb_seek(t_strbuilder *sb, off_t offset, int whence)
     sb->pos = sb->res_len;
   sb->pos += offset;
   return (sb->pos);
+}
+
+char	*my_sb_flush(t_strbuilder *sb)
+{
+  char	*res;
+
+  if (__libmy_sb_flush(sb) < 0)
+    return (NULL);
+  res = sb->res;
+  my_memset(sb, 0, sizeof(t_strbuilder));
+  if ((sb->res = malloc(sizeof(char))) == NULL)
+    return (0);
+  *(sb->res) = '\0';
+  return (res);
 }
