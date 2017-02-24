@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Wed Nov  9 16:23:22 2016 Benjamin Viguier
-** Last update Tue Nov 29 11:02:07 2016 Benjamin Viguier
+** Last update Fri Feb 24 11:25:15 2017 Benjamin Viguier
 */
 
 #include "my.h"
@@ -28,15 +28,6 @@ char		*my_strdup(char *str)
   return (res);
 }
 
-int	fast_str_dup(char *str, char **res)
-{
-  *res = my_strdup(str);
-  if (*res == NULL)
-    return (0);
-  else
-    return (1);
-}
-
 char	*my_get_u_nbr(char *str, t_uint *res)
 {
   int	occ;
@@ -51,14 +42,6 @@ char	*my_get_u_nbr(char *str, t_uint *res)
       str += 1;
     }
   return (str - occ);
-}
-
-int	my_malloc(void **ptr, int size)
-{
-  *(ptr) = malloc(size);
-  if (!(*ptr))
-    return (0);
-  return (1);
 }
 
 int	my_pow(int nbr, int p)
