@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 16:01:16 2017 Benjamin Viguier
-** Last update Fri Feb 24 11:20:58 2017 Benjamin Viguier
+** Last update Mon Feb 27 09:29:30 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -39,13 +39,13 @@ int		my_sbprintf(t_strbuilder *sb, char *fmt, ...)
   int		res;
 
   my_memset(&data, 0, sizeof(data));
-  if (!(data->strbuilder = sb))
+  if (!(data.sb = sb))
     return (-1);
   data.is_strbuffer = 1;
   data.fmt = fmt;
-  va_start(data->va, fmt);
+  va_start(data.va, fmt);
   res = __libmy_printf(&data);
-  va_end(data->va);
+  va_end(data.va);
   if (res < 0)
     return (res);
   return (0);
@@ -57,13 +57,13 @@ int		my_printf(char *fmt, ...)
   int		res;
 
   my_memset(&data, 0, sizeof(data));
-  if (!(data->strbuilder = my_sb_init()))
+  if (!(data.sb = my_sb_init()))
     return (-1);
   data.fmt = fmt;
   data.fd = my_fdin();
-  va_start(data->va, fmt);
+  va_start(data.va, fmt);
   res = __libmy_printf(&data);
-  va_end(data->va);
+  va_end(data.va);
   if (res < 0)
     return (res);
   return (0);
@@ -75,13 +75,13 @@ int		my_fprintf(t_my_fd *fd, char *fmt, ...)
   int		res;
 
   my_memset(&data, 0, sizeof(data));
-  if (!(data->strbuilder = my_sb_init()))
+  if (!(data.sb = my_sb_init()))
     return (-1);
   data.fd = fd;
   data.fmt = fmt;
-  va_start(data->va, fmt);
+  va_start(data.va, fmt);
   res = __libmy_printf(&data);
-  va_end(data->va);
+  va_end(data.va);
   if (res < 0)
     return (res);
   return (0);
@@ -93,14 +93,14 @@ char		*my_sprintf(char *fmt, ...)
   int		res;
 
   my_memset(&data, 0, sizeof(data));
-  if (!(data->strbuilder = my_sb_init()))
+  if (!(data.sb = my_sb_init()))
     return (NULL);
   data.fmt = fmt;
   data.is_strbuffer = 1;
-  va_start(data->va, fmt);
+  va_start(data.va, fmt);
   res = __libmy_printf(&data);
-  va_end(data->va);
+  va_end(data.va);
   if (res < 0)
     return (NULL);
-  return (my_sb_get_str(data.strbuilder));
+  return (my_sb_get_str(data.sb));
 }

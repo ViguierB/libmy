@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Fri Feb 24 11:25:38 2017 Benjamin Viguier
+** Last update Mon Feb 27 09:31:40 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -78,7 +78,7 @@ void	clist_free_data(t_clist *l, void (*myfree)(void*));
 */
 int	my_printf(char *fmt, ...);
 int	my_sbprintf(t_strbuilder *sb, char *fmt, ...);
-char	my_sprintf(char *fmt, ...);
+char	*my_sprintf(char *fmt, ...);
 int	my_putchar(char c);
 int	my_putstr(char *str);
 int	my_puterror(char *error_str);
@@ -125,5 +125,6 @@ char		*my_sb_get_str(t_strbuilder *sb);
 int		my_sb_write(t_strbuilder *sb, void *ptr, size_t size);
 off_t		my_sb_seek(t_strbuilder *sb, off_t offset, int whence);
 char		*my_sb_flush(t_strbuilder *sb);
+int		my_sbprintf(t_strbuilder *sb, char *fmt, ...);
 
 #endif /* !LIBMY_H_ */
