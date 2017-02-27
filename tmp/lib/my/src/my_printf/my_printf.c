@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 16:01:16 2017 Benjamin Viguier
-** Last update Mon Feb 27 09:29:30 2017 Benjamin Viguier
+** Last update Mon Feb 27 10:52:57 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -20,10 +20,10 @@ int	__libmy_printf(t_pf_data *data)
       if (*(data->fmt) == '%')
 	{
 	  (data->fmt)++;
-	  if ((fres = __pf_get_flag(&data, &cur)) < 0)
+	  if ((fres = __pf_get_flags(data, &cur)) < 0)
 	    return (fres);
-	  if ((fres = __pf_format(&data, &cur)) < 0)
-	    return (fres);
+	  //if ((fres = __pf_format(data, &cur)) < 0)
+	  //return (fres);
 	}
       else
 	if ((fres = __pf_putchar(data, *(data->fmt))) < 0)

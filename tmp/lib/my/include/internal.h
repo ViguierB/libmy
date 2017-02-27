@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Mon Feb 27 09:22:23 2017 Benjamin Viguier
+** Last update Mon Feb 27 11:02:30 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
@@ -39,7 +39,6 @@ typedef struct	s_pf_prm
 
 enum
   {
-    
     PF_NO_FLAG		= 0x0,
     PF_FLAG_SUB		= 0x1,
     PF_FLAG_ADD		= 0x2,
@@ -59,22 +58,11 @@ typedef struct	s_pf_sprm
   size_t	size;
 }		t_pf_sprm;
 
-typedef struct	s_pf_type
+typedef struct		s_pf_type
 {
-  char		*pat;
-  t_pf_sprm	*sprm;
-}		t_pf_type;
-
-/*
-** my_printf global
-*/
-const t_pf_sprm	*g_uint_tab;
-const t_pf_sprm	*g_int_tab;
-const t_pf_sprm	*g_fl_tab;
-const t_pf_sprm	*g_char_tab;
-const t_pf_sprm	*g_str_tab;
-const t_pf_sprm	*g_ptr_tab;
-const t_pf_sprm	*g_n_tab;
+  char			*pat;
+  const t_pf_sprm	*sprm;
+}			t_pf_type;
 
 /*
 ** libmy internal functions
@@ -87,8 +75,8 @@ int	__libmy_fd_need_flush(t_my_fd *fd);
 ** my_print internal functions
 */
 int	__pf_putchar(t_pf_data *data, char c);
-void	__pf_flush(t_pf_data *data);
+int	__pf_flush(t_pf_data *data);
 int	__pf_get_flags(t_pf_data *data, t_pf_prm *prm);
-void	__pf_get_modpat(t_pf_data *data, t_pf_prm *prm);
+int	__pf_get_modpat(t_pf_data *data, t_pf_prm *prm);
 
 #endif /* !INTERNAL_H_ */

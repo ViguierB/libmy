@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Feb 24 11:03:35 2017 Benjamin Viguier
-** Last update Fri Feb 24 13:30:44 2017 Benjamin Viguier
+** Last update Mon Feb 27 11:04:20 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -24,23 +24,17 @@ int	__pf_prm_nbr(t_pf_data *data)
   int	nbr;
 
   nbr = 0;
+  if (*(data->fmt) == '\0')
+	return (-1);
   if (*(data->fmt) == '*')
     return (va_arg(data->va, int));
   while (*(data->fmt) >= '0' && *(data->fmt) <= '9')
     {
       nbr *= 10;
-      nbr += data->fmt - '0';
+      nbr += *(data->fmt) - '0';
       (data->fmt)++;
     }
   return (nbr);
-}
-
-int	__pf_pextractrest(t_pf_data *data, t_pf_prm *prm)
-{
-  __pf_get_modpat(data, prm);
-  
-  __pf_get_modsize(data, prm);
-  
 }
 
 int	__pf_getfflag(t_pf_data *data, t_pf_prm *prm)
@@ -63,23 +57,30 @@ int	__pf_getfflag(t_pf_data *data, t_pf_prm *prm)
 	  cur++;
 	}
       (data->fmt)++;
-      if (*(data->fmt == '\0'))
-	return (-1);
+      if (*(data->fmt) == '\0')
+	return (0);
     }
-  return (0);
+  return (1);
 }
 
 int		__pf_get_flags(t_pf_data *data, t_pf_prm *prm)
 {
+  if (*(data->fmt) == '\0')
+    return (0);
   my_memset(prm, 0, sizeof(t_pf_prm));
-  if (__pf_getfflag(data, prm));
-  if (*(data->fmt) >= '0' && *(data->fmt) <= '9') 
-    prm->width = __pf_prm_nbr(data);
+  if (__pf_getfflag(data, prm) == 0)
+    return (0);
+  prm->width = __pf_prm_nbr(data);
+  if (prm->width < 0)
+    return (0);
   if (*(data->fmt) == '.')
     {
       (data->fmt)++;
-      if (*(data->fmt) >= '0' && *(data->fmt) <= '9') 
-	prm->preci = __pf_prm_nbr(data);
+      if (*(data->fmt) == '\0')
+	return (0); 
+      prm->preci = __pf_prm_nbr(data);
+      if (*(data->fmt) == '\0' || prm->preci < 0)
+	return (0);
     }
-  return (__pf_pextractrest(data, prm));
+  return (__pf_get_modpat(data, prm));
 }
