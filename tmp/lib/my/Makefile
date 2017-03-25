@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Sat Mar 25 17:27:08 2017 Benjamin Viguier
+## Last update Sat Mar 25 17:53:20 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -41,7 +41,8 @@ SRC	=	my_strlen.c		\
 		my_strbuilder_ext.c	\
 		my_hash_table.c		\
 		my_hash_table_utils.c	\
-		my_memgrb.c
+		my_memgrb.c		\
+		my_memgrb_ext.c
 
 PFSRC	=	my_printf.c	\
 		pf_flags.c	\

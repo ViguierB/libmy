@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 11:05:54 2017 Benjamin Viguier
-** Last update Sat Mar 25 17:09:17 2017 Benjamin Viguier
+** Last update Sat Mar 25 17:53:02 2017 Benjamin Viguier
 */
 
 #ifndef HASH_TABLE_H_
@@ -55,8 +55,18 @@ t_ht_error	remove_ht_value(t_ht *ht, void *value, void *key);
 /*
 ** Hash_function :
 */
-
 uint32_t	jenkins_hash_str(char *buffer);
 uint32_t	jenkins_hash_ptr(char *buffer);
+
+/*
+** Grb functions :
+*/
+t_memgrb	*mg_get_maingrb(void);
+t_memgrb	*init_gbr(size_t hash_table_size);
+void		*mg_malloc(t_memgrb *memg, size_t size);
+void		mg_free(t_memgrb *memg, void *ptr);
+int		mg_ismalloc(t_memgrb *memg, void *ptr);
+void		*mg_realloc(t_memgrb *memg, void *old, size_t newsize);
+size_t		mg_sizeof(void *ptr);
 
 #endif /* !HASH_TABLE_H_ */
