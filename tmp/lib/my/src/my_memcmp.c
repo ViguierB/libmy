@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Jan 30 12:30:05 2017 Benjamin Viguier
-** Last update Mon Jan 30 12:35:03 2017 Benjamin Viguier
+** Last update Mon Feb 27 14:20:11 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -25,9 +25,14 @@ int		my_memcmp(void *ptr1, void *ptr2, size_t len)
       cptr2++;
       i++;
     }
-  if (cptr1 < cptr2)
+  if (i == len)
+    {
+      cptr1--;
+      cptr2--;
+    }
+  if (*cptr1 < *cptr2)
     return (-1);
-  else if (cptr1 > cptr2)
+  else if (*cptr1 > *cptr2)
     return (1);
   else
     return (0);

@@ -5,18 +5,14 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Mon Feb 27 09:26:42 2017 Benjamin Viguier
+## Last update Sat Mar 25 14:31:16 2017 Benjamin Viguier
 ##
 
 include $(shell pwd)/include/depend.mk
 
 AR	=	ar rc
 
-SRC	=	my_printf/my_printf.c	\
-		my_printf/pf_flags.c	\
-		my_printf/pf_modifier.c	\
-		my_printf/pf_write.c	\
-		my_strlen.c		\
+SRC	=	my_strlen.c		\
 		my_strcpy.c		\
 		my_strncpy.c		\
 		my_strcmp.c		\
@@ -24,7 +20,9 @@ SRC	=	my_printf/my_printf.c	\
 		my_atoi.c		\
 		my_strconca.c		\
 		my_trim.c		\
-		clist.c			\
+		my_clist.c		\
+		my_clist_rem.c		\
+		my_clist_sort.c		\
 		my_showmem.c		\
 		my_putnbr_base.c	\
 		my_fd.c			\
@@ -40,13 +38,30 @@ SRC	=	my_printf/my_printf.c	\
 		my_isnum.c		\
 		my_errno.c		\
 		my_strbuilder.c		\
-		my_strbuilder_ext.c
+		my_strbuilder_ext.c	\
+		my_hash_table.c
+
+PFSRC	=	my_printf.c	\
+		pf_flags.c	\
+		pf_modifier.c	\
+		pf_write.c	\
+		pf_format.c	\
+		pf_modif_va.c
+
+SPFDIR	=	$(SDIR)/my_printf
+OPFDIR	=	$(ODIR)
 
 CFLAGS	+=	-I./include/
 
-_OBJ    =	$(SRC:.c=.o)
+ifeq	($(ALLOW_OPEN), true)
+ CFLAGS	+=	-D ALLOW_OPEN
+endif
+ifeq	($(ALLOW_LSEEK), true)
+ CFLAGS	+=	-D ALLOW_LSEEK
+endif
 
-OBJ	=	$(patsubst %,$(ODIR)/%,$(_OBJ))
+OBJ	=	$(patsubst %,$(ODIR)/%,$(SRC:.c=.o))
+PFOBJ	=	$(patsubst %,$(OPFDIR)/%,$(PFSRC:.c=.o))
 
 NAME	=	libmy.a
 
@@ -55,12 +70,18 @@ all		:	$(NAME)
 $(ODIR)/%.o	:	$(SDIR)/%.c
 	$(CC) $(CFLAGS)	-c -o $@ $<
 
-$(NAME)		:	$(OBJ)
-	$(AR) $(NAME) $(OBJ)
+$(OPFDIR)/%.o	:	$(SPFDIR)/%.c
+	$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
+
+mkobj		:
+	./tools/verif_objdir
+
+$(NAME)		:	mkobj $(OBJ) $(PFOBJ)
+	$(AR) $(NAME) $(OBJ) $(PFOBJ)
 	ranlib $(NAME)
 
 clean		:
-	rm -f $(OBJ)
+	rm -rf	$(ODIR)
 
 fclean		:	clean
 	rm -f $(NAME)

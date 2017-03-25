@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Mon Feb 27 09:31:40 2017 Benjamin Viguier
+** Last update Sat Mar 25 14:16:58 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -56,6 +56,7 @@ typedef struct		s_clist
   struct s_clist	*prev;
 }			t_clist;
 typedef t_clist		t_clist_elm;
+typedef int		(*t_elm_cmp)(void *, void *);
 
 typedef unsigned long	t_ulong;
 typedef unsigned int	t_uint;
@@ -65,10 +66,15 @@ typedef unsigned char	t_uchar;
 /*
 ** Circular Linked List
 */
-t_clist	*clist_push(t_clist *l, void *ptr);
-void	clist_swap_val(t_clist_elm *elm1, t_clist_elm *elm2);
-void	clist_free(t_clist *l);
-void	clist_free_data(t_clist *l, void (*myfree)(void*));
+t_clist		*clist_push(t_clist *l, void *ptr);
+void		clist_swap_val(t_clist_elm *elm1, t_clist_elm *elm2);
+void		clist_free(t_clist *l);
+void		clist_free_data(t_clist *l, void (*myfree)(void*));
+t_clist		*clist_remove(t_clist *list, t_clist_elm *elm);
+t_clist		*clist_rem_fdata(t_clist *list, t_clist_elm *elm,
+				 void (*my_free)(void*));
+void		clist_sort(t_clist *list, t_elm_cmp cmp_fct);
+t_clist_elm	*clist_at(t_clist *list, int at);
 
 /*
 ** Basics Functs

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Feb 24 11:03:35 2017 Benjamin Viguier
-** Last update Mon Feb 27 11:04:20 2017 Benjamin Viguier
+** Last update Mon Feb 27 11:45:07 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -14,6 +14,7 @@ const t_pf_prmflag	g_prmf_tab[] =
   {
     {PF_FLAG_SUB, '-'},
     {PF_FLAG_ADD, '+'},
+    {PF_FLAG_DEZ, '#'},
     {PF_FLAG_SPACE, ' '},
     {PF_FLAG_ZERO, '0'},
     {PF_NO_FLAG, '\0'},
@@ -52,22 +53,25 @@ int	__pf_getfflag(t_pf_data *data, t_pf_prm *prm)
 	  if (cur->c == *(data->fmt))
 	    {
 	      prm->flag |= cur->type;
+	      if (*(data->fmt) == '\0')
+		return (0);
+	      (data->fmt)++;
 	      found = 1;
 	    }
 	  cur++;
 	}
-      (data->fmt)++;
-      if (*(data->fmt) == '\0')
-	return (0);
     }
   return (1);
 }
 
 int		__pf_get_flags(t_pf_data *data, t_pf_prm *prm)
 {
+  if ((prm->type = *(data->fmt)) == '#')
+    return (1);
+  my_memset(prm, 0, sizeof(t_pf_prm));
+  prm->save = data->fmt;
   if (*(data->fmt) == '\0')
     return (0);
-  my_memset(prm, 0, sizeof(t_pf_prm));
   if (__pf_getfflag(data, prm) == 0)
     return (0);
   prm->width = __pf_prm_nbr(data);

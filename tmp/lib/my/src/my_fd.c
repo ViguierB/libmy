@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Dec 22 16:23:15 2016 Benjamin Viguier
-** Last update Thu Feb 23 17:46:23 2017 Benjamin Viguier
+** Last update Fri Mar  3 13:53:24 2017 Benjamin Viguier
 */
 
 #include <sys/types.h>
@@ -15,6 +15,7 @@
 #include <stdarg.h>
 #include "internal.h"
 
+#ifdef ALLOW_OPEN
 t_my_fd		*my_fopen(char *path, int flags, ...)
 {
   t_my_fd	*res;
@@ -38,6 +39,18 @@ t_my_fd		*my_fopen(char *path, int flags, ...)
   return (res);
 }
 
+void	my_fclose(t_my_fd *to_free)
+{
+  if (to_free)
+    {
+      if (to_free->wlen)
+        my_fflush(to_free);
+      close(to_free->fd);
+      free(to_free);
+    }
+}
+#endif /* !ALLOW_OPEN */
+
 t_my_fd		*my_fd_from_fd(const int fd)
 {
   t_my_fd	*res;
@@ -50,15 +63,4 @@ t_my_fd		*my_fd_from_fd(const int fd)
   if (res->fd < 0)
     return (NULL);
   return (res);
-}
-
-void	my_fclose(t_my_fd *to_free)
-{
-  if (to_free)
-    {
-      if (to_free->wlen)
-        my_fflush(to_free);
-      close(to_free->fd);
-      free(to_free);
-    }
 }

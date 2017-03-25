@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 14:58:19 2017 Benjamin Viguier
-** Last update Thu Feb 23 15:45:51 2017 Benjamin Viguier
+** Last update Fri Mar  3 16:44:48 2017 Benjamin Viguier
 */
 
 #include "libmy.h"
@@ -29,7 +29,7 @@ int	__libmy_sb_flush(t_strbuilder *sb)
       j++;
       i++;
     }
-  my_memcpy(res + i, sb->res + sb->pos, sb->res_len - sb->pos);
+  my_memcpy(res + i - 1, sb->res + sb->pos, sb->res_len - sb->pos);
   sb->res_len = sb->res_len + sb->len;
   sb->pos += j;
   sb->len = 0;

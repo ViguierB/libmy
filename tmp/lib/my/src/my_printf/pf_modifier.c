@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Feb 24 11:45:51 2017 Benjamin Viguier
-** Last update Mon Feb 27 11:04:53 2017 Benjamin Viguier
+** Last update Mon Feb 27 14:18:14 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -78,14 +78,14 @@ const t_pf_sprm	g_ptr_tab[] =
 
 const t_pf_sprm	g_n_tab[] =
   {
-    {PAT_HH, sizeof(char*)},
-    {PAT_LL, sizeof(long long int*)},
-    {PAT_H, sizeof(short int*)},
-    {PAT_L, sizeof(long int*)},
-    {PAT_J, sizeof(intmax_t*)},
-    {PAT_Z, sizeof(size_t*)},
-    {PAT_T, sizeof(ptrdiff_t*)},
-    {NULL, sizeof(int*)}
+    {PAT_HH, sizeof(char)},
+    {PAT_LL, sizeof(long long int)},
+    {PAT_H, sizeof(short int)},
+    {PAT_L, sizeof(long int)},
+    {PAT_J, sizeof(intmax_t)},
+    {PAT_Z, sizeof(size_t)},
+    {PAT_T, sizeof(ptrdiff_t)},
+    {NULL, sizeof(int)}
   };
 
 const t_pf_type	g_type_pat[] =
@@ -100,7 +100,24 @@ const t_pf_type	g_type_pat[] =
       {NULL, NULL}
     };
 
-void		__pf_get_modsize(t_pf_prm *prm)
+void	__pf_get_var(va_list va, t_pf_prm *prm, int i)
+{
+  if (i == 0)
+    __pf_getud(va, prm);
+  else if (i == 1)
+    __pf_getd(va, prm);
+  else if (i == 2)
+    __pf_getrest(va, prm, TYPE_FLT);
+  else if (i == 3)
+    __pf_getrest(va, prm, TYPE_CHAR);
+  else if (i == 4)
+    __pf_getrest(va, prm, TYPE_STR);
+  else
+    __pf_getrest(va, prm, TYPE_OTHER);
+    
+}
+
+  void		__pf_get_modsize(va_list va, t_pf_prm *prm)
 {
   t_pf_sprm	*sprm_cur;
   t_pf_type	*cur;
@@ -117,15 +134,30 @@ void		__pf_get_modsize(t_pf_prm *prm)
 	    {
 	      i = 0;
 	      while (sprm_cur[i].pat &&
-		     my_strcmp(sprm_cur[i].pat, prm->pat) != 1)
+		     my_strcmp(sprm_cur[i].pat, prm->pat) != 0)
 		i++;
 	      prm->size = sprm_cur[i].size;
+	      __pf_get_var(va, prm, i);
 	      return;
 	    }
 	  i++;
 	}
       cur++;
     }
+}
+
+int	__pf_verif_len(t_pf_data *data, int len)
+{
+  int	i;
+
+  i = 0;
+  while (i < len)
+    {
+      if (data->fmt[i] == '\0')
+	return (0);
+      i++;
+    }
+  return (1);
 }
 
 int	__pf_get_modpat(t_pf_data *data, t_pf_prm *prm)
@@ -137,20 +169,19 @@ int	__pf_get_modpat(t_pf_data *data, t_pf_prm *prm)
   while (*cur)
     {
       len = my_strlen(*cur);
-      if (my_memcmp(data->fmt, *cur, len) == 0)
+      if (__pf_verif_len(data, len) &&
+	  my_memcmp(data->fmt, *cur, len) == 0)
 	{
 	  data->fmt += len;
-	  if (*(data->fmt) == '\0')
-	    return (0);
 	  prm->pat = *cur;
-	  prm->type = *(data->fmt);
-	  (data->fmt)++;
-	  if (*(data->fmt) == '\0')
-	    return (0);
-	  __pf_get_modsize(prm);
-	  return (1);
+	  break;
 	}
       cur++;
     }
-  return (0);
+  prm->type = *(data->fmt);
+  (data->fmt)++;
+  __pf_get_modsize(data->va, prm);
+  if (*(data->fmt) == '\0')
+    return (0);
+  return (1);
 }

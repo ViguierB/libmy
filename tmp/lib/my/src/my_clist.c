@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Wed Nov 23 17:41:40 2016 Benjamin Viguier
-** Last update Thu Feb 23 16:03:09 2017 Benjamin Viguier
+** Last update Sat Mar 25 14:17:17 2017 Benjamin Viguier
 */
 
 #include "libmy.h"
@@ -45,42 +45,15 @@ void	clist_swap_val(t_clist_elm *elm1, t_clist_elm *elm2)
   elm2->ptr = tmp;
 }
 
-void		clist_free_data(t_clist *l, void (*myfree)(void*))
+t_clist_elm	*clist_at(t_clist *list, int at)
 {
-  t_clist_elm	*elm;
-  int		cont;
+  t_clist_elm	*res;
 
-  elm = l;
-  cont = 1;
-  l->prev->next = l->prev;
-  while (elm && l && cont)
+  res = list;
+  while (at)
     {
-      l = l->next;
-      if (elm == l)
-	cont  = 0;
-      if (elm)
-	{
-	  myfree(elm->ptr);
-	  free(elm);
-	}
-      elm = l;
+      res = res->next;
+      at--;
     }
-}
-
-void		clist_free(t_clist *l)
-{
-  t_clist_elm	*elm;
-  int		cont;
-
-  elm = l;
-  cont = 1;
-  l->prev->next = l->prev;
-  while (elm && l && cont)
-    {
-      l = l->next;
-      if (elm == l)
-	cont  = 0;
-      free(elm);
-      elm = l;
-    }
+  return (res);
 }

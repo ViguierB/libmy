@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Mon Feb 27 11:02:30 2017 Benjamin Viguier
+** Last update Mon Feb 27 13:47:57 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
@@ -27,6 +27,15 @@ typedef struct	s_pf_data
   va_list	va;
 }		t_pf_data;
 
+typedef union			u_pf_var
+{
+  long long int			d;
+  unsigned long long int	ud;
+  long double			ld;
+  char				*s;
+  void				*ptr;
+}				t_pf_var;
+
 typedef struct	s_pf_prm
 {
   int		type;
@@ -35,6 +44,8 @@ typedef struct	s_pf_prm
   int		flag;
   char		*pat;
   size_t	size;
+  char		*save;
+  t_pf_var	myvar;
 }		t_pf_prm;
 
 enum
@@ -42,8 +53,9 @@ enum
     PF_NO_FLAG		= 0x0,
     PF_FLAG_SUB		= 0x1,
     PF_FLAG_ADD		= 0x2,
-    PF_FLAG_SPACE	= 0x4,
-    PF_FLAG_ZERO	= 0x8
+    PF_FLAG_DEZ		= 0x4,
+    PF_FLAG_SPACE	= 0x8,
+    PF_FLAG_ZERO	= 0x10
   };
 
 typedef struct	s_pf_prmflag
@@ -78,5 +90,9 @@ int	__pf_putchar(t_pf_data *data, char c);
 int	__pf_flush(t_pf_data *data);
 int	__pf_get_flags(t_pf_data *data, t_pf_prm *prm);
 int	__pf_get_modpat(t_pf_data *data, t_pf_prm *prm);
+int	__pf_format(t_pf_data *data, t_pf_prm *prm);
+void	__pf_getd(va_list va, t_pf_prm *prm);
+void	__pf_getud(va_list va, t_pf_prm *prm);
+void	__pf_getrest(va_list va, t_pf_prm *prm, int type);
 
 #endif /* !INTERNAL_H_ */
