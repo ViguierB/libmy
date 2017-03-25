@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 11:05:54 2017 Benjamin Viguier
-** Last update Sat Mar 25 14:10:54 2017 Benjamin Viguier
+** Last update Sat Mar 25 17:09:17 2017 Benjamin Viguier
 */
 
 #ifndef HASH_TABLE_H_
@@ -39,6 +39,8 @@ typedef struct	s_ht
   t_hash_fct	hash_fct;
   size_t	len;
 }		t_ht;
+
+typedef t_ht	t_memgrb;
 
 /*
 ** Pour hash_fct est une fonction de hashage, de base les fonctions de /

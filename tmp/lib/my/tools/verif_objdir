@@ -1,7 +1,8 @@
 #!/bin/bash
 
 if [ -d "./obj" ];then
-    echo "obj directory already here";
+    echo "Le dossier 'obj' existe déjà."
 else
     mkdir obj;
+    echo "Crée."
 fi

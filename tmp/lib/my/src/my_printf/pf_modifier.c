@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Feb 24 11:45:51 2017 Benjamin Viguier
-** Last update Mon Feb 27 14:18:14 2017 Benjamin Viguier
+** Last update Sat Mar 25 17:35:33 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -16,7 +16,7 @@
 #include "internal.h"
 #include "pf_modif.h"
 
-const char const	*g_all_pat[] =
+const char	*g_all_pat[] =
   {
     PAT_HH,
     PAT_LL,
