@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 17:39:06 2017 Benjamin Viguier
-** Last update Sat Mar 25 17:55:55 2017 Benjamin Viguier
+** Last update Sun Mar 26 16:43:30 2017 Benjamin Viguier
 */
 
 #include "libmy.h"
@@ -45,4 +45,31 @@ t_memgrb		*mg_get_maingrb(void)
       is_init = 1;
     }
   return (&grb);
+}
+
+void		mg_clear(t_memgrb *memg)
+{
+  t_clist_elm	*elm;
+  
+  while	(memg->len)
+    {
+      if (memg->buffer[--(memg->len)].value)
+	{
+	  if (memg->buffer[memg->len].islist)
+	    {
+	      elm = memg->buffer[memg->len].value;
+	      while (elm)
+		{
+		  elm->ptr -= sizeof(size_t);
+		  free(elm->ptr);
+		  if ((elm = CLIST_NEXT(memg->buffer[memg->len].value, elm)))
+		    free(elm->prev);
+		}
+	    }
+	  else
+	    free(memg->buffer[memg->len].value - sizeof(size_t));
+	}
+    }
+  free(memg->buffer);
+  free(memg);
 }
