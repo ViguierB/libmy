@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Tue Feb 21 09:59:48 2017 Benjamin Viguier
-** Last update Tue Feb 21 11:43:00 2017 Benjamin Viguier
+** Last update Fri Mar 17 11:22:49 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -85,6 +85,8 @@ int		my_fread_to_end(t_my_fd *fd, char **res)
       cur_len += (size_t) len;
       len = my_fread(fd, buffer, MY_FD_BUFF_LEN);
     }
+  if (cur_len == 0)
+    return (0);
   (*res)[cur_len] = '\0';
-  return (0);
+  return (cur_len);
 }
