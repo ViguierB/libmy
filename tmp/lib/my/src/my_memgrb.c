@@ -5,18 +5,18 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 17:02:50 2017 Benjamin Viguier
-** Last update Sat Mar 25 17:38:48 2017 Benjamin Viguier
+** Last update Sun Mar 26 18:55:23 2017 Benjamin Viguier
 */
 
 #include "libmy.h"
 #include "hash_table.h"
 
-t_memgrb	*init_gbr(size_t hash_table_size)
+t_memgrb	*init_grb(size_t hash_table_size)
 {
   t_memgrb	*mem;
 
   if (!hash_table_size)
-    hash_table_size = 1024;
+    hash_table_size = BASIC_HT_SIZE;
   mem = init_ht(hash_table_size, &jenkins_hash_ptr);
   if (!mem)
     return (NULL);

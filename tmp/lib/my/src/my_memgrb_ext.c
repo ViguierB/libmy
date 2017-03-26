@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 17:39:06 2017 Benjamin Viguier
-** Last update Sun Mar 26 16:43:30 2017 Benjamin Viguier
+** Last update Sun Mar 26 19:19:55 2017 Benjamin Viguier
 */
 
 #include "libmy.h"
@@ -58,13 +58,15 @@ void		mg_clear(t_memgrb *memg)
 	  if (memg->buffer[memg->len].islist)
 	    {
 	      elm = memg->buffer[memg->len].value;
-	      while (elm)
+	      while (memg->buffer[memg->len].value)
 		{
-		  elm->ptr -= sizeof(size_t);
-		  free(elm->ptr);
-		  if ((elm = CLIST_NEXT(memg->buffer[memg->len].value, elm)))
+		  free(elm->ptr - sizeof(size_t));
+		  if (elm->next == memg->buffer[memg->len].value)
+		    memg->buffer[memg->len].value = NULL;
+		  else if ((elm = elm->next) != NULL)
 		    free(elm->prev);
 		}
+	      free(elm);
 	    }
 	  else
 	    free(memg->buffer[memg->len].value - sizeof(size_t));

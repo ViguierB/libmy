@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:49:07 2017 Benjamin Viguier
-** Last update Sat Mar 25 14:23:21 2017 Benjamin Viguier
+** Last update Sun Mar 26 18:56:12 2017 Benjamin Viguier
 */
 
 #include "hash_table.h"
@@ -89,7 +89,7 @@ int		init_allowed_ht(t_ht *ht, size_t len, t_hash_fct hash_fct)
   
   buffer = malloc(sizeof(t_ht_elm) * len);
   ht->len = len;
-  if (!(ht->buffer))
+  if (!(buffer))
     return (-1);
   my_memset(buffer, 0, sizeof(t_ht_elm) * len);
   ht->buffer = buffer;
@@ -97,5 +97,5 @@ int		init_allowed_ht(t_ht *ht, size_t len, t_hash_fct hash_fct)
     ht->hash_fct = hash_fct;
   else
     ht->hash_fct = &jenkins_hash_ptr;
-  return (1);
+  return (0);
 }
