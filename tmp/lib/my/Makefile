@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Sun Apr  2 16:49:50 2017 Benjamin Viguier
+## Last update Sun Apr  2 23:25:28 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -74,17 +74,11 @@ show_cfalgs	:
 	@echo "Flags Actif :" $(CFLAGS);
 
 $(ODIR)/%.o	:	$(SDIR)/%.c
-	@echo -n "Compilation de "
-	@echo -en "\033[1;34m"
-	@echo -en $(notdir $<)
-	@echo -e "\033[0m"
+	@echo -e "[libmy] Compilation de" "\033[1;34m"$(notdir $<)"\033[0m"
 	@$(CC) $(CFLAGS)	-c -o $@ $<
 
 $(OPFDIR)/%.o	:	$(SPFDIR)/%.c
-	@echo -n "Compilation de "
-	@echo -en "\033[1;34m"
-	@echo -en $(notdir $<)
-	@echo -e "\033[0m"
+	@echo -e "[my_printf] Compilation de" "\033[1;34m"$(notdir $<)"\033[0m"
 	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
 
 mkobj		:
@@ -92,17 +86,14 @@ mkobj		:
 	@./tools/verif_objdir;
 
 $(NAME)		:	mkobj $(OBJ) $(PFOBJ)
-	@echo "Creation de" $(NAME);
+	@echo -e "Creation de" "\033[1;32m"$(NAME)"\033[0m"
 	@$(AR) $(NAME) $(OBJ) $(PFOBJ)
 	@ranlib $(NAME)
-	@echo -en "\033[1;32m"
-	@echo "success"
-	@echo -en "\033[0m"
 
 clean		:
-	rm -rf	$(ODIR)
+	@rm -rf	$(ODIR)
 
 fclean		:	clean
-	rm -f	$(NAME)
+	@rm -f	$(NAME)
 
 re		:	fclean all
