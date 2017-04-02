@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Sat Mar 25 17:53:20 2017 Benjamin Viguier
+## Last update Sun Apr  2 16:49:50 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -68,21 +68,36 @@ PFOBJ	=	$(patsubst %,$(OPFDIR)/%,$(PFSRC:.c=.o))
 
 NAME	=	libmy.a
 
-all		:	$(NAME)
+all		:	show_cfalgs $(NAME)
+
+show_cfalgs	:
+	@echo "Flags Actif :" $(CFLAGS);
 
 $(ODIR)/%.o	:	$(SDIR)/%.c
-	$(CC) $(CFLAGS)	-c -o $@ $<
+	@echo -n "Compilation de "
+	@echo -en "\033[1;34m"
+	@echo -en $(notdir $<)
+	@echo -e "\033[0m"
+	@$(CC) $(CFLAGS)	-c -o $@ $<
 
 $(OPFDIR)/%.o	:	$(SPFDIR)/%.c
-	$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
+	@echo -n "Compilation de "
+	@echo -en "\033[1;34m"
+	@echo -en $(notdir $<)
+	@echo -e "\033[0m"
+	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
 
 mkobj		:
 	@echo "Verification du dossier 'obj'";
 	@./tools/verif_objdir;
 
 $(NAME)		:	mkobj $(OBJ) $(PFOBJ)
-	$(AR) $(NAME) $(OBJ) $(PFOBJ)
-	ranlib $(NAME)
+	@echo "Creation de" $(NAME);
+	@$(AR) $(NAME) $(OBJ) $(PFOBJ)
+	@ranlib $(NAME)
+	@echo -en "\033[1;32m"
+	@echo "success"
+	@echo -en "\033[0m"
 
 clean		:
 	rm -rf	$(ODIR)
