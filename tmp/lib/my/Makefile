@@ -5,12 +5,19 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Sun Apr  2 23:25:28 2017 Benjamin Viguier
+## Last update Mon Apr 10 20:14:13 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
 
-AR	=	ar rc
+CFLAGS	+=	-I./include/
+
+ifeq	($(ALLOW_OPEN), true)
+ CFLAGS	+=	-D ALLOW_OPEN
+endif
+ifeq	($(ALLOW_LSEEK), true)
+ CFLAGS	+=	-D ALLOW_LSEEK
+endif
 
 SRC	=	my_strlen.c		\
 		my_strcpy.c		\
@@ -38,11 +45,7 @@ SRC	=	my_strlen.c		\
 		my_isnum.c		\
 		my_errno.c		\
 		my_strbuilder.c		\
-		my_strbuilder_ext.c	\
-		my_hash_table.c		\
-		my_hash_table_utils.c	\
-		my_memgrb.c		\
-		my_memgrb_ext.c
+		my_strbuilder_ext.c
 
 PFSRC	=	my_printf.c	\
 		pf_flags.c	\
@@ -51,26 +54,30 @@ PFSRC	=	my_printf.c	\
 		pf_format.c	\
 		pf_modif_va.c
 
+HSRC	=	my_hash_table.c		\
+		my_hash_table_utils.c	\
+		murmur.c
+
 SPFDIR	=	$(SDIR)/my_printf
 OPFDIR	=	$(ODIR)
 
-CFLAGS	+=	-I./include/
-
-ifeq	($(ALLOW_OPEN), true)
- CFLAGS	+=	-D ALLOW_OPEN
-endif
-ifeq	($(ALLOW_LSEEK), true)
- CFLAGS	+=	-D ALLOW_LSEEK
-endif
+SHDIR	=	$(SDIR)/hash
+OHDIR	=	$(ODIR)
 
 OBJ	=	$(patsubst %,$(ODIR)/%,$(SRC:.c=.o))
 PFOBJ	=	$(patsubst %,$(OPFDIR)/%,$(PFSRC:.c=.o))
+HOBJ	=	$(patsubst %,$(OHDIR)/%,$(HSRC:.c=.o))
 
 NAME	=	libmy.a
 
-all		:	show_cfalgs $(NAME)
+all		:	$(NAME)
 
-show_cfalgs	:
+echologo	:
+	@echo -en "\033[1;34m"
+	@cat ./tools/logo.logo
+	@echo -e "\033[0m"
+
+show_cflags	:
 	@echo "Flags Actif :" $(CFLAGS);
 
 $(ODIR)/%.o	:	$(SDIR)/%.c
@@ -81,11 +88,15 @@ $(OPFDIR)/%.o	:	$(SPFDIR)/%.c
 	@echo -e "[my_printf] Compilation de" "\033[1;34m"$(notdir $<)"\033[0m"
 	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
 
+$(OHDIR)/%.o	:	$(SHDIR)/%.c
+	@echo -e "[hash] Compilation de" "\033[1;34m"$(notdir $<)"\033[0m"
+	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
+
 mkobj		:
 	@echo "Verification du dossier 'obj'";
 	@./tools/verif_objdir;
 
-$(NAME)		:	mkobj $(OBJ) $(PFOBJ)
+$(NAME)		:	echologo mkobj show_cflags $(OBJ) $(PFOBJ) $(HOBJ)
 	@echo -e "Creation de" "\033[1;32m"$(NAME)"\033[0m"
 	@$(AR) $(NAME) $(OBJ) $(PFOBJ)
 	@ranlib $(NAME)

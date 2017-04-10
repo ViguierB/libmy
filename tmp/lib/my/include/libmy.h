@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Sat Mar 25 17:08:45 2017 Benjamin Viguier
+** Last update Mon Apr 10 13:15:40 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -39,6 +39,13 @@ enum
     SBW_POS,
     SBW_END
   };
+
+typedef enum	e_lmy_st
+  {
+    LIBMY_INIT	= 0x1,
+    LIBMY_GET	= 0x2,
+    LIBMY_SET	= 0x4
+  }		t_lmy_st;
 
 typedef struct	s_strbuilder
 {

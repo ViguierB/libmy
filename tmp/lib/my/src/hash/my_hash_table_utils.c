@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 14:06:16 2017 Benjamin Viguier
-** Last update Sun Mar 26 22:49:46 2017 Benjamin Viguier
+** Last update Mon Apr 10 13:24:47 2017 Benjamin Viguier
 */
 
 #include "hash_table.h"

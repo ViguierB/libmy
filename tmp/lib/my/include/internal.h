@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Mon Feb 27 13:47:57 2017 Benjamin Viguier
+** Last update Mon Apr 10 13:25:56 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
@@ -13,6 +13,8 @@
 
 # include <stdarg.h>
 # include "libmy.h"
+
+# define GC_MAGIC 0x424242
 
 /*
 ** my_printf struct, type & enum
@@ -75,6 +77,13 @@ typedef struct		s_pf_type
   char			*pat;
   const t_pf_sprm	*sprm;
 }			t_pf_type;
+
+typedef struct	s_mem_header
+{
+  void		*node;
+  size_t	len;
+  int		magic;
+}		t_mem_header;
 
 /*
 ** libmy internal functions

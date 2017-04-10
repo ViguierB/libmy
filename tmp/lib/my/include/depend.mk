@@ -5,27 +5,32 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ## 
 ## Started on  Wed Nov  9 17:16:44 2016 Benjamin Viguier
-## Last update Sun Apr  2 16:39:23 2017 Benjamin Viguier
+## Last update Mon Apr 10 14:00:11 2017 Benjamin Viguier
 ##
 
 CC		=	gcc
+
+AR		=	ar rc
 
 DEBUG		=	true
 
 WALL		=	true
 
-RELEASE		=	true
+RELEASE		=	false
 
 ALLOW_OPEN	=	true
 
 ALLOW_LSEEK	=	true
+
+OPTI_FLAG	=	-O2
 
 ifeq	($(WALL),true)
  CFLAGS		+=	-W -Wall -Wextra
 endif
 
 ifeq	($(RELEASE),true)
- CFLAGS		+=	-O2 -Werror -Wno-unused-result
+ CFLAGS		+=	$(OPTI_FLAG)
+ CFLAGS		+=	-Werror -Wno-unused-result
  DEBUG		=	false
 else
  CFLAGS		+=	-O0
