@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Mon Apr 10 20:14:13 2017 Benjamin Viguier
+## Last update Thu Apr 13 18:15:41 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -78,7 +78,7 @@ echologo	:
 	@echo -e "\033[0m"
 
 show_cflags	:
-	@echo "Flags Actif :" $(CFLAGS);
+	@echo -e "Flags Actif :" "\033[1;33m"$(CFLAGS)"\033[0m";
 
 $(ODIR)/%.o	:	$(SDIR)/%.c
 	@echo -e "[libmy] Compilation de" "\033[1;34m"$(notdir $<)"\033[0m"
