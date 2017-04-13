@@ -5,30 +5,36 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Wed Dec  7 11:25:33 2016 Benjamin Viguier
-** Last update Thu Feb 23 16:02:05 2017 Benjamin Viguier
+** Last update Thu Apr 13 16:43:44 2017 Benjamin Viguier
 */
 
-#include "libmy.h"
+#include "my.h"
 
-char	**pass_two(char **res, char *tmp, char *inp, char sep)
+static int	count_lines(char *inp, char sep, char **tmp)
 {
-  int	i;
-  int	lines;
+  int		count;
 
-  i = 0;
-  lines = 1;
-  res[0] = tmp;
-  while (inp[i])
+  count = 1;
+  while (*inp && *inp == sep)
+    inp++;
+  if (!(inp = my_strdup(inp)))
+    return (0);
+  *tmp = inp;
+  if (*inp == '\0')
+    return (0);
+  while (*inp)
     {
-      if (inp[i] == sep)
+      if (*inp == sep)
 	{
-	  res[lines] = (tmp + i + 1);
-	  tmp[i] = '\0';
-	  lines += 1;
+	  *inp = '\0';
+	  while (*(inp + 1) && *(inp + 1) == sep)
+	    inp++;
+	  if (*(inp + 1))
+	    count++;
 	}
-      i += 1;
+      inp++;
     }
-  return (res);
+  return (count);
 }
 
 char	**my_split(char *inp, char sep, int *nb_lines)
@@ -39,19 +45,23 @@ char	**my_split(char *inp, char sep, int *nb_lines)
   int	lines;
 
   i = 0;
-  lines = 1;
-  while (inp[i])
-    {
-      if (inp[i] == sep && inp[i + 1] && inp[i + 1] != sep)
-	lines += 1;
-      i += 1;
-    }
-  tmp = my_strdup(inp);
+  lines = count_lines(inp, sep, &tmp);
   res = malloc(sizeof(char*) * (lines + 1));
-  if (!tmp || !res)
+  if (!res || !tmp)
     return (NULL);
-  res[lines] = NULL;
   if (nb_lines)
     *nb_lines = lines;
-  return (pass_two(res, tmp, inp, sep));
+  while (i < lines)
+    {
+      res[i++] = tmp;
+      if (!(i < lines))
+	break;
+      while (*tmp != '\0')
+	tmp++;
+      tmp++;
+      while (*tmp == sep)
+	tmp++;
+    }
+  res[i] = NULL;
+  return (res);
 }

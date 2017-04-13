@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Mon Apr 10 13:15:40 2017 Benjamin Viguier
+** Last update Mon Apr 10 20:21:15 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -13,14 +13,15 @@
 
 # include <stdlib.h>
 
-# define S_IN 0
-# define S_OUT 1
-# define S_ERR 2
-# define MY_FD_BUFF_LEN 1024
-# define PSQ(x) ((x) * (x))
-# define MIN(a, b) (((a) < (b)) ? (a) : (b))
-# define MAX(a, b) (((a) > (b)) ? (a) : (b))
-# define ABS(a) (((a) < 0) ? (-(a)) : (a))
+# define S_IN		0
+# define S_OUT		1
+# define S_ERR		2
+# define MY_FD_BUFF_LEN	1024
+
+# define PSQ(x)		((x) * (x))
+# define MIN(a, b)	(((a) < (b)) ? (a) : (b))
+# define MAX(a, b)	(((a) > (b)) ? (a) : (b))
+# define ABS(a)		(((a) < 0) ? (-(a)) : (a))
 # define CLIST_NEXT(l, e) ((((e)->next) == (l)) ? ((void*) 0) : ((e)->next)) 
 
 typedef struct	s_my_fd
