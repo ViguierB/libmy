@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Apr 10 13:07:50 2017 Benjamin Viguier
-** Last update Mon Apr 10 20:20:13 2017 Benjamin Viguier
+** Last update Fri Apr 14 18:53:46 2017 Benjamin Viguier
 */
 
 #include <stdlib.h>
@@ -61,7 +61,7 @@ int	my_gcfree(t_clist **list, void *ptr)
     return (-1);
   if (head.node != NULL)
     {
-      
+
     }
   free(ptr);
   return (0);

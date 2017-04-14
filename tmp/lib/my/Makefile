@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Thu Apr 13 18:15:41 2017 Benjamin Viguier
+## Last update Fri Apr 14 17:08:17 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -30,6 +30,7 @@ SRC	=	my_strlen.c		\
 		my_clist.c		\
 		my_clist_rem.c		\
 		my_clist_sort.c		\
+		my_clist_qsort.c	\
 		my_showmem.c		\
 		my_putnbr_base.c	\
 		my_fd.c			\

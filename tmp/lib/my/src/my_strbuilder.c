@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 12:20:16 2017 Benjamin Viguier
-** Last update Thu Feb 23 18:13:29 2017 Benjamin Viguier
+** Last update Fri Apr 14 18:54:44 2017 Benjamin Viguier
 */
 
 #include "libmy.h"
@@ -27,7 +27,7 @@ t_strbuilder	*my_sb_init(void)
 char	*my_sb_get_str(t_strbuilder *sb)
 {
   char	*res;
-  
+
   if (__libmy_sb_flush(sb) < 0)
     return (NULL);
   res = sb->res;
@@ -54,7 +54,7 @@ int		my_sb_write(t_strbuilder *sb, void *ptr, size_t size)
 }
 
 off_t	my_sb_seek(t_strbuilder *sb, off_t offset, int whence)
-{ 
+{
   if (__libmy_sb_flush(sb) < 0)
     return (-1);
   if (whence == SBW_BEGIN)

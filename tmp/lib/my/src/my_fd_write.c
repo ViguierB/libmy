@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 16:11:05 2017 Benjamin Viguier
-** Last update Fri Mar  3 13:55:04 2017 Benjamin Viguier
+** Last update Fri Apr 14 18:53:10 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -49,7 +49,7 @@ ssize_t	my_fwrite(t_my_fd *fd, void *ptr, size_t size)
 
 #ifdef ALLOW_LSEEK
 off_t	my_fd_seek(t_my_fd *fd, off_t offset, int whence)
-{ 
+{
   if (my_fflush(fd) < 0)
     return (-1);
   return (lseek(fd->fd, offset, whence));
