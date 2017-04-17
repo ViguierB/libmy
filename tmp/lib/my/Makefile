@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Fri Apr 14 17:08:17 2017 Benjamin Viguier
+## Last update Mon Apr 17 21:43:39 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -81,6 +81,14 @@ echologo	:
 show_cflags	:
 	@echo -e "Flags Actif :" "\033[1;33m"$(CFLAGS)"\033[0m";
 
+warn_allow	:
+ifeq	($(ALLOW_OPEN), true)
+	 @echo -e "\033[1;34m/!\ OPEN & CLOSE enabled\n\033[0m"
+endif
+ifeq	($(ALLOW_LSEEK), true)
+	 @echo -e "\033[1;34m""/!\ LSEEK enabled\n""\033[0m"
+endif
+
 $(ODIR)/%.o	:	$(SDIR)/%.c
 	@echo -e "[libmy] Compilation de" "\033[1;34m"$(notdir $<)"\033[0m"
 	@$(CC) $(CFLAGS)	-c -o $@ $<
@@ -97,7 +105,7 @@ mkobj		:
 	@echo "Verification du dossier 'obj'";
 	@./tools/verif_objdir;
 
-$(NAME)		:	echologo mkobj show_cflags $(OBJ) $(PFOBJ) $(HOBJ)
+$(NAME)		:	echologo mkobj show_cflags warn_allow $(OBJ) $(PFOBJ) $(HOBJ)
 	@echo -e "Creation de" "\033[1;32m"$(NAME)"\033[0m"
 	@$(AR) $(NAME) $(OBJ) $(PFOBJ)
 	@ranlib $(NAME)
