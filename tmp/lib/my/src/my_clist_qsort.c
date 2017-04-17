@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Apr 14 16:12:39 2017 Benjamin Viguier
-** Last update Fri Apr 14 19:34:28 2017 Benjamin Viguier
+** Last update Mon Apr 17 20:03:12 2017 Benjamin Viguier
 */
 
 #include "libmy.h"
@@ -20,7 +20,7 @@ static void	__libmy_qsort_loop(t_clist_elm **pcur, t_clist_elm **pwall,
   wall = *pwall;
   while (1)
     {
-      while (wall != cur && cmp_fct(wall->ptr, pivot->ptr) < 0)
+      while (wall != cur && cmp_fct(wall->ptr, pivot->ptr) <= 0)
 	wall = wall->next;
       if (wall == cur)
 	break;
@@ -40,11 +40,12 @@ static void	__libmy_qsort(t_clist_elm *start, t_clist_elm *end,
   t_clist_elm	*pivot;
   t_clist_elm	*cur;
   t_clist_elm	*wall;
+  int		res;
 
-  if (start->next == end)
+  wall = start->next;
+  if (wall == end)
     return;
   cur = end->prev;
-  wall = start->next;
   if (wall == cur)
     {
       if (cmp_fct(start->ptr, cur->ptr) > 0)
@@ -53,11 +54,18 @@ static void	__libmy_qsort(t_clist_elm *start, t_clist_elm *end,
     }
   pivot = start;
   __libmy_qsort_loop(&cur, &wall, pivot, cmp_fct);
-  if (cmp_fct(wall->ptr, pivot->ptr) < 0)
+  if ((res = cmp_fct(wall->ptr, pivot->ptr)) < 0)
     clist_swap_val(wall, pivot);
-  __libmy_qsort(start, wall, cmp_fct);
-  if (wall->next != end)
-    __libmy_qsort(wall->next, end, cmp_fct);
+  cur = wall;
+  //while (cur->prev != start && !cmp_fct(cur->ptr, start->ptr))
+    //  cur = cur->prev;
+  __libmy_qsort(start, cur, cmp_fct);
+  if (res < 0)
+    wall = wall->next;
+  //while (wall != end && !cmp_fct(wall->ptr, end->ptr))
+  //wall = wall->next;
+  if (wall != end)
+    __libmy_qsort(wall, end, cmp_fct);
 }
 
 void	clist_qsort(t_clist *list, t_elm_cmp cmp_fct)
