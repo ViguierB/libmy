@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Mon Apr 17 21:43:39 2017 Benjamin Viguier
+## Last update Mon Apr 17 21:46:21 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -83,10 +83,10 @@ show_cflags	:
 
 warn_allow	:
 ifeq	($(ALLOW_OPEN), true)
-	 @echo -e "\033[1;34m/!\ OPEN & CLOSE enabled\n\033[0m"
+	@echo -e "\033[1;31m/!\ OPEN & CLOSE	enabled\033[0m"
 endif
 ifeq	($(ALLOW_LSEEK), true)
-	 @echo -e "\033[1;34m""/!\ LSEEK enabled\n""\033[0m"
+	@echo -e "\033[1;31m/!\ LSEEK		enabled\033[0m"
 endif
 
 $(ODIR)/%.o	:	$(SDIR)/%.c
