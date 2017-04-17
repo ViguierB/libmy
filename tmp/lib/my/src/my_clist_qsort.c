@@ -5,14 +5,14 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Apr 14 16:12:39 2017 Benjamin Viguier
-** Last update Mon Apr 17 21:30:06 2017 Benjamin Viguier
+** Last update Mon Apr 17 21:32:26 2017 Benjamin Viguier
 */
 
 /*
 ** Implementation d'un Quick Sort pour liste circulaire doublement chainée
 ** Last update = Optimisation dans le cas ou il y a beaucoup de fois la meme valeur
 **  à comparer :
-**  (+- 0.1 seconde pour 1 000 000 element de 1 à 10 sur (Intel(R) i7-6500U 2.50GHz)
+**  (+- 0.1 seconde pour 2 000 000 element de 1 à 10 sur (Intel(R) i7-6500U 2.50GHz)
 */
 
 #include "libmy.h"
