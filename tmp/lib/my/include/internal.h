@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Mon Apr 10 13:25:56 2017 Benjamin Viguier
+** Last update Fri Apr 21 15:41:09 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
@@ -14,6 +14,7 @@
 # include <stdarg.h>
 # include "libmy.h"
 
+# define IS_NUM(c) (((c) >= '0') && ((c) <= '9'))
 # define GC_MAGIC 0x424242
 
 /*

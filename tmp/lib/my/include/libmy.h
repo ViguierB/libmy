@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Fri Apr 14 17:08:47 2017 Benjamin Viguier
+** Last update Fri Apr 21 15:54:31 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_

@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Mon Apr 17 21:46:21 2017 Benjamin Viguier
+## Last update Fri Apr 21 15:39:12 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -25,6 +25,7 @@ SRC	=	my_strlen.c		\
 		my_strcmp.c		\
 		my_split.c		\
 		my_atoi.c		\
+		my_basic_funct.c	\
 		my_strconca.c		\
 		my_trim.c		\
 		my_clist.c		\
@@ -71,7 +72,7 @@ HOBJ	=	$(patsubst %,$(OHDIR)/%,$(HSRC:.c=.o))
 
 NAME	=	libmy.a
 
-all		:	$(NAME)
+all		:	echologo mkobj show_cflags $(NAME) warn_allow
 
 echologo	:
 	@echo -en "\033[1;34m"
@@ -105,7 +106,7 @@ mkobj		:
 	@echo "Verification du dossier 'obj'";
 	@./tools/verif_objdir;
 
-$(NAME)		:	echologo mkobj show_cflags warn_allow $(OBJ) $(PFOBJ) $(HOBJ)
+$(NAME)		:	$(OBJ) $(PFOBJ) $(HOBJ)
 	@echo -e "Creation de" "\033[1;32m"$(NAME)"\033[0m"
 	@$(AR) $(NAME) $(OBJ) $(PFOBJ)
 	@ranlib $(NAME)
