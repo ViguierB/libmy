@@ -5,9 +5,10 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Wed Apr 26 15:06:48 2017 Benjamin Viguier
-** Last update Wed Apr 26 17:14:19 2017 Benjamin Viguier
+** Last update Wed Apr 26 18:02:25 2017 Benjamin Viguier
 */
 
+#include <stdlib.h>
 #include "libmy_hash.h"
 #include "internal_malloc.h"
 
@@ -52,4 +53,19 @@ void		*__libmy_verif_ptr(void *tptr)
   if (ptr->data.magic == magic)
     return (ptr);
   return (NULL);
+}
+
+void		free_all(void)
+{
+  t_mem_header	*next;
+  void		*to_free;
+
+  next = memory_grb;
+  while (next)
+    {
+      to_free = next;
+      next = next->next;
+      free(to_free);
+    }
+  memory_grb = NULL;
 }
