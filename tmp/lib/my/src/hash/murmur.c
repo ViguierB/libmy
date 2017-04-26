@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Apr 10 13:42:28 2017 Benjamin Viguier
-** Last update Mon Apr 10 13:57:46 2017 Benjamin Viguier
+** Last update Wed Apr 26 15:49:15 2017 Benjamin Viguier
 */
 
 #include <stdint.h>
@@ -54,8 +54,9 @@ static uint32_t		murmur3_32_case1(const uint8_t **key, size_t len, uint32_t h)
   return (h);
 }
 
-uint32_t	murmur3_32(const uint8_t *key, size_t len, uint32_t seed)
+uint32_t	murmur3_32(const void *mkey, size_t len, uint32_t seed)
 {
+  const uint8_t *key = mkey;
   uint32_t	h;
 
   h = seed;

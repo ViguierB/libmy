@@ -1,1 +1,0 @@
-../lib/my/include/libmy.h

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Fri Apr 21 15:41:09 2017 Benjamin Viguier
+** Last update Wed Apr 26 14:37:15 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
@@ -15,7 +15,6 @@
 # include "libmy.h"
 
 # define IS_NUM(c) (((c) >= '0') && ((c) <= '9'))
-# define GC_MAGIC 0x424242
 
 /*
 ** my_printf struct, type & enum
@@ -78,13 +77,6 @@ typedef struct		s_pf_type
   char			*pat;
   const t_pf_sprm	*sprm;
 }			t_pf_type;
-
-typedef struct	s_mem_header
-{
-  void		*node;
-  size_t	len;
-  int		magic;
-}		t_mem_header;
 
 /*
 ** libmy internal functions

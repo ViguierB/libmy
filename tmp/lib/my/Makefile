@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Fri Apr 21 15:39:12 2017 Benjamin Viguier
+## Last update Wed Apr 26 16:04:39 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -56,9 +56,11 @@ PFSRC	=	my_printf.c	\
 		pf_format.c	\
 		pf_modif_va.c
 
-HSRC	=	my_hash_table.c		\
-		my_hash_table_utils.c	\
-		murmur.c
+HSRC	=	murmur.c
+
+MLCSRC	=	my_malloc.c		\
+		my_malloc_internal.c	\
+		my_calloc.c
 
 SPFDIR	=	$(SDIR)/my_printf
 OPFDIR	=	$(ODIR)
@@ -66,9 +68,13 @@ OPFDIR	=	$(ODIR)
 SHDIR	=	$(SDIR)/hash
 OHDIR	=	$(ODIR)
 
+SMLCDIR	=	$(SDIR)/malloc
+OMLCDIR	=	$(ODIR)
+
 OBJ	=	$(patsubst %,$(ODIR)/%,$(SRC:.c=.o))
 PFOBJ	=	$(patsubst %,$(OPFDIR)/%,$(PFSRC:.c=.o))
 HOBJ	=	$(patsubst %,$(OHDIR)/%,$(HSRC:.c=.o))
+MLCOBJ	=	$(patsubst %,$(OMLCDIR)/%,$(MLCSRC:.c=.o))
 
 NAME	=	libmy.a
 
@@ -102,13 +108,17 @@ $(OHDIR)/%.o	:	$(SHDIR)/%.c
 	@echo -e "[hash] Compilation de" "\033[1;34m"$(notdir $<)"\033[0m"
 	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
 
+$(OMLCDIR)/%.o	:	$(SMLCDIR)/%.c
+	@echo -e "[my_malloc] Compilation de" "\033[1;34m"$(notdir $<)"\033[0m"
+	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
+
 mkobj		:
 	@echo "Verification du dossier 'obj'";
 	@./tools/verif_objdir;
 
-$(NAME)		:	$(OBJ) $(PFOBJ) $(HOBJ)
+$(NAME)		:	$(OBJ) $(PFOBJ) $(HOBJ) $(MLCOBJ)
 	@echo -e "Creation de" "\033[1;32m"$(NAME)"\033[0m"
-	@$(AR) $(NAME) $(OBJ) $(PFOBJ)
+	@$(AR) $(NAME) $(OBJ) $(PFOBJ) $(HOBJ) $(MLCOBJ)
 	@ranlib $(NAME)
 
 clean		:
