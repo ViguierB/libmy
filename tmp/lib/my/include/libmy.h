@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Fri Apr 21 15:54:31 2017 Benjamin Viguier
+** Last update Thu Apr 27 21:00:00 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -50,7 +50,7 @@ typedef enum	e_lmy_st
 
 typedef struct	s_strbuilder
 {
-  char		buf[MY_FD_BUFF_LEN];
+  char		buf[MY_FD_BUFF_LEN + 1];
   size_t	len;
   char		*res;
   off_t		pos;

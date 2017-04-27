@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:49:07 2017 Benjamin Viguier
-** Last update Thu Apr 27 16:58:06 2017 Benjamin Viguier
+** Last update Thu Apr 27 18:59:33 2017 Benjamin Viguier
 */
 
 #include <stdlib.h>
@@ -42,6 +42,8 @@ static int	__libmy_hm_setvalue(t_hashmap *hm, int idx,
 {
   hm->tab[idx].type = HM_VALUE;
   hm->tab[idx].uni.value.value = opts->value;
+  hm->tab[idx].uni.value.key = opts->key;
+  hm->tab[idx].uni.value.key_len = opts->key_len;
   if (!(opts->opts & HM_NOCLONE_KEY))
     hm->tab[idx].uni.value.free_opts |= HM_KEY_NEED_FREE;
   if (opts->opts & HM_CLONE_VALUE)
@@ -58,6 +60,12 @@ static int	__libmy_create_sub_hm(t_hashmap *hm, int idx,
   if (!(new_hm = hashmap_create(MAX(hm->size / 2, MIN_TAB_SIZE), hm->hfct)))
     return (-1);
   new_hm->dim = hm->dim + 1;
+  hashmap_push(new_hm, (t_hashmap_opts) {.key = hm->tab[idx].uni.value.key,
+	.key_len = hm->tab[idx].uni.value.key_len,
+	.value = hm->tab[idx].uni.value.value,
+	.opts = (!(hm->tab[idx].uni.value.free_opts & HM_KEY_NEED_FREE))
+	| (hm->tab[idx].uni.value.free_opts & HM_VALUE_NEED_FREE),
+	.value_len = 0});
   hm->tab[idx].type = HM_SUB_HASHMAP;
   hm->tab[idx].uni.sub = new_hm;
   idx = new_hm->hfct(opts->key, opts->key_len, new_hm->dim) % new_hm->size;
@@ -80,7 +88,14 @@ static int		__libmy_push_sub_hm(t_hashmap *hm, int idx,
 	return (__libmy_push_sub_hm(hm, idx, opts));
     }
   else if (hm->tab[idx].type == HM_VALUE)
-    return (__libmy_create_sub_hm(hm, idx, opts));
+    {
+      if (hm->tab[idx].uni.value.key_len != opts->key_len ||
+	  my_memcmp(hm->tab[idx].uni.value.key, opts->key, opts->key_len))
+	return (__libmy_create_sub_hm(hm, idx, opts));
+      else if (opts->opts & HM_NO_OVERWR)
+	return (-1);
+      return (__libmy_hm_setvalue(hm, idx, opts));
+    }
   else
     return (-2);
 }

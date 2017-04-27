@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Wed Apr 26 15:27:18 2017 Benjamin Viguier
-** Last update Thu Apr 27 16:50:51 2017 Benjamin Viguier
+** Last update Thu Apr 27 18:58:20 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_HASH_H_
@@ -16,10 +16,11 @@
 
 # define HM_NOCLONE_KEY	0b001
 # define HM_CLONE_VALUE	0b010
+# define HM_NO_OVERWR	0b100
 # define HM_NO_OPTS	0b000
 
-# define HM_VALUE_NEED_FREE	0b01
-# define HM_KEY_NEED_FREE	0b10
+# define HM_KEY_NEED_FREE	0b01
+# define HM_VALUE_NEED_FREE	0b10
 
 # define MIN_TAB_SIZE	16
 
@@ -36,6 +37,7 @@ typedef struct	s_hashmap_val
 {
   void		*value;
   void		*key;
+  size_t	key_len;
   char		free_opts;
 }		t_hashmap_val;
 
