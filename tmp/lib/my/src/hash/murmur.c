@@ -5,17 +5,18 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Apr 10 13:42:28 2017 Benjamin Viguier
-** Last update Wed Apr 26 15:49:15 2017 Benjamin Viguier
+** Last update Thu Apr 27 16:55:40 2017 Benjamin Viguier
 */
 
 #include <stdint.h>
 #include <sys/types.h>
 
-static uint32_t		murmur3_32_case2(const uint8_t **key, size_t len, uint32_t h)
+static uint32_t		murmur3_32_case2(const uint8_t **key, size_t len,
+					 uint32_t h)
 {
   size_t		i;
   uint32_t		k;
-  
+
   i = len & 3;
   k = 0;
   *key = key[i - 1];
@@ -32,7 +33,8 @@ static uint32_t		murmur3_32_case2(const uint8_t **key, size_t len, uint32_t h)
   return (h);
 }
 
-static uint32_t		murmur3_32_case1(const uint8_t **key, size_t len, uint32_t h)
+static uint32_t		murmur3_32_case1(const uint8_t **key, size_t len,
+					 uint32_t h)
 {
   const uint32_t*	key_x4;
   size_t		i;
