@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Dec 22 12:46:31 2016 Benjamin Viguier
-** Last update Thu Apr 27 21:01:06 2017 Benjamin Viguier
+** Last update Thu Apr 27 21:03:23 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -78,7 +78,7 @@ static int	cpy_to_nl(char **res, t_my_fd *pack,
     }
   return (0);
 }
-char	*my_getline(t_my_fd *pack)
+char	*my_getdelim(t_my_fd *pack)
 {
   char	*res;
   int	cur_len;
