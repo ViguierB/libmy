@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:49:07 2017 Benjamin Viguier
-** Last update Thu Apr 27 16:55:09 2017 Benjamin Viguier
+** Last update Thu Apr 27 16:58:06 2017 Benjamin Viguier
 */
 
 #include <stdlib.h>
@@ -55,7 +55,7 @@ static int	__libmy_create_sub_hm(t_hashmap *hm, int idx,
 {
   t_hashmap	*new_hm;
 
-  if (!(new_hm = hashmap_create(hm->size / 2, hm->hfct)))
+  if (!(new_hm = hashmap_create(MAX(hm->size / 2, MIN_TAB_SIZE), hm->hfct)))
     return (-1);
   new_hm->dim = hm->dim + 1;
   hm->tab[idx].type = HM_SUB_HASHMAP;
