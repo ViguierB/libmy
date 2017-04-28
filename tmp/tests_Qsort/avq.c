@@ -131,5 +131,5 @@ void	trace(t_clist *q, t_clist *b, clock_t qclk, int *passed, int *failed)
       *passed += 1;
       printf("%s\e[0m  ", ((res != 0) ? "\e[1;32mOK!" : "\e[1;31mKO!"));
     }
-  printf("Quick sort = %d ms\n", qclk);
+  printf("Quick sort = %ld ms\n", qclk);
 }

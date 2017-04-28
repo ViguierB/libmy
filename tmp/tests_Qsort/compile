@@ -3,7 +3,7 @@
 cd ../lib/my/; make $1 ; cd -
 echo "gen"
 gcc -g gen.c -o gen;
-echo "av"
-gcc -g -o av av.c -L../lib/my/ -lmy
+#echo "av"
+#gcc -03 -o av av.c -L../lib/my/ -lmy
 echo "avq"
-gcc -g -o avq avq.c -L../lib/my/ -lmy
+gcc -O3 -o avq avq.c -L../lib/my/ -lmy
