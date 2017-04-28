@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Fri Apr 28 16:42:06 2017 Benjamin Viguier
+## Last update Fri Apr 28 16:45:46 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -83,55 +83,55 @@ NAME	=	libmy.a
 all		:	echologo mkobj show_cflags $(NAME) warn_allow
 
 echologo	:
-	@printf	"\e[1;34m"
+	@printf	"\033[1;34m"
 	@cat	./tools/logo.logo
-	@printf	"\e[0m"
+	@printf	"\033[0m"
 	@printf "\n"
 
 show_cflags	:
 	@printf	"Flags Actif : "
-	@printf "\e[1;33m"
+	@printf "\033[1;33m"
 	@echo	$(CFLAGS)
-	@printf	"\e[0m"
+	@printf	"\033[0m"
 
 warn_allow	:
 ifeq	($(ALLOW_OPEN), true)
-	@printf	"\e[1;31m"
+	@printf	"\033[1;31m"
 	@printf "/!\ OPEN & CLOSE	enabled\n"
-	@printf	"\e[0m"
+	@printf	"\033[0m"
 endif
 ifeq	($(ALLOW_LSEEK), true)
-	@printf	"\e[1;31m"
+	@printf	"\033[1;31m"
 	@printf "/!\ LESSK		enabled\n"
-	@printf	"\e[0m"
+	@printf	"\033[0m"
 endif
 
 $(ODIR)/%.o	:	$(SDIR)/%.c
 	@printf	"[libmy] Compilation de "
-	@printf	"\e[1;34m"
+	@printf	"\033[1;34m"
 	@echo	$(notdir $<)
-	@printf	"\e[0m"
+	@printf	"\033[0m"
 	@$(CC) $(CFLAGS)	-c -o $@ $<
 
 $(OPFDIR)/%.o	:	$(SPFDIR)/%.c
 	@printf	"[my_printf] Compilation de "
-	@printf	"\e[1;34m"
+	@printf	"\033[1;34m"
 	@echo	$(notdir $<)
-	@printf	"\e[0m"
+	@printf	"\033[0m"
 	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
 
 $(OHDIR)/%.o	:	$(SHDIR)/%.c
 	@printf	"[hash] Compilation de "
-	@printf	"\e[1;34m"
+	@printf	"\033[1;34m"
 	@echo	$(notdir $<)
-	@printf	"\e[0m"
+	@printf	"\033[0m"
 	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
 
 $(OMLCDIR)/%.o	:	$(SMLCDIR)/%.c
 	@printf	"[my_malloc] Compilation de "
-	@printf	"\e[1;34m"
+	@printf	"\033[1;34m"
 	@echo	$(notdir $<)
-	@printf	"\e[0m"
+	@printf	"\033[0m"
 	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
 
 mkobj		:
@@ -139,7 +139,10 @@ mkobj		:
 	@./tools/verif_objdir;
 
 $(NAME)		:	$(OBJ) $(PFOBJ) $(HOBJ) $(MLCOBJ)
-	@echo -e "Creation de" "\033[1;32m"$(NAME)"\033[0m"
+	@printf	"Creation de  "
+	@printf	"\033[1;32m"
+	@echo	$(NAME)
+	@printf	"\033[0m"
 	@$(AR) $(NAME) $(OBJ) $(PFOBJ) $(HOBJ) $(MLCOBJ)
 	@ranlib $(NAME)
 
