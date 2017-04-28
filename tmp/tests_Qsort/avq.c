@@ -51,6 +51,7 @@ int main(int ac, char **av)
   int		fail = 0;
   int		passed = 0;
   int		count = 0;
+  int		start = time(NULL);
   clock_t	qclk;
 
   in_ = my_fd_from_fd(0);
@@ -83,6 +84,7 @@ int main(int ac, char **av)
 	clist_free(qlist);
       qlist = NULL;
     }
+  printf("Test Time : \e[1;33m%d\e[0m s\n", (int) time(NULL) - start);
   printf("Passed : \e[1;32m%d (%d %%)\e[0m, failed : \e[1;31m%d (%d %%)\e[0m\nBye Bye :3\n",
 	 passed, passed * 100 / count, fail,  fail * 100 / count);
   my_fclose(in_);
