@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Thu Apr 27 16:45:29 2017 Benjamin Viguier
+## Last update Fri Apr 28 16:42:06 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -83,35 +83,55 @@ NAME	=	libmy.a
 all		:	echologo mkobj show_cflags $(NAME) warn_allow
 
 echologo	:
-	@echo -en "\033[1;34m"
-	@cat ./tools/logo.logo
-	@echo -e "\033[0m"
+	@printf	"\e[1;34m"
+	@cat	./tools/logo.logo
+	@printf	"\e[0m"
+	@printf "\n"
 
 show_cflags	:
-	@echo -e "Flags Actif :" "\033[1;33m"$(CFLAGS)"\033[0m";
+	@printf	"Flags Actif : "
+	@printf "\e[1;33m"
+	@echo	$(CFLAGS)
+	@printf	"\e[0m"
 
 warn_allow	:
 ifeq	($(ALLOW_OPEN), true)
-	@echo -e "\033[1;31m/!\ OPEN & CLOSE	enabled\033[0m"
+	@printf	"\e[1;31m"
+	@printf "/!\ OPEN & CLOSE	enabled\n"
+	@printf	"\e[0m"
 endif
 ifeq	($(ALLOW_LSEEK), true)
-	@echo -e "\033[1;31m/!\ LSEEK		enabled\033[0m"
+	@printf	"\e[1;31m"
+	@printf "/!\ LESSK		enabled\n"
+	@printf	"\e[0m"
 endif
 
 $(ODIR)/%.o	:	$(SDIR)/%.c
-	@echo -e "[libmy] Compilation de" "\033[1;34m"$(notdir $<)"\033[0m"
+	@printf	"[libmy] Compilation de "
+	@printf	"\e[1;34m"
+	@echo	$(notdir $<)
+	@printf	"\e[0m"
 	@$(CC) $(CFLAGS)	-c -o $@ $<
 
 $(OPFDIR)/%.o	:	$(SPFDIR)/%.c
-	@echo -e "[my_printf] Compilation de" "\033[1;34m"$(notdir $<)"\033[0m"
+	@printf	"[my_printf] Compilation de "
+	@printf	"\e[1;34m"
+	@echo	$(notdir $<)
+	@printf	"\e[0m"
 	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
 
 $(OHDIR)/%.o	:	$(SHDIR)/%.c
-	@echo -e "[hash] Compilation de" "\033[1;34m"$(notdir $<)"\033[0m"
+	@printf	"[hash] Compilation de "
+	@printf	"\e[1;34m"
+	@echo	$(notdir $<)
+	@printf	"\e[0m"
 	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
 
 $(OMLCDIR)/%.o	:	$(SMLCDIR)/%.c
-	@echo -e "[my_malloc] Compilation de" "\033[1;34m"$(notdir $<)"\033[0m"
+	@printf	"[my_malloc] Compilation de "
+	@printf	"\e[1;34m"
+	@echo	$(notdir $<)
+	@printf	"\e[0m"
 	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
 
 mkobj		:

@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ## 
 ## Started on  Wed Nov  9 17:16:44 2016 Benjamin Viguier
-## Last update Thu Apr 27 17:05:31 2017 Benjamin Viguier
+## Last update Fri Apr 28 15:12:18 2017 Benjamin Viguier
 ##
 
 CC		=	gcc
@@ -22,7 +22,7 @@ ALLOW_OPEN	=	true
 
 ALLOW_LSEEK	=	true
 
-OPTI_FLAG	=	-O2
+OPTI_FLAG	=	-O3 -fno-builtin
 
 ifeq	($(WALL),true)
  CFLAGS		+=	-W -Wall -Wextra
