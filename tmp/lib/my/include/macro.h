@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Wed May 10 17:21:19 2017 Benjamin Viguier
-** Last update Wed May 10 17:55:12 2017 Benjamin Viguier
+** Last update Wed May 10 22:12:38 2017 Benjamin Viguier
 */
 
 #ifndef MACRO_H_
@@ -27,7 +27,7 @@
 # define LMY_CONSTRUCTOR	__attribute__((constructor))
 # define LMY_DESTRUCTOR		__attribute__((destructor))
 # define LMY_AUTOFREE		__attribute__((__cleanup__(free)))
-# define LMY_AUTODESTOY(fct)	__attribute__((__cleanup__(fct)))
+# define LMY_CLEANUP(fct)	__attribute__((__cleanup__(fct)))
 # define LMY_PACKED		__attribute__((packed))
 
 #endif /* !MACRO_H_ */
