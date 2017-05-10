@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ## 
 ## Started on  Wed Nov  9 17:16:44 2016 Benjamin Viguier
-## Last update Fri Apr 28 15:12:18 2017 Benjamin Viguier
+## Last update Wed May 10 16:56:12 2017 Benjamin Viguier
 ##
 
 CC		=	gcc
@@ -16,7 +16,7 @@ DEBUG		=	true
 
 WALL		=	true
 
-RELEASE		=	true
+RELEASE		=	false
 
 ALLOW_OPEN	=	true
 

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Feb 27 10:05:03 2017 Benjamin Viguier
-** Last update Mon Feb 27 13:56:44 2017 Benjamin Viguier
+** Last update Wed May 10 17:36:35 2017 Benjamin Viguier
 */
 
 #ifndef PF_MODIF_H_
@@ -24,7 +24,6 @@
 # define TYPE_CHAR 1
 # define TYPE_STR 2
 # define TYPE_OTHER 3
-
 
 typedef unsigned int	t_wint;
 

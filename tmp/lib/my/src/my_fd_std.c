@@ -5,37 +5,32 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 18:01:04 2017 Benjamin Viguier
-** Last update Thu Feb 23 18:06:21 2017 Benjamin Viguier
+** Last update Wed May 10 21:01:51 2017 Benjamin Viguier
 */
 
+#include "libmy.h"
 #include "internal.h"
 
-t_my_fd			*my_fdin(void)
-{
-  static int		init;
-  static t_my_fd	*in;
+t_my_fd	*my_fdin;
+t_my_fd	*my_fdout;
+t_my_fd	*my_fderr;
 
-  if (!init)
-    in = my_fd_from_fd(S_IN);
-  return (in);
+LMY_CONSTRUCTOR void	__libmy_init_stdfd(void)
+{
+  my_fdin = my_fd_from_fd(S_IN);
+  my_fdout = my_fd_from_fd(S_OUT);
+  my_fderr = my_fd_from_fd(S_ERR);
+  my_fdin->auto_flush = LMY_TRUE;
+  my_fdin->auto_flush = LMY_TRUE;
+  my_fdin->auto_flush = LMY_TRUE;
 }
 
-t_my_fd			*my_fdout(void)
+LMY_DESTRUCTOR void	__libmy_close_stdfd(void)
 {
-  static int		init;
-  static t_my_fd	*in;
-
-  if (!init)
-    in = my_fd_from_fd(S_OUT);
-  return (in);
-}
-
-t_my_fd			*my_fderr(void)
-{
-  static int		init;
-  static t_my_fd	*in;
-
-  if (!init)
-    in = my_fd_from_fd(S_ERR);
-  return (in);
+  my_fflush(my_fdin);
+  my_fflush(my_fdout);
+  my_fflush(my_fderr);
+  free(my_fdin);
+  free(my_fderr);
+  free(my_fdout);
 }

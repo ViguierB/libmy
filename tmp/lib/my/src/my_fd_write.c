@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 16:11:05 2017 Benjamin Viguier
-** Last update Fri Apr 14 18:53:10 2017 Benjamin Viguier
+** Last update Wed May 10 21:00:43 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -29,21 +29,27 @@ int	__libmy_fd_need_flush(t_my_fd *fd)
   return (0);
 }
 
-ssize_t	my_fwrite(t_my_fd *fd, void *ptr, size_t size)
+ssize_t		my_fwrite(t_my_fd *fd, void *ptr, size_t size)
 {
   char		*str;
   size_t	i;
+  int		need_flush;
 
   str = (char*) ptr;
   i = 0;
+  need_flush = 0;
   while (i < size)
     {
       if (__libmy_fd_need_flush(fd) < 0)
 	return (-1);
       fd->wbuf[fd->wlen] = str[i];
+      if (fd->auto_flush && str[i] == '\n')
+	need_flush = 1;
       i++;
       (fd->wlen)++;
     }
+  if (need_flush)
+    return (my_fflush(fd));
   return (0);
 }
 

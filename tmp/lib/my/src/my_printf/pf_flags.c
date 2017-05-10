@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Feb 24 11:03:35 2017 Benjamin Viguier
-** Last update Mon Feb 27 11:45:07 2017 Benjamin Viguier
+** Last update Wed May 10 17:09:33 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -81,7 +81,7 @@ int		__pf_get_flags(t_pf_data *data, t_pf_prm *prm)
     {
       (data->fmt)++;
       if (*(data->fmt) == '\0')
-	return (0); 
+	return (0);
       prm->preci = __pf_prm_nbr(data);
       if (*(data->fmt) == '\0' || prm->preci < 0)
 	return (0);
