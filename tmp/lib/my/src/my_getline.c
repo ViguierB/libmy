@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Dec 22 12:46:31 2016 Benjamin Viguier
-** Last update Thu Apr 27 21:03:51 2017 Benjamin Viguier
+** Last update Fri May  5 18:01:37 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -92,7 +92,7 @@ char	*my_getline(t_my_fd *pack)
       return (NULL);
   while (!on_nl)
     {
-      pack->len = read(pack->fd, pack->buf, MY_FD_BUFF_LEN - 1);
+      pack->len = read(pack->fd, pack->buf, MY_FD_BUFF_LEN);
       if (pack->len == 0)
 	return (res);
       else if (pack->len < 0)

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Thu Apr 27 21:00:00 2017 Benjamin Viguier
+** Last update Fri May  5 18:01:17 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -27,10 +27,10 @@
 typedef struct	s_my_fd
 {
   int		fd;
-  char		buf[MY_FD_BUFF_LEN];
+  char		buf[MY_FD_BUFF_LEN + 1];
   int		rest;
   int		len;
-  char		wbuf[MY_FD_BUFF_LEN];
+  char		wbuf[MY_FD_BUFF_LEN + 1];
   int		wlen;
 }		t_my_fd;
 
