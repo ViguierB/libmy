@@ -5,24 +5,21 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Fri May  5 18:01:17 2017 Benjamin Viguier
+** Last update Thu May 11 11:49:39 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
 # define LIBMY_H_
 
 # include <stdlib.h>
+# include "macro.h"
 
 # define S_IN		0
 # define S_OUT		1
 # define S_ERR		2
 # define MY_FD_BUFF_LEN	1024
 
-# define PSQ(x)		((x) * (x))
-# define MIN(a, b)	(((a) < (b)) ? (a) : (b))
-# define MAX(a, b)	(((a) > (b)) ? (a) : (b))
-# define ABS(a)		(((a) < 0) ? (-(a)) : (a))
-# define CLIST_NEXT(l, e) ((((e)->next) == (l)) ? ((void*) 0) : ((e)->next)) 
+# define CLIST_NEXT(l, e) ((((e)->next) == (l)) ? ((void*) 0) : ((e)->next))
 
 typedef struct	s_my_fd
 {
@@ -32,6 +29,7 @@ typedef struct	s_my_fd
   int		len;
   char		wbuf[MY_FD_BUFF_LEN + 1];
   int		wlen;
+  int		auto_flush;
 }		t_my_fd;
 
 enum
@@ -70,6 +68,10 @@ typedef unsigned long	t_ulong;
 typedef unsigned int	t_uint;
 typedef unsigned short	t_usht;
 typedef unsigned char	t_uchar;
+
+extern t_my_fd	*my_fdin;
+extern t_my_fd	*my_fdout;
+extern t_my_fd	*my_fderr;
 
 /*
 ** Circular Linked List
@@ -119,9 +121,6 @@ int	my_strtod(char *str, int *res);
 /*
 ** my_fd functions
 */
-t_my_fd	*my_fdin(void);
-t_my_fd	*my_fdout(void);
-t_my_fd	*my_fderr(void);
 t_my_fd	*my_fd_from_fd(const int fd);
 t_my_fd	*my_fopen(char *path, int flags, ...);
 void	my_fclose(t_my_fd *to_free);

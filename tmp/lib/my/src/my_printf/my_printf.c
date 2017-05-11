@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 16:01:16 2017 Benjamin Viguier
-** Last update Mon Feb 27 14:22:02 2017 Benjamin Viguier
+** Last update Wed May 10 22:40:12 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -14,7 +14,7 @@ int	__libmy_printf(t_pf_data *data)
 {
   t_pf_prm	cur;
   int		fres;
-  
+
   while (*(data->fmt))
     {
       if (*(data->fmt) == '%')
@@ -32,7 +32,6 @@ int	__libmy_printf(t_pf_data *data)
 	  (data->fmt)++;
 	}
     }
-  __pf_flush(data);
   return (0);
 }
 
@@ -63,10 +62,12 @@ int		my_printf(char *fmt, ...)
   if (!(data.sb = my_sb_init()))
     return (-1);
   data.fmt = fmt;
-  data.fd = my_fdin();
+  data.fd = my_fdout;
   va_start(data.va, fmt);
   res = __libmy_printf(&data);
   va_end(data.va);
+  free(data.sb->res);
+  free(data.sb);
   if (res < 0)
     return (res);
   return (0);
@@ -85,6 +86,8 @@ int		my_fprintf(t_my_fd *fd, char *fmt, ...)
   va_start(data.va, fmt);
   res = __libmy_printf(&data);
   va_end(data.va);
+  free(data.sb->res);
+  free(data.sb);
   if (res < 0)
     return (res);
   return (0);

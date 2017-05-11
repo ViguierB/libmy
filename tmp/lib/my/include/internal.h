@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Wed Apr 26 14:37:15 2017 Benjamin Viguier
+** Last update Wed May 10 20:59:22 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
@@ -52,12 +52,12 @@ typedef struct	s_pf_prm
 
 enum
   {
-    PF_NO_FLAG		= 0x0,
-    PF_FLAG_SUB		= 0x1,
-    PF_FLAG_ADD		= 0x2,
-    PF_FLAG_DEZ		= 0x4,
-    PF_FLAG_SPACE	= 0x8,
-    PF_FLAG_ZERO	= 0x10
+    PF_NO_FLAG		= 0b00000,
+    PF_FLAG_SUB		= 0b00001,
+    PF_FLAG_ADD		= 0b00010,
+    PF_FLAG_DEZ		= 0b00100,
+    PF_FLAG_SPACE	= 0b01000,
+    PF_FLAG_ZERO	= 0b10000
   };
 
 typedef struct	s_pf_prmflag
