@@ -5,9 +5,10 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Feb 20 15:49:46 2017 Benjamin Viguier
-** Last update Mon Feb 20 16:15:09 2017 Benjamin Viguier
+** Last update Thu May 11 22:33:59 2017 Benjamin Viguier
 */
 
+#include <sys/types.h>
 #include "libmy.h"
 
 unsigned	my_atoui(char *str)
