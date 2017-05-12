@@ -5,17 +5,77 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Jan 19 14:02:45 2017 Benjamin Viguier
-** Last update Thu Jan 19 14:02:46 2017 Benjamin Viguier
+** Last update Fri May 12 18:37:13 2017 Benjamin Viguier
 */
 
-int my_strlen(char *str)
-{
-  int	count;
+#include <unistd.h>
+#include "internal.h"
+#include "macro.h"
 
-  count = 0;
-  if (str == (void*) 0)
+static ssize_t	__libmy_get_bz(const unsigned long *longword_ptr,
+			       char *str, unsigned long longword)
+{
+  const char	*cp = (const char *) (longword_ptr - 1);
+
+  if (cp[0] == 0)
+    return (cp - str);
+  if (cp[1] == 0)
+    return (cp - str + 1);
+  if (cp[2] == 0)
+    return (cp - str + 2);
+  if (cp[3] == 0)
+    return (cp - str + 3);
+  if (sizeof(longword) > 4)
+    {
+      if (cp[4] == 0)
+	return (cp - str + 4);
+      if (cp[5] == 0)
+	return (cp - str + 5);
+      if (cp[6] == 0)
+	return (cp - str + 6);
+      if (cp[7] == 0)
+	return (cp - str + 7);
+    }
+  return (-1);
+}
+
+static size_t	__libmy_ending_strlen(char *str,
+				      const unsigned long *longword_ptr,
+				      unsigned long longword,
+				      t_strlen_magic magic)
+{
+  ssize_t	res;
+
+  while (1)
+    {
+      longword = *longword_ptr++;
+      if (((longword - magic.lo) & ~longword & magic.hi) != 0)
+	if ((res = __libmy_get_bz(longword_ptr, str, longword)) >= 0)
+	  return ((size_t) res);
+    }
+}
+
+size_t			my_strlen(char *str)
+{
+  const char		*char_ptr;
+  const unsigned long	*longword_ptr;
+  unsigned long		longword;
+  t_strlen_magic	magic;
+
+  for (char_ptr = str; ((unsigned long int) char_ptr
+			& (sizeof(longword) - 1)) != 0;
+       ++char_ptr)
+    if (*char_ptr == '\0')
+      return (char_ptr - str);
+  longword_ptr = (unsigned long int *) char_ptr;
+  magic.hi = 0x80808080L;
+  magic.lo = 0x01010101L;
+  if (sizeof(longword) > 4)
+    {
+      magic.hi = ((magic.hi << 16) << 16) | magic.hi;
+      magic.lo = ((magic.lo << 16) << 16) | magic.lo;
+    }
+  if (sizeof(longword) > 8)
     return (0);
-  while (*(str + count) != '\0')
-    count += 1;
-  return (count);
+  return (__libmy_ending_strlen(str, longword_ptr, longword, magic));
 }

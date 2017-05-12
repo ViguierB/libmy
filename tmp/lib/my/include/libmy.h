@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Thu May 11 11:49:39 2017 Benjamin Viguier
+** Last update Fri May 12 18:11:31 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -100,7 +100,7 @@ int	my_putchar(char c);
 int	my_putstr(char *str);
 int	my_puterror(char *error_str);
 int	my_putnbr_base(int nb, char *base);
-int	my_strlen(char *str);
+size_t	my_strlen(char *str);
 char	*my_strconca(char *str1, char *str2);
 char	*my_strcpy(char *dest, char *from);
 char	*my_strncpy(char *dest, char *from, int n);

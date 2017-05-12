@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Wed May 10 17:21:19 2017 Benjamin Viguier
-** Last update Wed May 10 22:12:38 2017 Benjamin Viguier
+** Last update Fri May 12 13:33:38 2017 Benjamin Viguier
 */
 
 #ifndef MACRO_H_
@@ -29,5 +29,21 @@
 # define LMY_AUTOFREE		__attribute__((__cleanup__(free)))
 # define LMY_CLEANUP(fct)	__attribute__((__cleanup__(fct)))
 # define LMY_PACKED		__attribute__((packed))
+
+# if defined __x86_64__
+#  define LMY_WORDSIZE_64
+typedef long unsigned	LMY_WORD;
+# else
+#  define LMY_WORDSIZE_32
+typedef unsigned	LMY_WORD;
+# endif
+
+# define MEM_CLONE_32(c) (c << 24 | c << 16 | c << 8 | c)
+
+# ifdef LMY_WORDSIZE_32
+#  define MEM_CLONE(c) MEM_CLONE_32(c)
+# else
+#  define MEM_CLONE(c) ((MEM_CLONE_32(c) << 32) | MEM_CLONE_32(c))
+# endif
 
 #endif /* !MACRO_H_ */

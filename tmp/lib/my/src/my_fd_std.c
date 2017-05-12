@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 18:01:04 2017 Benjamin Viguier
-** Last update Wed May 10 22:41:10 2017 Benjamin Viguier
+** Last update Thu May 11 14:08:26 2017 Benjamin Viguier
 */
 
 #include "libmy.h"
@@ -15,7 +15,7 @@ t_my_fd	*my_fdin;
 t_my_fd	*my_fdout;
 t_my_fd	*my_fderr;
 
-LMY_CONSTRUCTOR void	__libmy_init_stdfd(void)
+LMY_CONSTRUCTOR static void	__libmy_init_stdfd(void)
 {
   my_fdin = my_fd_from_fd(S_IN);
   my_fdout = my_fd_from_fd(S_OUT);
@@ -25,7 +25,7 @@ LMY_CONSTRUCTOR void	__libmy_init_stdfd(void)
   my_fderr->auto_flush = LMY_TRUE;
 }
 
-LMY_DESTRUCTOR void	__libmy_close_stdfd(void)
+LMY_DESTRUCTOR static void	__libmy_close_stdfd(void)
 {
   my_fflush(my_fdin);
   my_fflush(my_fdout);
