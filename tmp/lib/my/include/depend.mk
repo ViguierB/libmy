@@ -3,9 +3,8 @@
 ## 
 ## Made by Benjamin Viguier
 ## Login   <benjamin.viguier@epitech.eu>
-## 
-## Started on  Wed Nov  9 17:16:44 2016 Benjamin Viguier
-## Last update Thu May 11 14:09:18 2017 Benjamin Viguier
+##
+## Last update Fri May 12 18:39:40 2017 Benjamin Viguier
 ##
 
 CC		=	gcc
@@ -25,7 +24,7 @@ ALLOW_LSEEK	=	true
 OPTI_FLAG	=	-O3 -fno-builtin
 
 ifeq	($(WALL),true)
- CFLAGS		+=	-W -Wall -Wextra
+ CFLAGS		+=	-W -Wall -Wextra -ansi
 endif
 
 ifeq	($(RELEASE),true)

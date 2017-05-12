@@ -5,12 +5,13 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Fri May 12 18:11:31 2017 Benjamin Viguier
+** Last update Fri May 12 18:39:21 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
 # define LIBMY_H_
 
+# include <sys/types.h>
 # include <stdlib.h>
 # include "macro.h"
 

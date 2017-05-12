@@ -5,9 +5,10 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Wed Nov  9 16:23:22 2016 Benjamin Viguier
-** Last update Fri Apr 21 15:39:53 2017 Benjamin Viguier
+** Last update Thu May 11 22:34:13 2017 Benjamin Viguier
 */
 
+#include <sys/types.h>
 #include "internal.h"
 #include "libmy.h"
 
