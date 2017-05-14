@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Jan 19 14:02:45 2017 Benjamin Viguier
-** Last update Sun May 14 13:30:19 2017 Benjamin Viguier
+** Last update Sun May 14 13:35:03 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -48,7 +48,7 @@ static size_t	__libmy_ending_strlen(char *str,
 
   while (1)
     {
-      longword = *longword_ptr++;
+      longword = *(longword_ptr++);
       if (((longword - magic.lo) & ~longword & magic.hi) != 0)
 	if ((res = __libmy_get_bz(longword_ptr, str, longword)) >= 0)
 	  return ((size_t) res);
@@ -75,8 +75,8 @@ size_t			my_strlen(char *str)
   magic.lo = 0x01010101L;
   if (sizeof(longword) > 4)
     {
-      magic.hi = ((magic.hi << 16) << 16) | magic.hi;
-      magic.lo = ((magic.lo << 16) << 16) | magic.lo;
+      magic.hi = (magic.hi << 32) | magic.hi;
+      magic.lo = (magic.lo << 32) | magic.lo;
     }
   if (sizeof(longword) > 8)
     return (0);
