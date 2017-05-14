@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Feb 24 11:03:35 2017 Benjamin Viguier
-** Last update Wed May 10 17:09:33 2017 Benjamin Viguier
+** Last update Sun May 14 16:23:50 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -28,7 +28,10 @@ int	__pf_prm_nbr(t_pf_data *data)
   if (*(data->fmt) == '\0')
 	return (-1);
   if (*(data->fmt) == '*')
-    return (va_arg(data->va, int));
+    {
+      (data->fmt)++;
+      return (va_arg(data->va, int));
+    }
   while (*(data->fmt) >= '0' && *(data->fmt) <= '9')
     {
       nbr *= 10;
