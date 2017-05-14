@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Jan 19 14:02:45 2017 Benjamin Viguier
-** Last update Fri May 12 18:37:13 2017 Benjamin Viguier
+** Last update Sun May 14 13:29:22 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -62,11 +62,7 @@ size_t			my_strlen(char *str)
   unsigned long		longword;
   t_strlen_magic	magic;
 
-  for (char_ptr = str; ((unsigned long int) char_ptr
-			& (sizeof(longword) - 1)) != 0;
-       ++char_ptr)
-    if (*char_ptr == '\0')
-      return (char_ptr - str);
+
   longword_ptr = (unsigned long int *) char_ptr;
   magic.hi = 0x80808080L;
   magic.lo = 0x01010101L;
