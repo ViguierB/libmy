@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Feb 24 11:45:51 2017 Benjamin Viguier
-** Last update Wed May 10 23:51:42 2017 Benjamin Viguier
+** Last update Sat May 13 18:53:24 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -114,7 +114,6 @@ void	__pf_get_var(va_list va, t_pf_prm *prm, int i)
     __pf_getrest(va, prm, TYPE_STR);
   else
     __pf_getrest(va, prm, TYPE_OTHER);
-    
 }
 
   void		__pf_get_modsize(va_list va, t_pf_prm *prm)

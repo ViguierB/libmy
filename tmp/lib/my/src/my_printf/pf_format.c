@@ -5,13 +5,13 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Feb 27 12:21:52 2017 Benjamin Viguier
-** Last update Wed May 10 17:07:36 2017 Benjamin Viguier
+** Last update Sat May 13 18:52:46 2017 Benjamin Viguier
 */
 
 #include "internal.h"
 
 int	__pf_format(t_pf_data *data, t_pf_prm *prm)
-{ 
+{
   if (prm->size == 0)
     {
       __pf_putchar(data, '%');
