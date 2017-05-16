@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Jan 19 14:02:45 2017 Benjamin Viguier
-** Last update Sun May 14 13:35:03 2017 Benjamin Viguier
+** Last update Tue May 16 22:26:06 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -80,5 +80,6 @@ size_t			my_strlen(char *str)
     }
   if (sizeof(longword) > 8)
     return (0);
+  longword = 0;
   return (__libmy_ending_strlen(str, longword_ptr, longword, magic));
 }

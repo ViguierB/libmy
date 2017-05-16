@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Fri May 12 18:35:10 2017 Benjamin Viguier
+** Last update Wed May 17 00:06:43 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
@@ -84,12 +84,15 @@ typedef struct	s_strlen_magic
   unsigned long lo;
 }		t_strlen_magic;
 
+typedef int	(*t_pf_fct)(t_pf_data *, t_pf_prm *);
+
 /*
 ** libmy internal functions
 */
 int	__libmy_sb_flush(t_strbuilder *sb);
 int	__libmy_sb_need_flush(t_strbuilder *sb);
 int	__libmy_fd_need_flush(t_my_fd *fd);
+
 
 /*
 ** my_print internal functions
@@ -102,5 +105,20 @@ int	__pf_format(t_pf_data *data, t_pf_prm *prm);
 void	__pf_getd(va_list va, t_pf_prm *prm);
 void	__pf_getud(va_list va, t_pf_prm *prm);
 void	__pf_getrest(va_list va, t_pf_prm *prm, int type);
+
+int	__pf_hexaflt(t_pf_data *pf, t_pf_prm *fmt);
+int	__pf_scflt(t_pf_data *pf, t_pf_prm *fmt);
+int	__pf_flt(t_pf_data *pf, t_pf_prm *fmt);
+int	__pf_shtflt(t_pf_data *pf, t_pf_prm *fmt);
+int	__pf_dec(t_pf_data *pf, t_pf_prm *fmt);
+int	__pf_extstr(t_pf_data *pf, t_pf_prm *fmt);
+int	__pf_hexa(t_pf_data *pf, t_pf_prm *fmt);
+int	__pf_bin(t_pf_data *pf, t_pf_prm *fmt);
+int	__pf_char(t_pf_data *pf, t_pf_prm *fmt);
+int	__pf_getnbr(t_pf_data *pf, t_pf_prm *fmt);
+int	__pf_oct(t_pf_data *pf, t_pf_prm *fmt);
+int	__pf_ptr(t_pf_data *pf, t_pf_prm *fmt);
+int	__pf_str(t_pf_data *pf, t_pf_prm *fmt);
+int	__pf_udec(t_pf_data *pf, t_pf_prm *fmt);
 
 #endif /* !INTERNAL_H_ */
