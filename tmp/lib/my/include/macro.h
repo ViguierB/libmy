@@ -26,7 +26,7 @@
 
 # define LMY_CONSTRUCTOR	__attribute__((constructor))
 # define LMY_DESTRUCTOR		__attribute__((destructor))
-# define LMY_AUTOFREE		__attribute__((__cleanup__(free)))
+# define LMY_AUTOFREE		__attribute__((__cleanup__(&free)))
 # define LMY_CLEANUP(fct)	__attribute__((__cleanup__(fct)))
 # define LMY_PACKED		__attribute__((packed))
 
