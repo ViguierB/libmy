@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Feb 27 12:21:52 2017 Benjamin Viguier
-** Last update Thu May 18 01:21:47 2017 Benjamin Viguier
+** Last update Thu May 18 01:33:07 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -46,10 +46,17 @@ int		__pf_format(t_pf_data *data, t_pf_prm *prm)
       data->fmt = ((*(prm->save) == '%') ? (prm->save + 1) : prm->save);
       return (0);
     }
-  fct = g_pf_table[prm->type - 'A'];
-  printf("%c %d %d %d %d %s %p %d %p %s\n", prm->type, prm->width, prm->preci, prm->flag, prm->size, prm->pat, fct, prm->type - 'A', prm->myvar.s, prm->myvar.s);
-  if (fct)
-    return (fct(data, prm));
+  if (prm->type >= 'A' && prm->type <= 'z')
+    {
+      fct = g_pf_table[prm->type - 'A'];
+      printf("%c %d %d %d %d %s %p %d %p %s\n", prm->type, prm->width, prm->preci, prm->flag, prm->size, prm->pat, fct, prm->type - 'A', prm->myvar.s, prm->myvar.s);
+      if (fct)
+	return (fct(data, prm));
+    }
+  data->fmt = prm->save;
+  __pf_putchar(data, '%');
+  if (*(data->fmt) == '%')
+    (data->fmt)++;
   return (0);
 }
 
