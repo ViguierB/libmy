@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Feb 24 11:45:51 2017 Benjamin Viguier
-** Last update Thu May 18 00:04:54 2017 Benjamin Viguier
+** Last update Thu May 18 18:09:39 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -116,14 +116,6 @@ void	__pf_get_var(va_list va, t_pf_prm *prm, int i)
     __pf_getrest(va, prm, TYPE_OTHER);
 }
 
-static int	__pf_typeinpat(char *str, char type)
-{
-  while(str)
-    if (*(str++) == type)
-      return (1);
-  return (0);
-}
-
 void		__pf_get_modsize(va_list va, t_pf_prm *prm)
 {
   t_pf_sprm	*sprm_cur;
@@ -137,7 +129,7 @@ void		__pf_get_modsize(va_list va, t_pf_prm *prm)
       sprm_cur = (t_pf_sprm*) cur->sprm;
       while (cur->pat[i])
 	{
-	  if (__pf_typeinpat(cur->pat, prm->type))
+	  if (cur->pat[i] == prm->type)
 	    {
 	      i = 0;
 	      while (sprm_cur[i].pat &&
@@ -187,7 +179,8 @@ int	__pf_get_modpat(t_pf_data *data, t_pf_prm *prm)
     }
   prm->type = *(data->fmt);
   (data->fmt)++;
-  __pf_get_modsize(data->va, prm);
+  if (prm->type != '%')
+    __pf_get_modsize(data->va, prm);
   if (*(data->fmt) == '\0')
     return (0);
   return (1);

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Feb 24 11:03:35 2017 Benjamin Viguier
-** Last update Wed May 17 00:22:14 2017 Benjamin Viguier
+** Last update Thu May 18 17:57:02 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -69,8 +69,6 @@ int	__pf_getfflag(t_pf_data *data, t_pf_prm *prm)
 
 int		__pf_get_flags(t_pf_data *data, t_pf_prm *prm)
 {
-  if ((prm->type = *(data->fmt)) == '#')
-    return (1);
   my_memset(prm, 0, sizeof(t_pf_prm));
   prm->preci = -1;
   prm->save = data->fmt;
