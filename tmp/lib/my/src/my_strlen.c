@@ -5,81 +5,84 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Jan 19 14:02:45 2017 Benjamin Viguier
-** Last update Tue May 16 22:26:06 2017 Benjamin Viguier
+** Last update Thu May 18 14:41:59 2017 Benjamin Viguier
 */
 
+#include <sys/types.h>
+#include <stdint.h>
 #include <unistd.h>
 #include "internal.h"
 #include "macro.h"
 
-static ssize_t	__libmy_get_bz(const unsigned long *longword_ptr,
-			       char *str, unsigned long longword)
-{
-  const char	*cp = (const char *) (longword_ptr - 1);
+#ifdef LMY_WORDSIZE_32
+static const unsigned long	g_mask01 = 0x01010101;
+static const unsigned long	g_mask80 = 0x80808080;
+#else
+# ifdef LMY_WORDSIZE_64
+static const unsigned long	g_mask01 = 0x0101010101010101;
+static const unsigned long	g_mask80 = 0x8080808080808080;
+# else
+#error Unsupported word size
+# endif
+#endif
 
-  if (cp[0] == 0)
-    return (cp - str);
-  if (cp[1] == 0)
-    return (cp - str + 1);
-  if (cp[2] == 0)
-    return (cp - str + 2);
-  if (cp[3] == 0)
-    return (cp - str + 3);
-  if (sizeof(longword) > 4)
-    {
-      if (cp[4] == 0)
-	return (cp - str + 4);
-      if (cp[5] == 0)
-	return (cp - str + 5);
-      if (cp[6] == 0)
-	return (cp - str + 6);
-      if (cp[7] == 0)
-	return (cp - str + 7);
-    }
+size_t	my_basic_strlen(char *str)
+{
+  char	*ptr;
+
+  ptr = str;
+  while (*(ptr))
+    ++ptr;
+  return (ptr - str);
+}
+
+ssize_t		__libmy_strlen_result(const char *str, const char *p)
+{
+  if (p[0] == '\0')
+    return (p - str + 0);
+  if (p[1] == '\0')
+    return (p - str + 1);
+  if (p[2] == '\0')
+    return (p - str + 2);
+  if (p[3] == '\0')
+    return (p - str + 3);
+#ifdef LMY_WORDSIZE_64
+  if (p[4] == '\0')
+    return (p - str + 4);
+  if (p[5] == '\0')
+    return (p - str + 5);
+  if (p[6] == '\0')
+    return (p - str + 6);
+  if (p[7] == '\0')
+    return (p - str + 7);
+#endif
   return (-1);
 }
 
-static size_t	__libmy_ending_strlen(char *str,
-				      const unsigned long *longword_ptr,
-				      unsigned long longword,
-				      t_strlen_magic magic)
+size_t			my_strlen(const char *str)
 {
-  ssize_t	res;
+  const char		*p;
+  const unsigned long	*lp;
+  ssize_t		res;
 
+  p = str;
+  while ((uintptr_t) p & (sizeof(long) - 1))
+    {
+      if (*p == '\0')
+	return (p - str);
+      p++;
+    }
+  lp = (const unsigned long *) p;
   while (1)
     {
-      longword = *(longword_ptr++);
-      if (((longword - magic.lo) & ~longword & magic.hi) != 0)
-	if ((res = __libmy_get_bz(longword_ptr, str, longword)) >= 0)
-	  return ((size_t) res);
+      if ((*lp - g_mask01) & g_mask80)
+	{
+	  p = (const char *)(lp);
+	  res = __libmy_strlen_result(str, p);
+	  if (res >= 0)
+	    return ((size_t) res);
+	}
+      lp++;
     }
-}
-
-size_t			my_strlen(char *str)
-{
-  const char		*char_ptr;
-  const unsigned long	*longword_ptr;
-  unsigned long		longword;
-  t_strlen_magic	magic;
-
-  char_ptr = str;
-  while (((unsigned long int) char_ptr
-	  & (sizeof(longword) - 1)) != 0)
-    {
-      if (*char_ptr == '\0')
-	return (char_ptr - str);
-      ++char_ptr;
-    }
-  longword_ptr = (unsigned long int *) char_ptr;
-  magic.hi = 0x80808080L;
-  magic.lo = 0x01010101L;
-  if (sizeof(longword) > 4)
-    {
-      magic.hi = (magic.hi << 32) | magic.hi;
-      magic.lo = (magic.lo << 32) | magic.lo;
-    }
-  if (sizeof(longword) > 8)
-    return (0);
-  longword = 0;
-  return (__libmy_ending_strlen(str, longword_ptr, longword, magic));
+  return (0);
 }
