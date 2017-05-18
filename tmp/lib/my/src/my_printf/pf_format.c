@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Feb 27 12:21:52 2017 Benjamin Viguier
-** Last update Thu May 18 18:02:08 2017 Benjamin Viguier
+** Last update Thu May 18 18:17:13 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -52,6 +52,11 @@ int		__pf_format(t_pf_data *data, t_pf_prm *prm)
   return (0);
 }
 
+int	__pf_dec(t_pf_data *pf, t_pf_prm *fmt) 
+{
+  
+}
+
 int	__pf_hexaflt(t_pf_data *pf, t_pf_prm *fmt)
 {
 
@@ -72,11 +77,6 @@ int	__pf_shtflt(t_pf_data *pf, t_pf_prm *fmt)
 
 }
 
-int	__pf_dec(t_pf_data *pf, t_pf_prm *fmt) 
-{
-
-}
-
 int	__pf_hexa(t_pf_data *pf, t_pf_prm *fmt)
 {
 
@@ -89,7 +89,15 @@ int	__pf_bin(t_pf_data *pf, t_pf_prm *fmt)
 
 int	__pf_char(t_pf_data *pf, t_pf_prm *fmt)
 {
-  __pf_putchar(pf, fmt->myvar.d);
+  int	width;
+
+  width = fmt->width;
+  if (fmt->flag & PF_FLAG_SUB)
+    __pf_putchar(pf, fmt->myvar.d);
+  while (--width > 0)
+    __pf_putchar(pf, ' ');
+  if (!(fmt->flag & PF_FLAG_SUB))
+    __pf_putchar(pf, fmt->myvar.d);
   return (0);
 }
 
