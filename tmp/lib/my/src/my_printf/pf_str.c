@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu May 18 01:22:12 2017 Benjamin Viguier
-** Last update Thu May 18 18:54:07 2017 Benjamin Viguier
+** Last update Thu May 18 18:56:36 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -56,7 +56,8 @@ int	__pf_str(t_pf_data *pf, t_pf_prm *fmt)
       --local;
     }
   if (fmt->flag & PF_FLAG_SUB)
-    __pf_do_strwidth(pf, fmt, ((local == 0) ? fmt->preci : fmt->preci - local));
+    __pf_do_strwidth(pf, fmt, ((local == 0) ?
+			       fmt->preci : fmt->preci - local));
   return (0);
 }
 
@@ -68,7 +69,7 @@ int	__pf_extstr(t_pf_data *pf, t_pf_prm *fmt)
   local = fmt->preci;
   str = fmt->myvar.s;
   if (!(fmt->flag & PF_FLAG_SUB))
-    __pf_do_strwidth(pf, fmt, ((local < 0) ? -local + 1 : local));
+    __pf_do_strwidth(pf, fmt, ((local < 0) ? -local : local));
   while (local && *str)
       if (ISPRINTABLE(*str))
 	{
@@ -78,8 +79,7 @@ int	__pf_extstr(t_pf_data *pf, t_pf_prm *fmt)
       else
 	local = __pf_putstr_octal(pf, *(str++), local);
   if (fmt->flag & PF_FLAG_SUB)
-    __pf_do_strwidth(pf, fmt, ((local < 0) ? 0 : local));
+    __pf_do_strwidth(pf, fmt, ((local == 0) ?
+			       fmt->preci : fmt->preci - local));
   return (0);
 }
-
-
