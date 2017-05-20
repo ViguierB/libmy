@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Feb 27 13:25:31 2017 Benjamin Viguier
-** Last update Sat May 20 21:13:06 2017 Benjamin Viguier
+** Last update Sat May 20 21:13:47 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -34,7 +34,6 @@ void	__pf_getd(va_list va, t_pf_prm *prm)
     prm->myvar.d = (long long int) ((short) va_arg(va, int));
   else
     prm->myvar.d = (long long int) (va_arg(va, int));
-  printf("debug %d\n", prm->myvar.d);
 }
 
 void	__pf_getud(va_list va, t_pf_prm *prm)
