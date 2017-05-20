@@ -4,7 +4,7 @@
 ## Made by Benjamin Viguier
 ## Login   <benjamin.viguier@epitech.eu>
 ##
-## Last update Sat May 20 21:19:40 2017 Benjamin Viguier
+## Last update Sun May 21 00:44:23 2017 Benjamin Viguier
 ##
 
 CC		=	gcc
@@ -15,7 +15,7 @@ DEBUG		=	true
 
 WALL		=	true
 
-RELEASE		=	false
+RELEASE		=	true
 
 ALLOW_OPEN	=	true
 

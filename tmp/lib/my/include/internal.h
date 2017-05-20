@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Sun May 21 00:11:44 2017 Benjamin Viguier
+** Last update Sun May 21 00:42:25 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
@@ -15,6 +15,7 @@
 # include "libmy.h"
 
 # define IS_NUM(c) (((c) >= '0') && ((c) <= '9'))
+# define PF_NBR_BUF_LEN sizeof(long long int) * 8
 
 /*
 ** my_printf struct, type & enum

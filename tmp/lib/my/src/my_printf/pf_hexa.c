@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat May 20 23:17:52 2017 Benjamin Viguier
-** Last update Sun May 21 00:13:55 2017 Benjamin Viguier
+** Last update Sun May 21 00:43:09 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -30,7 +30,7 @@ int		__pf_hexa(t_pf_data *pf, t_pf_prm *fmt)
 {
   const char	bpatern[] = "0123456789ABCDEF";
   const char	patern[] = "0123456789abcdef";
-  char		buffer[sizeof(long long int) * 8];
+  char		buffer[PF_NBR_BUF_LEN];
   char		*ptr;
   size_t	len;
   char		*extra;

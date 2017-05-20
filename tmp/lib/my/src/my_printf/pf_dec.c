@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat May 20 21:14:42 2017 Benjamin Viguier
-** Last update Sun May 21 00:37:46 2017 Benjamin Viguier
+** Last update Sun May 21 00:42:55 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -26,7 +26,7 @@ static char	*__pf_int_to_char(char buffer[], size_t len, long long int d)
 
 int	__pf_dec(t_pf_data *pf, t_pf_prm *fmt) 
 {
-  char	buffer[50];
+  char	buffer[PF_NBR_BUF_LEN];
   char	*ptr;
   int	len;
   char	*extra;
@@ -63,7 +63,7 @@ static char	*__pf_uint_to_char(char buffer[], size_t len,
 
 int	__pf_udec(t_pf_data *pf, t_pf_prm *fmt)
 {
-  char	buffer[50];
+  char	buffer[PF_NBR_BUF_LEN];
   char	*ptr;
   int	len;
 
