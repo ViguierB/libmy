@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Feb 27 12:21:52 2017 Benjamin Viguier
-** Last update Sun May 21 00:43:53 2017 Benjamin Viguier
+** Last update Sun May 21 01:43:43 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -68,23 +68,23 @@ void	__pf_wandp_nbr(t_pf_data *pf, t_pf_prm *fmt,
   int	        dez_len;
   int		wlocal;
   int		plocal;
-  char		to_print;
 
   wlocal = fmt->width;
   plocal = fmt->preci;
-  to_print = ((fmt->flag & PF_FLAG_ZERO) ? '0' : ' ');
   dez_len = my_strlen(extra);
-  wlocal -= len + dez_len;
-  while (plocal != -1 && wlocal >= plocal - 1 && wlocal > 0)
+  wlocal -= dez_len;
+  while (plocal != -1 && len < (unsigned) wlocal &&
+	 wlocal > plocal && (wlocal - len) > 0)
     {
       __pf_putchar(pf, ' ');
       wlocal--;
     }
   if (fmt->flag & PF_FLAG_DEZ && fmt->flag & PF_FLAG_ZERO)
     __pf_write(pf, extra, dez_len);
+  wlocal -= len;
   while (wlocal > 0 && plocal == -1)
     {
-      __pf_putchar(pf, to_print);
+      __pf_putchar(pf, ((fmt->flag & PF_FLAG_ZERO) ? '0' : ' '));
       wlocal--;
     }
   if (fmt->flag & PF_FLAG_DEZ && !(fmt->flag & PF_FLAG_ZERO))
@@ -92,23 +92,7 @@ void	__pf_wandp_nbr(t_pf_data *pf, t_pf_prm *fmt,
   __pf_wandp_nbr_ext(pf, wlocal, plocal - len);
 }
 
-int	__pf_bin(t_pf_data *pf, t_pf_prm *fmt)
-{
-  (void) pf;
-  (void) fmt;
-  my_printf("%s\n", __func__);
-  return (0);
-}
-
 int	__pf_getnbr(t_pf_data *pf, t_pf_prm *fmt)
-{
-  (void) pf;
-  (void) fmt;
-  my_printf("%s\n", __func__);
-  return (0);
-}
-
-int	__pf_oct(t_pf_data *pf, t_pf_prm *fmt)
 {
   (void) pf;
   (void) fmt;

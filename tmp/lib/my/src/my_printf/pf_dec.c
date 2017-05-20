@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat May 20 21:14:42 2017 Benjamin Viguier
-** Last update Sun May 21 00:42:55 2017 Benjamin Viguier
+** Last update Sun May 21 01:24:19 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -24,7 +24,7 @@ static char	*__pf_int_to_char(char buffer[], size_t len, long long int d)
   return (ptr);
 }
 
-int	__pf_dec(t_pf_data *pf, t_pf_prm *fmt) 
+int	__pf_dec(t_pf_data *pf, t_pf_prm *fmt)
 {
   char	buffer[PF_NBR_BUF_LEN];
   char	*ptr;

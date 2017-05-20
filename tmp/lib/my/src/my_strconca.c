@@ -5,9 +5,10 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Nov 24 15:24:14 2016 Benjamin Viguier
-** Last update Thu Feb 23 16:02:53 2017 Benjamin Viguier
+** Last update Sun May 21 01:50:17 2017 Benjamin Viguier
 */
 
+#include <unistd.h>
 #include <stdarg.h>
 #include "libmy.h"
 
@@ -35,58 +36,4 @@ char	*my_strconca(char *str1, char *str2)
     }
   res[i] = '\0';
   return (res);
-}
-
-static char	*str_conca_s(char **list, char size)
-{
-  char		*res;
-  int		i;
-  int		j;
-
-  res = malloc(sizeof(char) * (size - 1));
-  if (res == NULL)
-    return (NULL);
-  if (*list)
-    {
-      i = 0;
-      while (*list)
-	{
-	  j = 0;
-	  while ((*list)[j])
-	    {
-	      res[i] = (*list)[j];
-	      i += 1;
-	      j += 1;
-	    }
-	  list += 1;
-	}
-    }
-  return (res);
-}
-
-char		*str_conca(int n, ...)
-{
-  va_list	ap;
-  char		**list;
-  int		i;
-  int		size;
-
-  va_start(ap, n);
-  list = malloc(sizeof(char *) * n);
-  if (list == NULL)
-    return (NULL);
-  i = 0;
-  size = 0;
-  while (n > 0)
-    {
-      list[i] = va_arg(ap, char *);
-      if (list[i])
-	{
-	  size += my_strlen(list[i]);
-	  i += 1;
-	}
-      n -= 1;
-    }
-  list[i] = NULL;
-  return (str_conca_s(list, size));
 }
