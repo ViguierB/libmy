@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Feb 27 12:21:52 2017 Benjamin Viguier
-** Last update Thu May 18 18:17:13 2017 Benjamin Viguier
+** Last update Sat May 20 20:21:58 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -52,9 +52,47 @@ int		__pf_format(t_pf_data *data, t_pf_prm *prm)
   return (0);
 }
 
+static char	*__pf_int_to_char(char buffer[], size_t len, long long int d)
+{
+  char		*ptr;
+
+  ptr = buffer + (len - 1);
+  *ptr = '\0';
+  while (d)
+    {
+      *(--ptr) = ABS(d % 10) + '0';
+      d /= 10;
+    }
+  return (ptr);
+}
+
 int	__pf_dec(t_pf_data *pf, t_pf_prm *fmt) 
 {
+  char	buffer[50];
+  char	*ptr;
+  char	*nbr;
+  int	local;
+  int	len;
+  char	to_print;
   
+
+  local = fmt->width - 1;
+  if (fmt->myvar.d < 0)
+    __pf_putchar(pf, '-');
+  else if (fmt->flag & PF_FLAG_ADD)
+    __pf_putchar(pf, '+');
+  else if (fmt->flag & PF_FLAG_SPACE)
+    __pf_putchar(pf, ' ');
+  else
+    local++;
+  ptr = __pf_int_to_char(buffer, sizeof(buffer), fmt->myvar.d);
+  len = my_strlen(ptr);
+  to_print = ((fmt->flag & PF_FLAG_ZERO) ? '0' : ' ');
+  if ((local -= len) > 0)
+    while (local--)
+      __pf_putchar(pf, to_print);
+  __pf_write(pf, ptr, len);
+  return (0);
 }
 
 int	__pf_hexaflt(t_pf_data *pf, t_pf_prm *fmt)
@@ -85,20 +123,6 @@ int	__pf_hexa(t_pf_data *pf, t_pf_prm *fmt)
 int	__pf_bin(t_pf_data *pf, t_pf_prm *fmt)
 {
 
-}
-
-int	__pf_char(t_pf_data *pf, t_pf_prm *fmt)
-{
-  int	width;
-
-  width = fmt->width;
-  if (fmt->flag & PF_FLAG_SUB)
-    __pf_putchar(pf, fmt->myvar.d);
-  while (--width > 0)
-    __pf_putchar(pf, ' ');
-  if (!(fmt->flag & PF_FLAG_SUB))
-    __pf_putchar(pf, fmt->myvar.d);
-  return (0);
 }
 
 int	__pf_getnbr(t_pf_data *pf, t_pf_prm *fmt)

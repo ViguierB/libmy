@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Thu May 18 14:42:56 2017 Benjamin Viguier
+** Last update Sat May 20 19:52:35 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
@@ -92,6 +92,7 @@ int	__libmy_fd_need_flush(t_my_fd *fd);
 ** my_print internal functions
 */
 int	__pf_putchar(t_pf_data *data, char c);
+int	__pf_write(t_pf_data *data, void *ptr, size_t size);
 int	__pf_flush(t_pf_data *data);
 int	__pf_get_flags(t_pf_data *data, t_pf_prm *prm);
 int	__pf_get_modpat(t_pf_data *data, t_pf_prm *prm);

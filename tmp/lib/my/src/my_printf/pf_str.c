@@ -5,10 +5,25 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu May 18 01:22:12 2017 Benjamin Viguier
-** Last update Thu May 18 18:56:36 2017 Benjamin Viguier
+** Last update Sat May 20 18:17:11 2017 Benjamin Viguier
 */
 
 #include "internal.h"
+
+
+int	__pf_char(t_pf_data *pf, t_pf_prm *fmt)
+{
+  int	width;
+
+  width = fmt->width;
+  if (fmt->flag & PF_FLAG_SUB)
+    __pf_putchar(pf, fmt->myvar.d);
+  while (--width > 0)
+    __pf_putchar(pf, ' ');
+  if (!(fmt->flag & PF_FLAG_SUB))
+    __pf_putchar(pf, fmt->myvar.d);
+  return (0);
+}
 
 static int	__pf_putstr_octal(t_pf_data *pf, unsigned char c, int local)
 {

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Feb 24 11:45:51 2017 Benjamin Viguier
-** Last update Thu May 18 18:09:39 2017 Benjamin Viguier
+** Last update Sat May 20 20:43:22 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -131,11 +131,7 @@ void		__pf_get_modsize(va_list va, t_pf_prm *prm)
 	{
 	  if (cur->pat[i] == prm->type)
 	    {
-	      i = 0;
-	      while (sprm_cur[i].pat &&
-		     my_strcmp(sprm_cur[i].pat, prm->pat) != 0)
-		i++;
-	      prm->size = sprm_cur[i].size;
+	      prm->size = sprm_cur[i].size; 
 	      __pf_get_var(va, prm, i);
 	      return;
 	    }
