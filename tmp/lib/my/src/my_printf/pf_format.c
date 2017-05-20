@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Feb 27 12:21:52 2017 Benjamin Viguier
-** Last update Sat May 20 20:21:58 2017 Benjamin Viguier
+** Last update Sat May 20 21:11:49 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -95,9 +95,46 @@ int	__pf_dec(t_pf_data *pf, t_pf_prm *fmt)
   return (0);
 }
 
+static char	*__pf_uint_to_char(char buffer[], size_t len,
+				  unsigned long long int d)
+{
+  char		*ptr;
+
+  ptr = buffer + (len - 1);
+  *ptr = '\0';
+  while (d)
+    {
+      *(--ptr) = d % 10 + '0';
+      d /= 10;
+    }
+  return (ptr);
+}
+
+int	__pf_udec(t_pf_data *pf, t_pf_prm *fmt)
+{
+  char	buffer[50];
+  char	*ptr;
+  char	*nbr;
+  int	local;
+  int	len;
+  char	to_print;
+
+  printf("test\n");
+  local = fmt->width;
+  ptr = __pf_uint_to_char(buffer, sizeof(buffer), fmt->myvar.ud);
+  len = my_strlen(ptr);
+  to_print = ((fmt->flag & PF_FLAG_ZERO) ? '0' : ' ');
+  if ((local -= len) > 0)
+    while (local--)
+      __pf_putchar(pf, to_print);
+  __pf_write(pf, ptr, len);
+  return (0);
+}
+
 int	__pf_hexaflt(t_pf_data *pf, t_pf_prm *fmt)
 {
-
+  printf("%s\n", __func__);
+  return (0);
 }
 
 int	__pf_scflt(t_pf_data *pf, t_pf_prm *fmt)
@@ -138,9 +175,4 @@ int	__pf_oct(t_pf_data *pf, t_pf_prm *fmt)
 int	__pf_ptr(t_pf_data *pf, t_pf_prm *fmt)
 {
   
-}
-
-int	__pf_udec(t_pf_data *pf, t_pf_prm *fmt)
-{
-
 }

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Feb 27 13:25:31 2017 Benjamin Viguier
-** Last update Sat May 20 20:46:43 2017 Benjamin Viguier
+** Last update Sat May 20 21:13:06 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -56,10 +56,10 @@ void	__pf_getud(va_list va, t_pf_prm *prm)
       va_arg(va, ptrdiff_t);
   else if (!my_strcmp(prm->pat, PAT_H))
     prm->myvar.ud = (unsigned long long int)
-      ((short) va_arg(va, int));
+      ((unsigned short) va_arg(va, int));
   else if (!my_strcmp(prm->pat, PAT_HH))
     prm->myvar.ud = (unsigned long long int)
-      ((char) va_arg(va, int));
+      ((unsigned char) va_arg(va, int));
   else
     prm->myvar.ud = (unsigned long long int)
       va_arg(va, unsigned int);

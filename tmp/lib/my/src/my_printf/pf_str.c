@@ -5,11 +5,10 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu May 18 01:22:12 2017 Benjamin Viguier
-** Last update Sat May 20 18:17:11 2017 Benjamin Viguier
+** Last update Sat May 20 20:52:44 2017 Benjamin Viguier
 */
 
 #include "internal.h"
-
 
 int	__pf_char(t_pf_data *pf, t_pf_prm *fmt)
 {
