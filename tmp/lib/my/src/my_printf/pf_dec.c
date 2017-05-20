@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat May 20 21:14:42 2017 Benjamin Viguier
-** Last update Sat May 20 21:18:01 2017 Benjamin Viguier
+** Last update Sun May 21 00:37:46 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -28,26 +28,20 @@ int	__pf_dec(t_pf_data *pf, t_pf_prm *fmt)
 {
   char	buffer[50];
   char	*ptr;
-  int	local;
   int	len;
-  char	to_print;
-  
+  char	*extra;
 
-  local = fmt->width - 1;
   if (fmt->myvar.d < 0)
-    __pf_putchar(pf, '-');
+    extra = "-";
   else if (fmt->flag & PF_FLAG_ADD)
-    __pf_putchar(pf, '+');
+    extra = "+";
   else if (fmt->flag & PF_FLAG_SPACE)
-    __pf_putchar(pf, ' ');
+    extra = " ";
   else
-    local++;
+    extra = "";
   ptr = __pf_int_to_char(buffer, sizeof(buffer), fmt->myvar.d);
   len = my_strlen(ptr);
-  to_print = ((fmt->flag & PF_FLAG_ZERO) ? '0' : ' ');
-  if ((local -= len) > 0)
-    while (local--)
-      __pf_putchar(pf, to_print);
+  __pf_wandp_nbr(pf, fmt, len, extra);
   __pf_write(pf, ptr, len);
   return (0);
 }
@@ -71,17 +65,11 @@ int	__pf_udec(t_pf_data *pf, t_pf_prm *fmt)
 {
   char	buffer[50];
   char	*ptr;
-  int	local;
   int	len;
-  char	to_print;
 
-  local = fmt->width;
   ptr = __pf_uint_to_char(buffer, sizeof(buffer), fmt->myvar.ud);
   len = my_strlen(ptr);
-  to_print = ((fmt->flag & PF_FLAG_ZERO) ? '0' : ' ');
-  if ((local -= len) > 0)
-    while (local--)
-      __pf_putchar(pf, to_print);
+  __pf_wandp_nbr(pf, fmt, len, "");
   __pf_write(pf, ptr, len);
   return (0);
 }

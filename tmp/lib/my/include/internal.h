@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Sat May 20 19:52:35 2017 Benjamin Viguier
+** Last update Sun May 21 00:11:44 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
@@ -100,6 +100,8 @@ int	__pf_format(t_pf_data *data, t_pf_prm *prm);
 void	__pf_getd(va_list va, t_pf_prm *prm);
 void	__pf_getud(va_list va, t_pf_prm *prm);
 void	__pf_getrest(va_list va, t_pf_prm *prm, int type);
+void	__pf_wandp_nbr(t_pf_data *pf, t_pf_prm *fmt,
+		       size_t len, char *extra);
 
 int	__pf_hexaflt(t_pf_data *pf, t_pf_prm *fmt);
 int	__pf_scflt(t_pf_data *pf, t_pf_prm *fmt);
