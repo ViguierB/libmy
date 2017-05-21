@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Feb 27 12:21:52 2017 Benjamin Viguier
-** Last update Sun May 21 01:43:43 2017 Benjamin Viguier
+** Last update Sun May 21 03:15:29 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -93,14 +93,6 @@ void	__pf_wandp_nbr(t_pf_data *pf, t_pf_prm *fmt,
 }
 
 int	__pf_getnbr(t_pf_data *pf, t_pf_prm *fmt)
-{
-  (void) pf;
-  (void) fmt;
-  my_printf("%s\n", __func__);
-  return (0);
-}
-
-int	__pf_ptr(t_pf_data *pf, t_pf_prm *fmt)
 {
   (void) pf;
   (void) fmt;

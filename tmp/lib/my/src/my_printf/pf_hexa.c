@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat May 20 23:17:52 2017 Benjamin Viguier
-** Last update Sun May 21 00:43:09 2017 Benjamin Viguier
+** Last update Sun May 21 03:17:19 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -46,4 +46,12 @@ int		__pf_hexa(t_pf_data *pf, t_pf_prm *fmt)
   __pf_wandp_nbr(pf, fmt, len, extra);
   __pf_write(pf, ptr, len);
   return (0);
+}
+
+int	__pf_ptr(t_pf_data *pf, t_pf_prm *fmt)
+{
+  fmt->flag |= PF_FLAG_DEZ;
+  fmt->pat = "l";
+  fmt->type = 'x';
+  return (__pf_hexa(pf, fmt));
 }
