@@ -1,0 +1,12 @@
+/*
+** my_garbage.c for libmy in /home/benji_epitech/workdir/perso/libmy/tmp/lib/my/src
+** 
+** Made by Benjamin Viguier
+** Login   <benjamin.viguier@epitech.eu>
+** 
+** Started on  Mon Apr 10 13:07:50 2017 Benjamin Viguier
+** Last update Mon Apr 10 13:10:30 2017 Benjamin Viguier
+*/
+
+#include "internal.h"
+

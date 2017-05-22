@@ -5,67 +5,157 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Mon Jan 30 18:11:36 2017 Benjamin Viguier
+## Last update Mon May 22 15:02:27 2017 Benjamin Viguier
 ##
 
-include $(shell pwd)/include/depend.mk
+include ./include/depend.mk
 
-AR	=	ar rc
+CFLAGS	+=	-I./include/
+
+ifeq	($(ALLOW_OPEN), true)
+ CFLAGS	+=	-D ALLOW_OPEN
+endif
+ifeq	($(ALLOW_LSEEK), true)
+ CFLAGS	+=	-D ALLOW_LSEEK
+endif
 
 SRC	=	my_strlen.c		\
 		my_strcpy.c		\
 		my_strncpy.c		\
 		my_strcmp.c		\
 		my_split.c		\
-		my_printf.c		\
-		my_printf_extend.c	\
-		need_space.c		\
-		need_space_bis.c	\
-		get_params.c		\
-		verif_wap.c		\
-		flag_format.c		\
-		flag.c			\
+		my_atoi.c		\
 		my_basic_funct.c	\
-		stack.c			\
-		param_t_val.c		\
-		modif_spe_funt.c	\
-		modif_spe_funt_bis.c	\
-		print_int.c		\
-		print_uint.c		\
-		print_xhex.c		\
-		print_char.c		\
-		print_oct.c		\
-		print_ptr.c		\
-		print_bin.c		\
 		my_strconca.c		\
 		my_trim.c		\
-		clist.c			\
+		my_clist.c		\
+		my_clist_rem.c		\
+		my_clist_sort.c		\
+		my_clist_qsort.c	\
 		my_showmem.c		\
 		my_putnbr_base.c	\
 		my_fd.c			\
 		my_getline.c		\
+		my_fread.c		\
+		my_fd_write.c		\
+		my_fd_std.c		\
 		my_put.c		\
 		my_memset.c		\
 		my_memcpy.c		\
 		my_memcmp.c		\
-		my_memisempty.c
+		my_memisempty.c		\
+		my_isnum.c		\
+		my_errno.c		\
+		my_strbuilder.c		\
+		my_strbuilder_ext.c
 
-CFLAGS	+=	-I./include/
+PFSRC	=	my_printf.c	\
+		pf_flags.c	\
+		pf_modifier.c	\
+		pf_write.c	\
+		pf_format.c	\
+		pf_modif_va.c	\
+		pf_wandp_ud.c	\
+		pf_str.c	\
+		pf_dec.c	\
+		pf_hexa.c	\
+		pf_bin.c	\
+		pf_oct.c
 
-OBJ	=	$(SRC:.c=.o)
+HSRC	=	murmur.c		\
+		my_hashmap_create.c	\
+		my_hashmap_push.c
+
+MLCSRC	=	my_malloc.c		\
+		my_malloc_internal.c	\
+		my_calloc.c
+
+SPFDIR	=	$(SDIR)/my_printf
+OPFDIR	=	$(ODIR)
+
+SHDIR	=	$(SDIR)/hash
+OHDIR	=	$(ODIR)
+
+SMLCDIR	=	$(SDIR)/malloc
+OMLCDIR	=	$(ODIR)
+
+OBJ	=	$(patsubst %,$(ODIR)/%,$(SRC:.c=.o))
+PFOBJ	=	$(patsubst %,$(OPFDIR)/%,$(PFSRC:.c=.o))
+HOBJ	=	$(patsubst %,$(OHDIR)/%,$(HSRC:.c=.o))
+MLCOBJ	=	$(patsubst %,$(OMLCDIR)/%,$(MLCSRC:.c=.o))
 
 NAME	=	libmy.a
 
-all	:	$(NAME)
+all		:	echologo mkobj show_cflags $(NAME) warn_allow
 
-$(NAME)	:	$(OBJ)
-	$(AR) $(NAME) $(OBJ)
-	ranlib $(NAME)
+echologo	:
+	@printf	"\033[1;34m"
+	@cat	./tools/logo.logo
+	@printf	"\033[0m"
+	@printf "\n"
 
-clean	:
-	rm -f $(OBJ)
+show_cflags	:
+	@printf	"Flags Actif : "
+	@printf "\033[1;33m"
+	@echo	$(CFLAGS)
+	@printf	"\033[0m"
 
-fclean	:	clean
-	rm -f $(NAME)
+warn_allow	:
+ifeq	($(ALLOW_OPEN), true)
+	@printf	"\033[1;31m"
+	@printf "/!\ OPEN & CLOSE	enabled\n"
+	@printf	"\033[0m"
+endif
+ifeq	($(ALLOW_LSEEK), true)
+	@printf	"\033[1;31m"
+	@printf "/!\ LSEEK		enabled\n"
+	@printf	"\033[0m"
+endif
 
-re	:	fclean all
+$(ODIR)/%.o	:	$(SDIR)/%.c
+	@printf	"[libmy] Compilation de "
+	@printf	"\033[1;34m"
+	@echo	$(notdir $<)
+	@printf	"\033[0m"
+	@$(CC) $(CFLAGS)	-c -o $@ $<
+
+$(OPFDIR)/%.o	:	$(SPFDIR)/%.c
+	@printf	"[my_printf] Compilation de "
+	@printf	"\033[1;34m"
+	@echo	$(notdir $<)
+	@printf	"\033[0m"
+	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
+
+$(OHDIR)/%.o	:	$(SHDIR)/%.c
+	@printf	"[hash] Compilation de "
+	@printf	"\033[1;34m"
+	@echo	$(notdir $<)
+	@printf	"\033[0m"
+	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
+
+$(OMLCDIR)/%.o	:	$(SMLCDIR)/%.c
+	@printf	"[my_malloc] Compilation de "
+	@printf	"\033[1;34m"
+	@echo	$(notdir $<)
+	@printf	"\033[0m"
+	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
+
+mkobj		:
+	@echo "Verification du dossier 'obj'";
+	@./tools/verif_objdir;
+
+$(NAME)		:	$(OBJ) $(PFOBJ) $(HOBJ) $(MLCOBJ)
+	@printf	"Creation de  "
+	@printf	"\033[1;32m"
+	@echo	$(NAME)
+	@printf	"\033[0m"
+	@$(AR) $(NAME) $(OBJ) $(PFOBJ) $(HOBJ) $(MLCOBJ)
+	@ranlib $(NAME)
+
+clean		:
+	@rm -rf	$(ODIR)
+
+fclean		:	clean
+	@rm -f	$(NAME)
+
+re		:	fclean all

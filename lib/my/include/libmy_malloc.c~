@@ -1,0 +1,16 @@
+/*
+** libmy_malloc.c for libmy in /home/benji_epitech/workdir/perso/libmy/tmp/lib/my/src/malloc
+** 
+** Made by Benjamin Viguier
+** Login   <benjamin.viguier@epitech.eu>
+** 
+** Started on  Wed Apr 26 15:28:45 2017 Benjamin Viguier
+** Last update Wed Apr 26 15:29:18 2017 Benjamin Viguier
+*/
+
+#ifndef LIBMY_MALLOC_H_
+# define LIBMY_MALLOC_H_
+
+
+
+#endif /* !LIBMY_MALLOC_H_ */

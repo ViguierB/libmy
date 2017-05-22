@@ -1,0 +1,37 @@
+/*
+** my_clist_qsort.c for libmy in /home/benji_epitech/workdir/perso/libmy/tmp/lib/my/src
+** 
+** Made by Benjamin Viguier
+** Login   <benjamin.viguier@epitech.eu>
+** 
+** Started on  Fri Apr 14 16:12:39 2017 Benjamin Viguier
+** Last update Fri Apr 14 16:22:19 2017 Benjamin Viguier
+*/
+
+#include "libmy.h"
+
+void		__libmy_qsort(t_clist_elm *start, t_clist_elm *end, t_elm_cmp cmp_fct)
+{
+  void		*pivot;
+  t_clist_elm	*wall;
+  t_clist_elm	*cur;
+
+  if (start->next == end)
+    return;
+  pivot = start->ptr;
+  wall = start;
+  cur = start;
+  while (cur)
+    {
+      
+      cur = CLIST_NEXT(end, cur);
+    }
+  __libmy_qsort(start, wall);
+  __libmy_qsort(wall, end);
+}
+
+void	clist_qsort(t_clist *list, t_elm_cmp cmp_fct)
+{
+  if (list)
+    __libmy_qsort(list, list, cmp_fct);
+}
