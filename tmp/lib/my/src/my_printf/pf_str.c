@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu May 18 01:22:12 2017 Benjamin Viguier
-** Last update Sat May 20 20:52:44 2017 Benjamin Viguier
+** Last update Mon May 22 16:02:01 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -60,6 +60,8 @@ int	__pf_str(t_pf_data *pf, t_pf_prm *fmt)
   int	local;
   char	*str;
 
+  if (fmt->myvar.s == NULL)
+    fmt->myvar.s = "(null)";
   local = fmt->preci;
   str = fmt->myvar.s;
   if (!(fmt->flag & PF_FLAG_SUB))
@@ -80,6 +82,8 @@ int	__pf_extstr(t_pf_data *pf, t_pf_prm *fmt)
   int	local;
   char	*str;
 
+  if (fmt->myvar.s == NULL)
+    fmt->myvar.s = "(null)";
   local = fmt->preci;
   str = fmt->myvar.s;
   if (!(fmt->flag & PF_FLAG_SUB))

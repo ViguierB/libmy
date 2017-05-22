@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon May 22 13:47:58 2017 Benjamin Viguier
-** Last update Mon May 22 15:22:10 2017 Benjamin Viguier
+** Last update Mon May 22 15:57:28 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -44,13 +44,11 @@ int	__pf_wandp_ud(t_pf_prm *fmt, int len,
 {
   int	wlocal;
   int	plocal;
-  int	pena;
 
   wlocal = fmt->width;
   plocal = fmt->preci;
-  pena = (plocal >= 0);
   __pf_wisneg(fmt, &wlocal);
-  if (!pena)
+  if (plocal < 0)
     {
       wlocal = wlocal - len - header_len;
       if ((fmt->flag & PF_FLAG_ZERO) && !(fmt->flag & PF_FLAG_SUB))
