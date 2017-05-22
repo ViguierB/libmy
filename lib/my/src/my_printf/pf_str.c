@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu May 18 01:22:12 2017 Benjamin Viguier
-** Last update Mon May 22 19:38:54 2017 Benjamin Viguier
+** Last update Mon May 22 19:44:36 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -83,7 +83,6 @@ static size_t	__pf_extstrlen(char *str)
 
 int	__pf_extstr(t_pf_data *pf, t_pf_prm *fmt)
 {
-  
   int		wlocal;
   int		plocal;
   char		*str;
