@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu May 18 01:22:12 2017 Benjamin Viguier
-** Last update Mon May 22 16:02:01 2017 Benjamin Viguier
+** Last update Mon May 22 19:28:04 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -40,64 +40,86 @@ static int	__pf_putstr_octal(t_pf_data *pf, unsigned char c, int local)
       c = c >> 3;
     }
   str = buffer;
-  local++;
-  while (--local && *str)
-    __pf_putchar(pf, *(str++));
+  while (local && *str)
+    {
+      __pf_write(pf, str++, 1);
+      --local;
+    }
   return (local);
 }
 
-static void	__pf_do_strwidth(t_pf_data *pf, t_pf_prm *fmt, int local)
+static void	__pf_do_strwidth(t_pf_data *pf, int local)
 {
   int	width;
 
-  width = MAX(fmt->width - local, 0);
+  width = MAX(local, 0);
   while (width--)
     __pf_putchar(pf, ' ');
 }
 
-int	__pf_str(t_pf_data *pf, t_pf_prm *fmt)
+int		__pf_str(t_pf_data *pf, t_pf_prm *fmt)
 {
-  int	local;
-  char	*str;
+  int		wlocal;
+  int		plocal;
+  char		*str;
+  size_t	my_len;
 
   if (fmt->myvar.s == NULL)
     fmt->myvar.s = "(null)";
-  local = fmt->preci;
   str = fmt->myvar.s;
+  my_len = my_strlen(str);
+  plocal = ((fmt->preci < 0) ? my_len : MIN((size_t) fmt->preci, my_len));
+  wlocal = fmt->width - plocal;
   if (!(fmt->flag & PF_FLAG_SUB))
-    __pf_do_strwidth(pf, fmt, ((local < 0) ? -local : local));
-  while (local && *str)
-    {
-      __pf_putchar(pf, *(str++));
-      --local;
-    }
+    __pf_do_strwidth(pf, wlocal);
+  while (plocal-- && *str)
+    __pf_write(pf, str++, 1);
   if (fmt->flag & PF_FLAG_SUB)
-    __pf_do_strwidth(pf, fmt, ((local == 0) ?
-			       fmt->preci : fmt->preci - local));
+    __pf_do_strwidth(pf, wlocal);
   return (0);
+}
+
+char	__pf_extstrlen(char *str)
+{
+  int	res;
+
+  res = 0;
+  while (*str)
+    {
+      if (ISPRINTABLE(*str))
+	res++;
+      else
+	res += 4;
+      str++;
+    }
+  return (res);
 }
 
 int	__pf_extstr(t_pf_data *pf, t_pf_prm *fmt)
 {
-  int	local;
-  char	*str;
+  
+  int		wlocal;
+  int		plocal;
+  char		*str;
+  size_t	my_len;
 
   if (fmt->myvar.s == NULL)
     fmt->myvar.s = "(null)";
-  local = fmt->preci;
   str = fmt->myvar.s;
+  my_len = __pf_extstrlen(str);
+  plocal = ((fmt->preci < 0) ? my_len : MIN((size_t) fmt->preci, my_len));
+  wlocal = fmt->width - plocal;
   if (!(fmt->flag & PF_FLAG_SUB))
-    __pf_do_strwidth(pf, fmt, ((local < 0) ? -local : local));
-  while (local && *str)
-      if (ISPRINTABLE(*str))
-	{
-	  __pf_putchar(pf, *(str++));
-	  --local;
-	}
-      else
-	local = __pf_putstr_octal(pf, *(str++), local);
+    __pf_do_strwidth(pf, wlocal);
+  while (plocal && *str)
+    if (ISPRINTABLE(*str))
+      {
+	__pf_write(pf, str++, 1);
+	--plocal;
+      }
+    else
+      plocal = __pf_putstr_octal(pf, *(str++), plocal);
   if (fmt->flag & PF_FLAG_SUB)
-    __pf_do_strwidth(pf, fmt, ((local == 0) ?
-			       fmt->preci : fmt->preci - local));
+    __pf_do_strwidth(pf, wlocal);
   return (0);
 }

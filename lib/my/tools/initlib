@@ -1,4 +1,12 @@
-#!/bin/bash
+## initlib for libmy in /home/benji_epitech/workdir/perso/libmy/lib/my/tools
+## 
+## Made by Benjamin Viguier
+## Login   <benjamin.viguier@epitech.eu>
+## 
+## Started on  Mon May 22 18:52:56 2017 Benjamin Viguier
+## Last update Mon May 22 18:53:10 2017 Benjamin Viguier
+##
+#!/bin/bash 
 
 if [ -d "./lib" ];then
     mkdir include;
