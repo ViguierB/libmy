@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sun May 21 01:44:03 2017 Benjamin Viguier
-** Last update Mon May 22 15:53:34 2017 Benjamin Viguier
+** Last update Mon May 22 19:41:10 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -46,7 +46,7 @@ int	__pf_oct(t_pf_data *pf, t_pf_prm *fmt)
   __pf_wandp_ud(fmt, len, my_strlen(header), &wandp);
   if (fmt->flag & PF_FLAG_DEZ && wandp.zero_len)
     {
-      if (len + wandp.zero_len + wandp.space_len <= fmt->width)
+      if (len + wandp.zero_len + wandp.space_len <= (size_t) fmt->width)
 	wandp.space_len += 1;
       wandp.zero_len -= 1;
     }
