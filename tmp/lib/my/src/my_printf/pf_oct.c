@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sun May 21 01:44:03 2017 Benjamin Viguier
-** Last update Sun May 21 01:44:17 2017 Benjamin Viguier
+** Last update Mon May 22 15:53:34 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -30,20 +30,26 @@ int	__pf_oct(t_pf_data *pf, t_pf_prm *fmt)
   char		buffer[PF_NBR_BUF_LEN];
   char		*ptr;
   size_t	len;
-  char		*extra;
+  char		*header;
+  t_wandp_ud	wandp;
 
-  extra = "";
+  my_memset(&wandp, 0, sizeof(t_wandp_ud));
+  if (fmt->flag & PF_FLAG_DEZ)
+    header = "0";
+  else
+    header = "";
   ptr = __pf_uint_to_oct(buffer, sizeof(buffer),
 			  fmt->myvar.ud);
   len = my_strlen(ptr);
-  if (fmt->preci <= (int) len ||
-      (fmt->width <= (int) len && (fmt->flag & PF_FLAG_ZERO)))
+  wandp.buffer = ptr;
+  wandp.header = header;
+  __pf_wandp_ud(fmt, len, my_strlen(header), &wandp);
+  if (fmt->flag & PF_FLAG_DEZ && wandp.zero_len)
     {
-      extra = "0";
-      fmt->width -= 1;
+      if (len + wandp.zero_len + wandp.space_len <= fmt->width)
+	wandp.space_len += 1;
+      wandp.zero_len -= 1;
     }
-  __pf_wandp_nbr(pf, fmt, len, "");
-  __pf_write(pf, extra, my_strlen(extra));
-  __pf_write(pf, ptr, len);
+  __pf_ud_print(pf, fmt, &wandp);
   return (0);
 }

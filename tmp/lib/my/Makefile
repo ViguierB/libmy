@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Sun May 21 01:44:30 2017 Benjamin Viguier
+## Last update Mon May 22 15:02:27 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -55,6 +55,7 @@ PFSRC	=	my_printf.c	\
 		pf_write.c	\
 		pf_format.c	\
 		pf_modif_va.c	\
+		pf_wandp_ud.c	\
 		pf_str.c	\
 		pf_dec.c	\
 		pf_hexa.c	\

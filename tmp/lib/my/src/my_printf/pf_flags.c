@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Feb 24 11:03:35 2017 Benjamin Viguier
-** Last update Thu May 18 17:57:02 2017 Benjamin Viguier
+** Last update Mon May 22 15:32:06 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -20,7 +20,7 @@ const t_pf_prmflag	g_prmf_tab[] =
     {PF_NO_FLAG, '\0'},
   };
 
-int	__pf_prm_nbr(t_pf_data *data)
+int	__pf_prm_nbr(t_pf_data *data, int *res)
 {
   int	nbr;
 
@@ -30,7 +30,8 @@ int	__pf_prm_nbr(t_pf_data *data)
   if (*(data->fmt) == '*')
     {
       (data->fmt)++;
-      return (va_arg(data->va, int));
+      *res = va_arg(data->va, int);
+      return (0);
     }
   while (*(data->fmt) >= '0' && *(data->fmt) <= '9')
     {
@@ -38,7 +39,8 @@ int	__pf_prm_nbr(t_pf_data *data)
       nbr += *(data->fmt) - '0';
       (data->fmt)++;
     }
-  return (nbr);
+  *res = nbr;
+  return (0);
 }
 
 int	__pf_getfflag(t_pf_data *data, t_pf_prm *prm)
@@ -76,15 +78,15 @@ int		__pf_get_flags(t_pf_data *data, t_pf_prm *prm)
     return (0);
   if (__pf_getfflag(data, prm) == 0)
     return (0);
-  prm->width = __pf_prm_nbr(data);
-  if (prm->width < 0)
+  if (__pf_prm_nbr(data, &(prm->width)))
     return (0);
   if (*(data->fmt) == '.')
     {
       (data->fmt)++;
       if (*(data->fmt) == '\0')
 	return (0);
-      prm->preci = __pf_prm_nbr(data);
+      if (__pf_prm_nbr(data, &(prm->preci)) < 0)
+	return (0);
       if (*(data->fmt) == '\0' || prm->preci < 0)
 	return (0);
     }

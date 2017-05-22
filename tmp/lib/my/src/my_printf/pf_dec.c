@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat May 20 21:14:42 2017 Benjamin Viguier
-** Last update Sun May 21 01:24:19 2017 Benjamin Viguier
+** Last update Mon May 22 15:27:55 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -24,25 +24,29 @@ static char	*__pf_int_to_char(char buffer[], size_t len, long long int d)
   return (ptr);
 }
 
-int	__pf_dec(t_pf_data *pf, t_pf_prm *fmt)
+int		__pf_dec(t_pf_data *pf, t_pf_prm *fmt)
 {
-  char	buffer[PF_NBR_BUF_LEN];
-  char	*ptr;
-  int	len;
-  char	*extra;
+  char		buffer[PF_NBR_BUF_LEN];
+  char		*ptr;
+  int		len;
+  char		*header;
+  t_wandp_ud	wandp;
 
+  my_memset(&wandp, 0, sizeof(t_wandp_ud));
   if (fmt->myvar.d < 0)
-    extra = "-";
+    header = "-";
   else if (fmt->flag & PF_FLAG_ADD)
-    extra = "+";
+    header = "+";
   else if (fmt->flag & PF_FLAG_SPACE)
-    extra = " ";
+    header = " ";
   else
-    extra = "";
+    header = "";
   ptr = __pf_int_to_char(buffer, sizeof(buffer), fmt->myvar.d);
   len = my_strlen(ptr);
-  __pf_wandp_nbr(pf, fmt, len, extra);
-  __pf_write(pf, ptr, len);
+  wandp.buffer = ptr;
+  wandp.header = header;
+  __pf_wandp_ud(fmt, len, my_strlen(header), &wandp);
+  __pf_ud_print(pf, fmt, &wandp);
   return (0);
 }
 
@@ -63,13 +67,17 @@ static char	*__pf_uint_to_char(char buffer[], size_t len,
 
 int	__pf_udec(t_pf_data *pf, t_pf_prm *fmt)
 {
-  char	buffer[PF_NBR_BUF_LEN];
-  char	*ptr;
-  int	len;
+  char		buffer[PF_NBR_BUF_LEN];
+  char		*ptr;
+  int		len;
+  t_wandp_ud	wandp;
 
+  my_memset(&wandp, 0, sizeof(t_wandp_ud));
   ptr = __pf_uint_to_char(buffer, sizeof(buffer), fmt->myvar.ud);
   len = my_strlen(ptr);
-  __pf_wandp_nbr(pf, fmt, len, "");
-  __pf_write(pf, ptr, len);
+  wandp.buffer = ptr;
+  wandp.header = "";
+  __pf_wandp_ud(fmt, len, 0, &wandp);
+  __pf_ud_print(pf, fmt, &wandp);
   return (0);
 }

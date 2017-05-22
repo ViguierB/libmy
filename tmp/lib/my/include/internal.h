@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Sun May 21 00:42:25 2017 Benjamin Viguier
+** Last update Mon May 22 14:54:03 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
@@ -78,6 +78,14 @@ typedef struct		s_pf_type
   char			*pat;
   const t_pf_sprm	*sprm;
 }			t_pf_type;
+
+typedef struct	s_wandp_ud
+{
+  int		space_len;
+  int		zero_len;
+  char		*buffer;
+  char		*header;
+}		t_wandp_ud;
 
 typedef int	(*t_pf_fct)(t_pf_data *, t_pf_prm *);
 

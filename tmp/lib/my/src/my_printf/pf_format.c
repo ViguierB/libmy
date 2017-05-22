@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Feb 27 12:21:52 2017 Benjamin Viguier
-** Last update Sun May 21 03:15:29 2017 Benjamin Viguier
+** Last update Mon May 22 15:37:34 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -50,46 +50,6 @@ int		__pf_format(t_pf_data *data, t_pf_prm *prm)
   __pf_putchar(data, '%');
   data->fmt = ((prm->type == '%') ? data->fmt : prm->save);
   return (0);
-}
-
-void	__pf_wandp_nbr_ext(t_pf_data *pf, int wlocal, int plocal)
-{
-  while (plocal > 0 || wlocal > 0)
-    {
-      __pf_putchar(pf, '0');
-      wlocal--;
-      plocal--;
-    }
-}
-
-void	__pf_wandp_nbr(t_pf_data *pf, t_pf_prm *fmt,
-		       size_t len, char *extra)
-{
-  int	        dez_len;
-  int		wlocal;
-  int		plocal;
-
-  wlocal = fmt->width;
-  plocal = fmt->preci;
-  dez_len = my_strlen(extra);
-  wlocal -= dez_len;
-  while (plocal != -1 && len < (unsigned) wlocal &&
-	 wlocal > plocal && (wlocal - len) > 0)
-    {
-      __pf_putchar(pf, ' ');
-      wlocal--;
-    }
-  if (fmt->flag & PF_FLAG_DEZ && fmt->flag & PF_FLAG_ZERO)
-    __pf_write(pf, extra, dez_len);
-  wlocal -= len;
-  while (wlocal > 0 && plocal == -1)
-    {
-      __pf_putchar(pf, ((fmt->flag & PF_FLAG_ZERO) ? '0' : ' '));
-      wlocal--;
-    }
-  if (fmt->flag & PF_FLAG_DEZ && !(fmt->flag & PF_FLAG_ZERO))
-    __pf_write(pf, extra, dez_len);
-  __pf_wandp_nbr_ext(pf, wlocal, plocal - len);
 }
 
 int	__pf_getnbr(t_pf_data *pf, t_pf_prm *fmt)
