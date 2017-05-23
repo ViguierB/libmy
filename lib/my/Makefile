@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Mon May 22 19:39:43 2017 Benjamin Viguier
+## Last update Tue May 23 14:45:11 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -17,6 +17,9 @@ ifeq	($(ALLOW_OPEN), true)
 endif
 ifeq	($(ALLOW_LSEEK), true)
  CFLAGS	+=	-D ALLOW_LSEEK
+endif
+ifeq	($(ALLOW_ISATTY), true)
+ CFLAGS	+=	-D ALLOW_ISATTY
 endif
 
 SRC	=	my_strlen.c		\
@@ -110,6 +113,11 @@ endif
 ifeq	($(ALLOW_LSEEK), true)
 	@printf	"\033[1;31m"
 	@printf "/!\ LSEEK		enabled\n"
+	@printf	"\033[0m"
+endif
+ifeq	($(ALLOW_ISATTY), true)
+	@printf	"\033[1;31m"
+	@printf "/!\ ISATTY		enabled\n"
 	@printf	"\033[0m"
 endif
 

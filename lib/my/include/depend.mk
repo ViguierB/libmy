@@ -4,7 +4,7 @@
 ## Made by Benjamin Viguier
 ## Login   <benjamin.viguier@epitech.eu>
 ##
-## Last update Mon May 22 19:41:30 2017 Benjamin Viguier
+## Last update Tue May 23 14:40:05 2017 Benjamin Viguier
 ##
 
 CC		=	gcc
@@ -16,10 +16,6 @@ DEBUG		=	true
 WALL		=	true
 
 RELEASE		=	true
-
-ALLOW_OPEN	=	true
-
-ALLOW_LSEEK	=	true
 
 OPTI_FLAG	=	-O3 -fno-builtin
 
@@ -42,3 +38,10 @@ endif
 ODIR		=	obj
 
 SDIR		=	src
+
+## Project allowed function :
+ALLOW_OPEN	=	true
+
+ALLOW_LSEEK	=	true
+
+ALLOW_ISATTY	=	true

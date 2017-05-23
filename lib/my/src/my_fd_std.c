@@ -5,9 +5,10 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 18:01:04 2017 Benjamin Viguier
-** Last update Thu May 18 01:39:31 2017 Benjamin Viguier
+** Last update Tue May 23 14:44:47 2017 Benjamin Viguier
 */
 
+#include <unistd.h>
 #include "libmy.h"
 #include "internal.h"
 
@@ -25,9 +26,18 @@ LMY_CONSTRUCTOR static void	__libmy_init_stdfd(void)
   my_fdin->fd = (S_IN);
   my_fdout->fd = (S_OUT);
   my_fderr->fd = (S_ERR);
-  my_fdin->auto_flush = LMY_TRUE;
-  my_fdout->auto_flush = LMY_TRUE;
-  my_fderr->auto_flush = LMY_TRUE;
+#ifdef ALLOW_ISATTY
+  if (isatty(S_IN))
+#endif
+    my_fdin->auto_flush = LMY_TRUE;
+#ifdef ALLOW_ISATTY
+  if (isatty(S_OUT))
+#endif
+    my_fdout->auto_flush = LMY_TRUE;
+#ifdef ALLOW_ISATTY
+  if (isatty(S_ERR))
+#endif
+    my_fderr->auto_flush = LMY_TRUE;
 }
 
 LMY_DESTRUCTOR static void	__libmy_close_stdfd(void)
