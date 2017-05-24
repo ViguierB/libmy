@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Feb 24 11:45:51 2017 Benjamin Viguier
-** Last update Wed May 24 11:57:54 2017 Benjamin Viguier
+** Last update Wed May 24 18:45:30 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -133,7 +133,7 @@ void		__pf_get_modsize(va_list va, t_pf_prm *prm)
 	    {
 	      prm->size = sprm_cur[i].size;
 	      __pf_get_var(va, prm, cur - g_type_pat);
-	      return;
+	      return ;
 	    }
 	  i++;
 	}

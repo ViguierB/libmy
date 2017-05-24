@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Apr 14 16:12:39 2017 Benjamin Viguier
-** Last update Fri Apr 21 17:40:03 2017 Benjamin Viguier
+** Last update Wed May 24 18:46:04 2017 Benjamin Viguier
 */
 
 /*
@@ -73,13 +73,13 @@ static void	__libmy_qsort(t_clist_elm *start, t_clist_elm *end,
 
   wall = start->next;
   if (wall == end)
-    return;
+    return ;
   cur = end->prev;
   if (wall == cur)
     {
       if (cmp_fct(start->ptr, cur->ptr) > 0)
 	clist_swap_val(start, cur);
-      return;
+      return ;
     }
   pivot = start;
   __libmy_qsort_loop(cur, &wall, pivot, cmp_fct);

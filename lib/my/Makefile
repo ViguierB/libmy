@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Wed May 24 13:55:28 2017 Benjamin Viguier
+## Last update Wed May 24 19:10:59 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -37,11 +37,6 @@ SRC	=	my_strlen.c		\
 		my_clist_qsort.c	\
 		my_showmem.c		\
 		my_putnbr_base.c	\
-		my_fd.c			\
-		my_getline.c		\
-		my_fread.c		\
-		my_fd_write.c		\
-		my_fd_std.c		\
 		my_put.c		\
 		my_memset.c		\
 		my_memcpy.c		\
@@ -51,6 +46,12 @@ SRC	=	my_strlen.c		\
 		my_errno.c		\
 		my_strbuilder.c		\
 		my_strbuilder_ext.c
+
+IOSRC	=	my_fd.c		\
+		my_getline.c	\
+		my_fread.c	\
+		my_fd_write.c	\
+		my_fd_std.c
 
 PFSRC	=	my_printf.c	\
 		pf_flags.c	\
@@ -75,7 +76,10 @@ MLCSRC	=	my_malloc.c		\
 		my_malloc_internal.c	\
 		my_calloc.c
 
-SPFDIR	=	$(SDIR)/my_printf
+SIODIR	=	$(SDIR)/io
+OIODIR	=	$(ODIR)
+
+SPFDIR	=	$(SDIR)/io/my_printf
 OPFDIR	=	$(ODIR)
 
 SHDIR	=	$(SDIR)/hash
@@ -85,6 +89,7 @@ SMLCDIR	=	$(SDIR)/malloc
 OMLCDIR	=	$(ODIR)
 
 OBJ	=	$(patsubst %,$(ODIR)/%,$(SRC:.c=.o))
+IOOBJ	=	$(patsubst %,$(OIODIR)/%,$(IOSRC:.c=.o))
 PFOBJ	=	$(patsubst %,$(OPFDIR)/%,$(PFSRC:.c=.o))
 HOBJ	=	$(patsubst %,$(OHDIR)/%,$(HSRC:.c=.o))
 MLCOBJ	=	$(patsubst %,$(OMLCDIR)/%,$(MLCSRC:.c=.o))
@@ -129,6 +134,13 @@ $(ODIR)/%.o	:	$(SDIR)/%.c
 	@printf	"\033[0m"
 	@$(CC) $(CFLAGS)	-c -o $@ $<
 
+$(OPFDIR)/%.o	:	$(SIODIR)/%.c
+	@printf	"[my_io] Compilation de "
+	@printf	"\033[1;34m"
+	@echo	$(notdir $<)
+	@printf	"\033[0m"
+	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
+
 $(OPFDIR)/%.o	:	$(SPFDIR)/%.c
 	@printf	"[my_printf] Compilation de "
 	@printf	"\033[1;34m"
@@ -154,12 +166,12 @@ mkobj		:
 	@echo "Verification du dossier 'obj'";
 	@./tools/verif_objdir;
 
-$(NAME)		:	$(OBJ) $(PFOBJ) $(HOBJ) $(MLCOBJ)
+$(NAME)		:	$(OBJ) $(IOOBJ) $(PFOBJ) $(HOBJ) $(MLCOBJ)
 	@printf	"Creation de  "
 	@printf	"\033[1;32m"
 	@echo	$(NAME)
 	@printf	"\033[0m"
-	@$(AR) $(NAME) $(OBJ) $(PFOBJ) $(HOBJ) $(MLCOBJ)
+	@$(AR) $(NAME) $(OBJ) $(IOOBJ) $(PFOBJ) $(HOBJ) $(MLCOBJ)
 	@ranlib $(NAME)
 
 clean		:
