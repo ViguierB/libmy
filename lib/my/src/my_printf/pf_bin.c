@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sun May 21 01:24:39 2017 Benjamin Viguier
-** Last update Mon May 22 15:35:47 2017 Benjamin Viguier
+** Last update Wed May 24 12:49:07 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -35,7 +35,7 @@ int	__pf_bin(t_pf_data *pf, t_pf_prm *fmt)
 
   my_memset(&wandp, 0, sizeof(t_wandp_ud));
   if (fmt->flag & PF_FLAG_DEZ)
-    header = ((fmt->type == 'B') ? "0B" : "0b");
+    header = ((fmt->type == 'b') ? "0b" : "0B");
   else
     header = "";
   ptr = __pf_uint_to_bin(buffer, sizeof(buffer),

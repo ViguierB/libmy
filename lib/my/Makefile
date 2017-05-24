@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Tue May 23 14:45:11 2017 Benjamin Viguier
+## Last update Wed May 24 13:55:28 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -64,7 +64,8 @@ PFSRC	=	my_printf.c	\
 		pf_dec.c	\
 		pf_hexa.c	\
 		pf_bin.c	\
-		pf_oct.c
+		pf_oct.c	\
+		pf_nflag.c
 
 HSRC	=	murmur.c		\
 		my_hashmap_create.c	\

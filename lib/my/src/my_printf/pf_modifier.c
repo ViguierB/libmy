@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Feb 24 11:45:51 2017 Benjamin Viguier
-** Last update Sat May 20 23:05:27 2017 Benjamin Viguier
+** Last update Wed May 24 11:57:54 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -90,7 +90,7 @@ static const t_pf_sprm	g_n_tab[] =
 
 static const t_pf_type	g_type_pat[] =
     {
-      {"uoxXb", g_uint_tab},
+      {"uoxXbB", g_uint_tab},
       {"id", g_int_tab},
       {"fFeEgGaA", g_fl_tab},
       {"c", g_char_tab},
