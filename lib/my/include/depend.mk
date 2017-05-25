@@ -4,7 +4,7 @@
 ## Made by Benjamin Viguier
 ## Login   <benjamin.viguier@epitech.eu>
 ##
-## Last update Wed May 24 11:51:10 2017 Benjamin Viguier
+## Last update Thu May 25 02:44:31 2017 Benjamin Viguier
 ##
 
 CC		=	gcc
@@ -15,7 +15,7 @@ DEBUG		=	true
 
 WALL		=	true
 
-RELEASE		=	truex
+RELEASE		=	true
 
 OPTI_FLAG	=	-O3 -fno-builtin
 

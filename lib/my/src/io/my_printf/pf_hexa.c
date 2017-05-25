@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat May 20 23:17:52 2017 Benjamin Viguier
-** Last update Thu May 25 02:39:01 2017 Benjamin Viguier
+** Last update Thu May 25 18:00:21 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -18,10 +18,12 @@ static char	*__pf_uint_to_hexa(char buffer[], size_t len,
 
   ptr = buffer + (len - 1);
   *ptr = '\0';
-  while (u)
+  while (1)
     {
       *(--ptr) = patern[u & 0b1111];
       u >>= 4;
+      if (!u)
+	break;
     }
   return (ptr);
 }

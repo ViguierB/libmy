@@ -84,8 +84,8 @@ int main(int ac, char **av)
 	clist_free(qlist);
       qlist = NULL;
     }
-  printf("Test Time : \e[1;33m%d\e[0m s\n", (int) time(NULL) - start);
-  printf("Passed : \e[1;32m%d (%d %%)\e[0m, failed : \e[1;31m%d (%d %%)\e[0m\nBye Bye :3\n",
+  my_printf("Test Time : \e[1;33m%d\e[0m s\n", (int) time(NULL) - start);
+  my_printf("Passed : \e[1;32m%d (%d %%)\e[0m, failed : \e[1;31m%d (%d %%)\e[0m\nBye Bye :3\n",
 	 passed, passed * 100 / count, fail,  fail * 100 / count);
   my_fclose(in_);
   return (0);
@@ -115,7 +115,7 @@ void	trace(t_clist *q, t_clist *b, clock_t qclk, int *passed, int *failed)
   int		res;
 
   res = verif(q);
-  printf("Round n°%d : ", ++count);
+  my_printf("Round n°%d : ", ++count);
   if (!res)
     {
       fprintf(stderr, "\nTRACE FOR (Round n°%d):\n", count);
@@ -131,7 +131,7 @@ void	trace(t_clist *q, t_clist *b, clock_t qclk, int *passed, int *failed)
   else
     {
       *passed += 1;
-      printf("%s\e[0m  ", ((res != 0) ? "\e[1;32mOK!" : "\e[1;31mKO!"));
+      my_printf("%s\e[0m  ", ((res != 0) ? "\e[1;32mOK!" : "\e[1;31mKO!"));
     }
-  printf("Quick sort = %ld ms\n", qclk);
+  my_printf("Quick sort = %ld ms\n", qclk);
 }

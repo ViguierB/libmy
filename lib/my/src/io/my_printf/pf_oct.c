@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sun May 21 01:44:03 2017 Benjamin Viguier
-** Last update Thu May 25 02:39:30 2017 Benjamin Viguier
+** Last update Thu May 25 18:01:29 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -17,10 +17,12 @@ static char	*__pf_uint_to_oct(char buffer[], size_t len,
 
   ptr = buffer + (len - 1);
   *ptr = '\0';
-  while (u)
+  while (1)
     {
       *(--ptr) = (u & 0b111) + '0';
       u >>= 3;
+      if (!u)
+	break;
     }
   return (ptr);
 }

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sun May 21 01:24:39 2017 Benjamin Viguier
-** Last update Thu May 25 02:36:58 2017 Benjamin Viguier
+** Last update Thu May 25 18:01:55 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -17,10 +17,12 @@ static char	*__pf_uint_to_bin(char buffer[], size_t len,
 
   ptr = buffer + (len - 1);
   *ptr = '\0';
-  while (u)
+  while (1)
     {
       *(--ptr) = (u & 0b1) + '0';
       u >>= 1;
+      if (!u)
+	break;
     }
   return (ptr);
 }

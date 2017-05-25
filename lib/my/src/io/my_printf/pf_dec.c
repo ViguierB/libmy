@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat May 20 21:14:42 2017 Benjamin Viguier
-** Last update Thu May 25 02:38:16 2017 Benjamin Viguier
+** Last update Thu May 25 18:01:14 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -16,10 +16,12 @@ static char	*__pf_int_to_char(char buffer[], size_t len, long long int d)
 
   ptr = buffer + (len - 1);
   *ptr = '\0';
-  while (d)
+  while (1)
     {
       *(--ptr) = ABS(d % 10) + '0';
       d /= 10;
+      if (!d)
+	break;
     }
   return (ptr);
 }
@@ -51,16 +53,18 @@ int		__pf_dec(t_pf_data *pf, t_pf_prm *fmt)
 }
 
 static char	*__pf_uint_to_char(char buffer[], size_t len,
-				  unsigned long long int d)
+				  unsigned long long int u)
 {
   char		*ptr;
 
   ptr = buffer + (len - 1);
   *ptr = '\0';
-  while (d)
+  while (1)
     {
-      *(--ptr) = d % 10 + '0';
-      d /= 10;
+      *(--ptr) = u % 10 + '0';
+      u /= 10;
+      if (!u)
+	break;
     }
   return (ptr);
 }
