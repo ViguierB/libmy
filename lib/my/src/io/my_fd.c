@@ -29,7 +29,7 @@ t_my_fd		*my_fopen(char *path, int flags, ...)
   if (flags & O_CREAT)
     {
       va_start(va, flags);
-      mode = va_arg(va, mode_t);
+      mode = va_arg(va, int);
       res->fd = open(path, flags, mode);
     }
   else

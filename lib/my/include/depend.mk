@@ -15,7 +15,7 @@ DEBUG		=	true
 
 WALL		=	true
 
-RELEASE		=	false
+RELEASE		=	truex
 
 OPTI_FLAG	=	-O3 -fno-builtin
 
