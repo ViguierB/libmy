@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat May 20 23:17:52 2017 Benjamin Viguier
-** Last update Sun May 21 03:17:19 2017 Benjamin Viguier
+** Last update Sun May 21 16:19:55 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -32,7 +32,6 @@ int		__pf_hexa(t_pf_data *pf, t_pf_prm *fmt)
   const char	patern[] = "0123456789abcdef";
   char		buffer[PF_NBR_BUF_LEN];
   char		*ptr;
-  size_t	len;
   char		*extra;
 
   if (fmt->flag & PF_FLAG_DEZ)
@@ -42,7 +41,6 @@ int		__pf_hexa(t_pf_data *pf, t_pf_prm *fmt)
   ptr = __pf_uint_to_hexa(buffer, sizeof(buffer),
 			  ((fmt->type == 'X') ? bpatern : patern),
 			  fmt->myvar.ud);
-  len = my_strlen(ptr);
   __pf_wandp_nbr(pf, fmt, len, extra);
   __pf_write(pf, ptr, len);
   return (0);

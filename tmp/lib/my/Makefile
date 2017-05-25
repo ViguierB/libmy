@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Sun May 21 01:44:30 2017 Benjamin Viguier
+## Last update Sun May 21 03:38:32 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -49,16 +49,17 @@ SRC	=	my_strlen.c		\
 		my_strbuilder.c		\
 		my_strbuilder_ext.c
 
-PFSRC	=	my_printf.c	\
-		pf_flags.c	\
-		pf_modifier.c	\
-		pf_write.c	\
-		pf_format.c	\
-		pf_modif_va.c	\
-		pf_str.c	\
-		pf_dec.c	\
-		pf_hexa.c	\
-		pf_bin.c	\
+PFSRC	=	my_printf.c		\
+		pf_flags.c		\
+		pf_modifier.c		\
+		pf_write.c		\
+		pf_format.c		\
+		pf_modif_va.c		\
+		pf_wandp_format.c	\
+		pf_str.c		\
+		pf_dec.c		\
+		pf_hexa.c		\
+		pf_bin.c		\
 		pf_oct.c
 
 HSRC	=	murmur.c		\

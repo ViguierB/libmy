@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sun May 21 01:24:39 2017 Benjamin Viguier
-** Last update Sun May 21 01:24:48 2017 Benjamin Viguier
+** Last update Sun May 21 16:20:50 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -38,8 +38,7 @@ int	__pf_bin(t_pf_data *pf, t_pf_prm *fmt)
     extra = "";
   ptr = __pf_uint_to_bin(buffer, sizeof(buffer),
 			  fmt->myvar.ud);
-  len = my_strlen(ptr);
-  __pf_wandp_nbr(pf, fmt, len, extra);
+  __pf_wandp_nbr(pf, fmt, ptr, extra);
   __pf_write(pf, ptr, len);
   return (0);
 }

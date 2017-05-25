@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat May 20 21:14:42 2017 Benjamin Viguier
-** Last update Sun May 21 01:24:19 2017 Benjamin Viguier
+** Last update Sun May 21 16:19:36 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -28,7 +28,6 @@ int	__pf_dec(t_pf_data *pf, t_pf_prm *fmt)
 {
   char	buffer[PF_NBR_BUF_LEN];
   char	*ptr;
-  int	len;
   char	*extra;
 
   if (fmt->myvar.d < 0)
@@ -40,8 +39,7 @@ int	__pf_dec(t_pf_data *pf, t_pf_prm *fmt)
   else
     extra = "";
   ptr = __pf_int_to_char(buffer, sizeof(buffer), fmt->myvar.d);
-  len = my_strlen(ptr);
-  __pf_wandp_nbr(pf, fmt, len, extra);
+  __pf_wandp_nbr(pf, fmt, ptr, extra);
   __pf_write(pf, ptr, len);
   return (0);
 }
@@ -65,11 +63,9 @@ int	__pf_udec(t_pf_data *pf, t_pf_prm *fmt)
 {
   char	buffer[PF_NBR_BUF_LEN];
   char	*ptr;
-  int	len;
 
   ptr = __pf_uint_to_char(buffer, sizeof(buffer), fmt->myvar.ud);
-  len = my_strlen(ptr);
-  __pf_wandp_nbr(pf, fmt, len, "");
+  __pf_wandp_nbr(pf, fmt, ptr, "");
   __pf_write(pf, ptr, len);
   return (0);
 }

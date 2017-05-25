@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sun May 21 01:44:03 2017 Benjamin Viguier
-** Last update Sun May 21 01:44:17 2017 Benjamin Viguier
+** Last update Sun May 21 16:20:23 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -42,7 +42,7 @@ int	__pf_oct(t_pf_data *pf, t_pf_prm *fmt)
       extra = "0";
       fmt->width -= 1;
     }
-  __pf_wandp_nbr(pf, fmt, len, "");
+  __pf_wandp_nbr(pf, fmt, ptr, "");
   __pf_write(pf, extra, my_strlen(extra));
   __pf_write(pf, ptr, len);
   return (0);
