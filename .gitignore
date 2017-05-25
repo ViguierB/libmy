@@ -1,14 +1,10 @@
-//Temporary files
 *~
 #*
+\#*
+.#*
 *#
-*.#*
 
-//Binary Files
 *.a
 *.o
-navy
-navy_bot
 
-//Tests Directory
-tests/
+test/

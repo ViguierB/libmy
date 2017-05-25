@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Sun May 21 16:21:35 2017 Benjamin Viguier
+** Last update Thu May 25 02:42:00 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
@@ -79,6 +79,14 @@ typedef struct		s_pf_type
   const t_pf_sprm	*sprm;
 }			t_pf_type;
 
+typedef struct	s_wandp_ud
+{
+  int		space_len;
+  int		zero_len;
+  char		*buffer;
+  char		*header;
+}		t_wandp_ud;
+
 typedef int	(*t_pf_fct)(t_pf_data *, t_pf_prm *);
 
 /*
@@ -101,8 +109,9 @@ int	__pf_format(t_pf_data *data, t_pf_prm *prm);
 void	__pf_getd(va_list va, t_pf_prm *prm);
 void	__pf_getud(va_list va, t_pf_prm *prm);
 void	__pf_getrest(va_list va, t_pf_prm *prm, int type);
-void	__pf_wandp_nbr(t_pf_data *pf, t_pf_prm *fmt,
-		       char *buffer, char *extra);
+int	__pf_ud_print(t_pf_data *pf, t_pf_prm *fmt, t_wandp_ud *wandp);
+int	__pf_wandp_ud(t_pf_prm *fmt, int len,
+		      int header_len, t_wandp_ud *res);
 
 int	__pf_hexaflt(t_pf_data *pf, t_pf_prm *fmt);
 int	__pf_scflt(t_pf_data *pf, t_pf_prm *fmt);

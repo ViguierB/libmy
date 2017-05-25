@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Sat May 20 23:17:52 2017 Benjamin Viguier
-** Last update Sun May 21 16:19:55 2017 Benjamin Viguier
+** Last update Thu May 25 02:39:01 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -32,17 +32,23 @@ int		__pf_hexa(t_pf_data *pf, t_pf_prm *fmt)
   const char	patern[] = "0123456789abcdef";
   char		buffer[PF_NBR_BUF_LEN];
   char		*ptr;
-  char		*extra;
+  size_t	len;
+  char		*header;
+  t_wandp_ud	wandp;
 
+  my_memset(&wandp, 0, sizeof(t_wandp_ud));
   if (fmt->flag & PF_FLAG_DEZ)
-    extra = ((fmt->type == 'X') ? "0X" : "0x");
+    header = ((fmt->type == 'X') ? "0X" : "0x");
   else
-    extra = "";
+    header = "";
   ptr = __pf_uint_to_hexa(buffer, sizeof(buffer),
 			  ((fmt->type == 'X') ? bpatern : patern),
 			  fmt->myvar.ud);
-  __pf_wandp_nbr(pf, fmt, len, extra);
-  __pf_write(pf, ptr, len);
+  len = my_strlen(ptr);
+  wandp.buffer = ptr;
+  wandp.header = header;
+  __pf_wandp_ud(fmt, len, my_strlen(header), &wandp);
+  __pf_ud_print(pf, fmt, &wandp);
   return (0);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Feb 24 11:03:35 2017 Benjamin Viguier
-** Last update Sun May 21 04:00:31 2017 Benjamin Viguier
+** Last update Thu May 25 02:40:48 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -23,10 +23,8 @@ const t_pf_prmflag	g_prmf_tab[] =
 int	__pf_prm_nbr(t_pf_data *data, int *res)
 {
   int	nbr;
-  int	need_modif;
 
   nbr = 0;
-  need_modif = 0;
   if (*(data->fmt) == '\0')
 	return (-1);
   if (*(data->fmt) == '*')
@@ -37,13 +35,11 @@ int	__pf_prm_nbr(t_pf_data *data, int *res)
     }
   while (*(data->fmt) >= '0' && *(data->fmt) <= '9')
     {
-      need_modif = 1;
       nbr *= 10;
       nbr += *(data->fmt) - '0';
       (data->fmt)++;
     }
-  if (need_modif)
-    *res = nbr;
+  *res = nbr;
   return (0);
 }
 
@@ -82,7 +78,7 @@ int		__pf_get_flags(t_pf_data *data, t_pf_prm *prm)
     return (0);
   if (__pf_getfflag(data, prm) == 0)
     return (0);
-  if (__pf_prm_nbr(data, &(prm->width)) < 0)
+  if (__pf_prm_nbr(data, &(prm->width)))
     return (0);
   if (*(data->fmt) == '.')
     {
@@ -91,9 +87,7 @@ int		__pf_get_flags(t_pf_data *data, t_pf_prm *prm)
 	return (0);
       if (__pf_prm_nbr(data, &(prm->preci)) < 0)
 	return (0);
-      if (prm->preci < -1)
-	prm->preci = -1;
-      if (*(data->fmt) == '\0')
+      if (*(data->fmt) == '\0' || prm->preci < 0)
 	return (0);
     }
   return (__pf_get_modpat(data, prm));
