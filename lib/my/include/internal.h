@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Thu May 25 02:42:00 2017 Benjamin Viguier
+** Last update Sat May 27 13:25:39 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
@@ -96,7 +96,6 @@ int	__libmy_sb_flush(t_strbuilder *sb);
 int	__libmy_sb_need_flush(t_strbuilder *sb);
 int	__libmy_fd_need_flush(t_my_fd *fd);
 
-
 /*
 ** my_print internal functions
 */
@@ -112,6 +111,7 @@ void	__pf_getrest(va_list va, t_pf_prm *prm, int type);
 int	__pf_ud_print(t_pf_data *pf, t_pf_prm *fmt, t_wandp_ud *wandp);
 int	__pf_wandp_ud(t_pf_prm *fmt, int len,
 		      int header_len, t_wandp_ud *res);
+int	__pf_wisneg(t_pf_prm *fmt, int wlocal);
 
 int	__pf_hexaflt(t_pf_data *pf, t_pf_prm *fmt);
 int	__pf_scflt(t_pf_data *pf, t_pf_prm *fmt);

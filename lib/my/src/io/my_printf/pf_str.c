@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu May 18 01:22:12 2017 Benjamin Viguier
-** Last update Mon May 22 19:44:36 2017 Benjamin Viguier
+** Last update Sat May 27 13:25:01 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -55,7 +55,7 @@ int		__pf_str(t_pf_data *pf, t_pf_prm *fmt)
   str = fmt->myvar.s;
   my_len = my_strlen(str);
   plocal = ((fmt->preci < 0) ? my_len : MIN((size_t) fmt->preci, my_len));
-  wlocal = fmt->width - plocal;
+  wlocal = __pf_wisneg(fmt, fmt->width) - plocal;
   if (!(fmt->flag & PF_FLAG_SUB))
     __pf_do_strwidth(pf, wlocal);
   while (plocal-- && *str)
@@ -93,7 +93,7 @@ int	__pf_extstr(t_pf_data *pf, t_pf_prm *fmt)
   str = fmt->myvar.s;
   my_len = __pf_extstrlen(str);
   plocal = ((fmt->preci < 0) ? my_len : MIN((size_t) fmt->preci, my_len));
-  wlocal = fmt->width - plocal;
+  wlocal = __pf_wisneg(fmt, fmt->width) - plocal;
   if (!(fmt->flag & PF_FLAG_SUB))
     __pf_do_strwidth(pf, wlocal);
   while (plocal && *str)
