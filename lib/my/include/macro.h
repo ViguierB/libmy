@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Wed May 10 17:21:19 2017 Benjamin Viguier
-** Last update Fri May 12 13:33:38 2017 Benjamin Viguier
+** Last update Thu Jun  1 17:35:41 2017 Benjamin Viguier
 */
 
 #ifndef MACRO_H_
@@ -41,9 +41,13 @@ typedef unsigned	LMY_WORD;
 # define MEM_CLONE_32(c) (c << 24 | c << 16 | c << 8 | c)
 
 # ifdef LMY_WORDSIZE_32
-#  define MEM_CLONE(c) MEM_CLONE_32(c)
+#  define MEM_CLONE(c)	MEM_CLONE_32(c)
+#  define MASK01	0x01010101
+#  define MASK80	0x80808080
 # else
 #  define MEM_CLONE(c) ((MEM_CLONE_32(c) << 32) | MEM_CLONE_32(c))
+#  define MASK01	0x0101010101010101
+#  define MASK80	0x8080808080808080
 # endif
 
 #endif /* !MACRO_H_ */

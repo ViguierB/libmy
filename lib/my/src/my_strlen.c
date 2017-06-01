@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Jan 19 14:02:45 2017 Benjamin Viguier
-** Last update Thu May 18 14:41:59 2017 Benjamin Viguier
+** Last update Thu Jun  1 18:26:03 2017 Benjamin Viguier
 */
 
 #include <sys/types.h>
@@ -13,18 +13,6 @@
 #include <unistd.h>
 #include "internal.h"
 #include "macro.h"
-
-#ifdef LMY_WORDSIZE_32
-static const unsigned long	g_mask01 = 0x01010101;
-static const unsigned long	g_mask80 = 0x80808080;
-#else
-# ifdef LMY_WORDSIZE_64
-static const unsigned long	g_mask01 = 0x0101010101010101;
-static const unsigned long	g_mask80 = 0x8080808080808080;
-# else
-#error Unsupported word size
-# endif
-#endif
 
 size_t	my_basic_strlen(char *str)
 {
@@ -75,7 +63,7 @@ size_t			my_strlen(const char *str)
   lp = (const unsigned long *) p;
   while (1)
     {
-      if ((*lp - g_mask01) & g_mask80)
+      if ((*lp - MASK01) & MASK80)
 	{
 	  p = (const char *)(lp);
 	  res = __libmy_strlen_result(str, p);
@@ -85,4 +73,41 @@ size_t			my_strlen(const char *str)
       lp++;
     }
   return (0);
+}
+
+static const char	*__libmy_ext_strnlen(const char *p, size_t n)
+{
+  while (n-- && *p)
+    p++;
+  return (p);
+}
+
+size_t			my_strnlen(const char *str, size_t n)
+{
+  const char	       	*p;
+  const unsigned long	*lp;
+  ssize_t		res;
+
+  p = str;
+  while ((uintptr_t) p & (sizeof(long) - 1))
+    {
+      if (*p == '\0' || !n)
+	return (p - str);
+      p++;
+      n--;
+    }
+  lp = (const unsigned long *) p;
+  while (n > sizeof(*lp))
+    {
+      if ((*lp - MASK01) & MASK80)
+	{
+	  p = (const char *)(lp);
+	  res = __libmy_strlen_result(str, p);
+	  if (res >= 0)
+	    return ((size_t) res);
+	}
+      lp++;
+      n -= sizeof(*lp);
+    }
+  return (__libmy_ext_strnlen((const char*) lp, n) - str);
 }

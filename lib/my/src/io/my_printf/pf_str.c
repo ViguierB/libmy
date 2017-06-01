@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu May 18 01:22:12 2017 Benjamin Viguier
-** Last update Sat May 27 13:25:01 2017 Benjamin Viguier
+** Last update Thu Jun  1 17:31:31 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -53,7 +53,7 @@ int		__pf_str(t_pf_data *pf, t_pf_prm *fmt)
   if (fmt->myvar.s == NULL)
     fmt->myvar.s = "(null)";
   str = fmt->myvar.s;
-  my_len = my_strlen(str);
+  my_len = ((fmt->preci < 0) ? my_strlen(str) : my_strnlen(str, (size_t) fmt->preci));
   plocal = ((fmt->preci < 0) ? my_len : MIN((size_t) fmt->preci, my_len));
   wlocal = __pf_wisneg(fmt, fmt->width) - plocal;
   if (!(fmt->flag & PF_FLAG_SUB))
@@ -81,6 +81,22 @@ static size_t	__pf_extstrlen(char *str)
   return (res);
 }
 
+static size_t	__pf_extstrnlen(char *str, size_t n)
+{
+  size_t	res;
+
+  res = n;
+  while (*str)
+    {
+      if (ISPRINTABLE(*str))
+	res--;
+      else
+	res -= 4;
+      str++;
+    }
+  return (n - MAX(res, 0));
+}
+
 int	__pf_extstr(t_pf_data *pf, t_pf_prm *fmt)
 {
   int		wlocal;
@@ -91,7 +107,7 @@ int	__pf_extstr(t_pf_data *pf, t_pf_prm *fmt)
   if (fmt->myvar.s == NULL)
     fmt->myvar.s = "(null)";
   str = fmt->myvar.s;
-  my_len = __pf_extstrlen(str);
+  my_len = ((fmt->preci < 0) ? __pf_extstrlen(str) : __pf_extstrnlen(str, (size_t) fmt->preci));
   plocal = ((fmt->preci < 0) ? my_len : MIN((size_t) fmt->preci, my_len));
   wlocal = __pf_wisneg(fmt, fmt->width) - plocal;
   if (!(fmt->flag & PF_FLAG_SUB))

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Feb 27 13:25:31 2017 Benjamin Viguier
-** Last update Sat May 20 23:04:09 2017 Benjamin Viguier
+** Last update Thu Jun  1 18:29:36 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -68,17 +68,21 @@ void	__pf_getrest(va_list va, t_pf_prm *prm, int type)
 {
   if (type == TYPE_FLT)
     {
-      if (*(prm->pat) == 'L')
+      if (!(prm->pat))
+	prm->myvar.ld = (long double) va_arg(va, double);
+      else if (*(prm->pat) == 'L')
 	prm->myvar.ld = (long double) va_arg(va, long double);
       else
 	prm->myvar.ld = (long double) va_arg(va, double);
     }
   else if (type == TYPE_CHAR)
     {
-      if (*(prm->pat) == 'l')
+      if (!(prm->pat))	
+	prm->myvar.d = (long long int) ((char) va_arg(va, int));
+      else if  (*(prm->pat) == 'l')
 	prm->myvar.d = (long long int) (va_arg(va, t_wint));
       else
-	prm->myvar.d = (long long int) (va_arg(va, int));
+	prm->myvar.d = (long long int) ((char) va_arg(va, int));
     }
   else if (type == TYPE_STR)
     prm->myvar.s = va_arg(va, char*);
