@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Sat May 27 16:50:05 2017 Benjamin Viguier
+** Last update Thu Jun  1 11:32:15 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -70,9 +70,9 @@ typedef unsigned int	t_uint;
 typedef unsigned short	t_usht;
 typedef unsigned char	t_uchar;
 
-extern t_my_fd	*my_fdin;
-extern t_my_fd	*my_fdout;
-extern t_my_fd	*my_fderr;
+extern t_my_fd	*g_in;
+extern t_my_fd	*g_out;
+extern t_my_fd	*g_err;
 
 /*
 ** Circular Linked List

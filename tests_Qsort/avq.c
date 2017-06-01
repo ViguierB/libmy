@@ -54,6 +54,7 @@ int main(int ac, char **av)
   int		start = time(NULL);
   clock_t	qclk;
 
+  //my_fdout->auto_flush = 0;
   in_ = my_fd_from_fd(0);
   while (1)
     {

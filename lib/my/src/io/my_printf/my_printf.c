@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 16:01:16 2017 Benjamin Viguier
-** Last update Thu May 18 17:52:38 2017 Benjamin Viguier
+** Last update Thu Jun  1 11:31:39 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -62,7 +62,7 @@ int		my_printf(char *fmt, ...)
   if (!(data.sb = my_sb_init()))
     return (-1);
   data.fmt = fmt;
-  data.fd = my_fdout;
+  data.fd = g_out;
   va_start(data.va, fmt);
   res = __libmy_printf(&data);
   va_end(data.va);

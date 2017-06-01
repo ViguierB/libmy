@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Apr 27 18:16:25 2017 Benjamin Viguier
-** Last update Thu Apr 27 19:29:44 2017 Benjamin Viguier
+** Last update Thu Jun  1 11:34:51 2017 Benjamin Viguier
 */
 
 #include <stdlib.h>
@@ -41,7 +41,8 @@ static int		__libmy_hm_remove_lastone(t_hashmap *hm, int idx)
   return (-1);
 }
 
-static int	__libmy_hm_sub_remove(t_hashmap *hm, int idx, void *key, size_t key_len)
+static int	__libmy_hm_sub_remove(t_hashmap *hm, int idx,
+				      void *key, size_t key_len)
 {
   if (hm->tab[idx].type = HM_EMPTY)
     return (-1);
