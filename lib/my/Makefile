@@ -1,11 +1,11 @@
 ##
-## Makefile<PSU_2016_my_printf_bootstrap> for Makefile_my_printf in /home/benji_epitech/C_Prog_Elem/PSU_2016_my_printf_bootstrap
+## Makefile for libmy in /home/benji_epitech/libmy
 ## 
 ## Made by Benjamin Viguier
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Fri Jun  2 11:00:41 2017 Benjamin Viguier
+## Last update Fri Jun  2 18:53:45 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
