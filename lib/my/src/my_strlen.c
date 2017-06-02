@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Jan 19 14:02:45 2017 Benjamin Viguier
-** Last update Thu Jun  1 18:26:03 2017 Benjamin Viguier
+** Last update Fri Jun  2 11:05:24 2017 Benjamin Viguier
 */
 
 #include <sys/types.h>
@@ -91,10 +91,9 @@ size_t			my_strnlen(const char *str, size_t n)
   p = str;
   while ((uintptr_t) p & (sizeof(long) - 1))
     {
-      if (*p == '\0' || !n)
+      if (*p == '\0' || !(n--))
 	return (p - str);
       p++;
-      n--;
     }
   lp = (const unsigned long *) p;
   while (n > sizeof(*lp))

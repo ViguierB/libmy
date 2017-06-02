@@ -3,7 +3,7 @@
 #include <time.h>
 #include "libmy.h"
 
-void	trace(t_clist *q, t_clist *b, clock_t qclk, int *passed, int *failed);
+void	trace(t_clist *q, t_clist *b, clock_t qclk, int *passed, int *failed, int max);
 
 int	my_cmp_fct(long int a, long int b)
 {
@@ -77,7 +77,7 @@ int main(int ac, char **av)
       qclk = clock();
       clist_qsort(qlist, (t_elm_cmp) &my_cmp_fct);
       qclk = clock() - qclk;
-      trace(qlist, blist, qclk, &passed, &fail);
+      trace(qlist, blist, qclk, &passed, &fail, 5);
       if (blist)
 	clist_free(blist);
       blist = NULL;
@@ -110,13 +110,14 @@ int	verif(t_clist *q)
   return (1);
 }
 
-void	trace(t_clist *q, t_clist *b, clock_t qclk, int *passed, int *failed)
+void	trace(t_clist *q, t_clist *b, clock_t qclk, int *passed, int *failed, int max)
 {
   static int	count;
   int		res;
+  int		pos = 42;
 
   res = verif(q);
-  my_printf("Round n°%d : ", ++count);
+  my_printf("Round n°%d : %n", ++count, &pos, &pos);
   if (!res)
     {
       fprintf(stderr, "\nTRACE FOR (Round n°%d):\n", count);
@@ -132,7 +133,7 @@ void	trace(t_clist *q, t_clist *b, clock_t qclk, int *passed, int *failed)
   else
     {
       *passed += 1;
-      my_printf("%s\e[0m  ", ((res != 0) ? "\e[1;32mOK!" : "\e[1;31mKO!"));
+      my_printf("%s\e[0m %#n", ((res != 0) ? "\e[1;32mOK!" : "\e[1;31mKO!"), &pos);
     }
-  my_printf("Quick sort = %ld ms\n", qclk);
+  my_printf("%*sQuick sort = %ld ms\n", pos - (27 + max), "", qclk);
 }

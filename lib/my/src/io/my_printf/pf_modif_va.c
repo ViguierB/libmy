@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Feb 27 13:25:31 2017 Benjamin Viguier
-** Last update Thu Jun  1 18:29:36 2017 Benjamin Viguier
+** Last update Fri Jun  2 11:40:57 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
@@ -77,7 +77,7 @@ void	__pf_getrest(va_list va, t_pf_prm *prm, int type)
     }
   else if (type == TYPE_CHAR)
     {
-      if (!(prm->pat))	
+      if (!(prm->pat))
 	prm->myvar.d = (long long int) ((char) va_arg(va, int));
       else if  (*(prm->pat) == 'l')
 	prm->myvar.d = (long long int) (va_arg(va, t_wint));
