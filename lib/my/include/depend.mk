@@ -4,7 +4,7 @@
 ## Made by Benjamin Viguier
 ## Login   <benjamin.viguier@epitech.eu>
 ##
-## Last update Fri Jun  2 11:48:28 2017 Benjamin Viguier
+## Last update Fri Jun  2 21:14:52 2017 Benjamin Viguier
 ##
 
 CC		=	gcc
@@ -20,7 +20,7 @@ RELEASE		=	true
 OPTI_FLAG	=	-O3 -fno-builtin
 
 ifeq	($(WALL),true)
- CFLAGS		+=	-W -Wall -Wextra -ansi
+ CFLAGS		+=	-W -Wall -Wuninitialized -Wextra -ansi
 endif
 
 ifeq	($(RELEASE),true)

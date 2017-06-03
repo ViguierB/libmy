@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Fri Jun  2 18:53:45 2017 Benjamin Viguier
+## Last update Sat Jun  3 15:56:01 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -55,6 +55,7 @@ IOSRC	=	my_fd.c		\
 		my_fd_std.c
 
 PFSRC	=	my_printf.c	\
+		my_vfprintf.c	\
 		pf_flags.c	\
 		pf_modifier.c	\
 		pf_write.c	\
@@ -165,7 +166,6 @@ $(OMLCDIR)/%.o	:	$(SMLCDIR)/%.c
 	@$(CC) $(CFLAGS)	-c -o $(patsubst %,$(ODIR)/%,$(notdir $@)) $<
 
 mkobj		:
-	@echo "Verification du dossier 'obj'";
 	@./tools/verif_objdir;
 
 $(NAME)		:	$(OBJ) $(IOOBJ) $(PFOBJ) $(HOBJ) $(MLCOBJ)

@@ -5,13 +5,12 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Fri Jun  2 11:01:25 2017 Benjamin Viguier
+** Last update Fri Jun  2 21:42:41 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
 # define INTERNAL_H_
 
-# include <stdarg.h>
 # include "libmy.h"
 
 # define IS_NUM(c) (((c) >= '0') && ((c) <= '9'))
@@ -113,6 +112,7 @@ int	__pf_wandp_ud(t_pf_prm *fmt, int len,
 		      int header_len, t_wandp_ud *res);
 int	__pf_wisneg(t_pf_prm *fmt, int wlocal);
 void	__pf_do_strwidth(t_pf_data *pf, int local);
+int	__libmy_printf(t_pf_data *data);
 
 int	__pf_hexaflt(t_pf_data *pf, t_pf_prm *fmt);
 int	__pf_scflt(t_pf_data *pf, t_pf_prm *fmt);

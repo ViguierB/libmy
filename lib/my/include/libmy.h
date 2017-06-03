@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Thu Jun  1 17:32:22 2017 Benjamin Viguier
+** Last update Fri Jun  2 21:42:30 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -13,6 +13,7 @@
 
 # include <sys/types.h>
 # include <stdlib.h>
+# include <stdarg.h>
 # include "macro.h"
 
 # define S_IN		0
@@ -94,6 +95,9 @@ t_clist_elm	*clist_at(t_clist *list, int at);
 **	- nb_lines for my_split is optionnal,
 **		use NULL if u don't want to use it.
 */
+int	my_vfprintf(t_my_fd *fd, char *fmt, va_list va);
+int	my_fprintf(t_my_fd *fd, char *fmt, ...);
+int	my_dprintf(int fd, char *fmt, ...);
 int	my_printf(char *fmt, ...);
 int	my_sbprintf(t_strbuilder *sb, char *fmt, ...);
 char	*my_sprintf(char *fmt, ...);
