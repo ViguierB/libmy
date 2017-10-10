@@ -35,6 +35,10 @@ ifeq	($(DEBUG),true)
  CFLAGS		+=	-g
 endif
 
+ifeq	($(shell uname -s),Darwin)
+ CFLAGS		+=	-fno-common
+endif
+
 ODIR		=	obj
 
 SDIR		=	src
