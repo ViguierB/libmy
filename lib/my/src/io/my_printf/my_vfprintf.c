@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Jun  2 21:33:37 2017 Benjamin Viguier
-** Last update Fri Jun  2 21:49:38 2017 Benjamin Viguier
+** Last update Sat Oct 14 16:33:12 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -35,13 +35,13 @@ int	__libmy_printf(t_pf_data *data)
   return (0);
 }
 
-int		my_vfprintf(t_my_fd *fd, char *fmt, va_list va)
+int		my_vfprintf(t_io *io_buffer, char *fmt, va_list va)
 {
   t_pf_data	data;
   int		res;
 
   my_memset(&data, 0, sizeof(data));
-  data.fd = fd;
+  data.io_buf = io_buffer;
   data.fmt = fmt;
   *(data.va) = *va;
   res = __libmy_printf(&data);

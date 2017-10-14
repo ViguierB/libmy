@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Sat Jun  3 15:56:01 2017 Benjamin Viguier
+## Last update Sat Oct 14 16:43:06 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -24,7 +24,6 @@ endif
 
 SRC	=	my_strlen.c		\
 		my_strcpy.c		\
-		my_strncpy.c		\
 		my_strcmp.c		\
 		my_split.c		\
 		my_atoi.c		\
@@ -47,12 +46,12 @@ SRC	=	my_strlen.c		\
 		my_strbuilder.c		\
 		my_strbuilder_ext.c
 
-IOSRC	=	my_fd.c		\
+IOSRC	=	my_io.c		\
 		my_getdelim.c	\
 		my_getline.c	\
 		my_fread.c	\
-		my_fd_write.c	\
-		my_fd_std.c
+		my_io_write.c	\
+		my_io_std.c
 
 PFSRC	=	my_printf.c	\
 		my_vfprintf.c	\

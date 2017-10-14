@@ -5,14 +5,14 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Dec 22 12:46:31 2016 Benjamin Viguier
-** Last update Sat May 27 16:47:42 2017 Benjamin Viguier
+** Last update Sat Oct 14 16:47:10 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include "libmy.h"
 
-static int	init_values(t_my_fd *pack, int *on_nl)
+static int	init_values(t_io *pack, int *on_nl)
 {
   int		i;
   char		delim;
@@ -29,7 +29,7 @@ static int	init_values(t_my_fd *pack, int *on_nl)
   return (i);
 }
 
-static char	*copy_now(t_my_fd *pack, int cur_len,
+static char	*copy_now(t_io *pack, int cur_len,
 			  char *res, int new_len)
 {
   int		j;
@@ -56,7 +56,7 @@ static char	*copy_now(t_my_fd *pack, int cur_len,
   return (new_str);
 }
 
-static int	cpy_to_delim(char **res, t_my_fd *pack,
+static int	cpy_to_delim(char **res, t_io *pack,
 			     int *cur_len, int *on_nl)
 {
   char		*new_str;
@@ -81,7 +81,7 @@ static int	cpy_to_delim(char **res, t_my_fd *pack,
   return (0);
 }
 
-char	*my_getdelim(t_my_fd *pack, char delim)
+char	*my_getdelim(t_io *pack, char delim)
 {
   char	*res;
   int	cur_len;
@@ -95,7 +95,7 @@ char	*my_getdelim(t_my_fd *pack, char delim)
       return (NULL);
   while (on_nl)
     {
-      pack->len = read(pack->fd, pack->buf, MY_FD_BUFF_LEN);
+      pack->len = read(pack->fd, pack->buf, IO_BUFF_LEN);
       if (pack->len == 0)
 	return (res);
       else if (pack->len < 0)

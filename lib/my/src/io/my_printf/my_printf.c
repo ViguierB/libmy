@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 16:01:16 2017 Benjamin Viguier
-** Last update Fri Jun  2 21:37:59 2017 Benjamin Viguier
+** Last update Sat Oct 14 16:51:10 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -45,7 +45,7 @@ int		my_dprintf(int fd, char *fmt, ...)
   int		res;
 
   my_memset(&data, 0, sizeof(data));
-  if (!(data.fd = my_fd_from_fd(fd)))
+  if (!(data.io_buf = my_io_from_fd(fd)))
     return (-1);
   data.fmt = fmt;
   va_start(data.va, fmt);
@@ -57,13 +57,13 @@ int		my_dprintf(int fd, char *fmt, ...)
   return (0);
 }
 
-int		my_fprintf(t_my_fd *fd, char *fmt, ...)
+int		my_fprintf(t_io *io, char *fmt, ...)
 {
   int		res;
   va_list	va;
 
   va_start(va, fmt);
-  res = my_vfprintf(fd, fmt, va);
+  res = my_vfprintf(io, fmt, va);
   va_end(va);
   return (res);
 }

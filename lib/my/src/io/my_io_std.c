@@ -1,28 +1,28 @@
 /*
-** my_fd_std.c for libmy in /home/benji_epitech/workdir/perso/libmy/tmp/lib/my
+** io_std.c for libmy in /home/benji_epitech/workdir/perso/libmy/tmp/lib/my
 ** 
 ** Made by Benjamin Viguier
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 18:01:04 2017 Benjamin Viguier
-** Last update Thu Jun  1 11:31:17 2017 Benjamin Viguier
+** Last update Sat Oct 14 16:48:08 2017 Benjamin Viguier
 */
 
 #include <unistd.h>
 #include "libmy.h"
 #include "internal.h"
 
-static t_my_fd	g_my_fd_buffer[3];
-t_my_fd		*g_in;
-t_my_fd		*g_out;
-t_my_fd		*g_err;
+static t_io	g_io_buffer[3];
+t_io		*g_in;
+t_io		*g_out;
+t_io		*g_err;
 
-LMY_CONSTRUCTOR static void	__libmy_init_stdfd(void)
+LMY_CONSTRUCTOR static void	__libmy_init_stdio(void)
 {
-  my_memset(g_my_fd_buffer, 0, sizeof(g_my_fd_buffer));
-  g_in = g_my_fd_buffer;
-  g_out = g_my_fd_buffer + 1;
-  g_err = g_my_fd_buffer + 2;
+  my_memset(g_io_buffer, 0, sizeof(g_io_buffer));
+  g_in = g_io_buffer;
+  g_out = g_io_buffer + 1;
+  g_err = g_io_buffer + 2;
   g_in->fd = (S_IN);
   g_out->fd = (S_OUT);
   g_err->fd = (S_ERR);
@@ -40,7 +40,7 @@ LMY_CONSTRUCTOR static void	__libmy_init_stdfd(void)
     g_err->auto_flush = LMY_TRUE;
 }
 
-LMY_DESTRUCTOR static void	__libmy_close_stdfd(void)
+LMY_DESTRUCTOR static void	__libmy_close_stdio(void)
 {
   my_fflush(g_in);
   my_fflush(g_out);

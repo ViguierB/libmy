@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Fri Jun  2 21:42:41 2017 Benjamin Viguier
+** Last update Sat Oct 14 16:44:49 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
@@ -23,7 +23,7 @@ typedef struct	s_pf_data
 {
   int		is_strbuffer;
   t_strbuilder	*sb;
-  t_my_fd	*fd;
+  t_io	*io_buf;
   int		pos;
   char		*fmt;
   va_list	va;
@@ -93,7 +93,7 @@ typedef int	(*t_pf_fct)(t_pf_data *, t_pf_prm *);
 */
 int	__libmy_sb_flush(t_strbuilder *sb);
 int	__libmy_sb_need_flush(t_strbuilder *sb);
-int	__libmy_fd_need_flush(t_my_fd *fd);
+int	__libmy_io_need_flush(t_io *io);
 
 /*
 ** my_print internal functions

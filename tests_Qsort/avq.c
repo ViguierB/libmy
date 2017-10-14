@@ -42,7 +42,7 @@ void	print_list(FILE* mout, t_clist *list)
 
 int main(int ac, char **av)
 {
-  t_my_fd	*in_;
+  t_io	*in_;
   char		*str;
   char		**tmp;
   char		**tmp2;
@@ -55,7 +55,7 @@ int main(int ac, char **av)
   clock_t	qclk;
 
   //my_fdout->auto_flush = 0;
-  in_ = my_fd_from_fd(0);
+  in_ = my_io_from_fd(0);
   while (1)
     {
       str = my_getline(in_);

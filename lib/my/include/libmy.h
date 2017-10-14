@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Fri Jun  2 21:42:30 2017 Benjamin Viguier
+** Last update Sat Oct 14 16:52:42 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -19,20 +19,20 @@
 # define S_IN		0
 # define S_OUT		1
 # define S_ERR		2
-# define MY_FD_BUFF_LEN	1024
+# define IO_BUFF_LEN	1024
 
 # define CLIST_NEXT(l, e) ((((e)->next) == (l)) ? ((void*) 0) : ((e)->next))
 
-typedef struct	s_my_fd
+typedef struct	s_io
 {
   int		fd;
-  char		buf[MY_FD_BUFF_LEN + 1];
+  char		buf[IO_BUFF_LEN + 1];
   int		rest;
   int		len;
-  char		wbuf[MY_FD_BUFF_LEN + 1];
+  char		wbuf[IO_BUFF_LEN + 1];
   int		wlen;
   int		auto_flush;
-}		t_my_fd;
+}		t_io;
 
 enum
   {
@@ -50,7 +50,7 @@ typedef enum	e_lmy_st
 
 typedef struct	s_strbuilder
 {
-  char		buf[MY_FD_BUFF_LEN + 1];
+  char		buf[IO_BUFF_LEN + 1];
   size_t	len;
   char		*res;
   off_t		pos;
@@ -71,9 +71,9 @@ typedef unsigned int	t_uint;
 typedef unsigned short	t_usht;
 typedef unsigned char	t_uchar;
 
-extern t_my_fd	*g_in;
-extern t_my_fd	*g_out;
-extern t_my_fd	*g_err;
+extern t_io	*g_in;
+extern t_io	*g_out;
+extern t_io	*g_err;
 
 /*
 ** Circular Linked List
@@ -95,9 +95,9 @@ t_clist_elm	*clist_at(t_clist *list, int at);
 **	- nb_lines for my_split is optionnal,
 **		use NULL if u don't want to use it.
 */
-int	my_vfprintf(t_my_fd *fd, char *fmt, va_list va);
-int	my_fprintf(t_my_fd *fd, char *fmt, ...);
-int	my_dprintf(int fd, char *fmt, ...);
+int	my_vfprintf(t_io *io, char *fmt, va_list va);
+int	my_fprintf(t_io *io, char *fmt, ...);
+int	my_dprintf(int io, char *fmt, ...);
 int	my_printf(char *fmt, ...);
 int	my_sbprintf(t_strbuilder *sb, char *fmt, ...);
 char	*my_sprintf(char *fmt, ...);
@@ -125,18 +125,18 @@ int	my_atoi(char *str);
 int	my_strtod(char *str, int *res);
 
 /*
-** my_fd functions
+** my_io functions
 */
-t_my_fd	*my_fd_from_fd(const int fd);
-t_my_fd	*my_fopen(char *path, int flags, ...);
-void	my_fclose(t_my_fd *to_free);
-char	*my_getdelim(t_my_fd *pack, char delim);
-char	*my_getline(t_my_fd *pack);
-ssize_t	my_fread(t_my_fd *pack, char *buffer, size_t size);
-int	my_fread_to_end(t_my_fd *fd, char **res);
-off_t	my_fd_seek(t_my_fd *sb, off_t offset, int whence);
-ssize_t	my_fwrite(t_my_fd *fd, void *ptr, size_t size);
-int	my_fflush(t_my_fd *fd);
+t_io	*my_io_from_fd(const int fd);
+t_io	*my_fopen(char *path, int flags, ...);
+void	my_fclose(t_io *to_free);
+char	*my_getdelim(t_io *pack, char delim);
+char	*my_getline(t_io *pack);
+ssize_t	my_fread(t_io *pack, char *buffer, size_t size);
+int	my_fread_to_end(t_io *io, char **res);
+off_t	my_io_seek(t_io *sb, off_t offset, int whence);
+ssize_t	my_fwrite(t_io *io, void *ptr, size_t size);
+int	my_fflush(t_io *io);
 
 /*
 ** my_strbuilder functions

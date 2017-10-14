@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 14:58:19 2017 Benjamin Viguier
-** Last update Fri Mar  3 16:44:48 2017 Benjamin Viguier
+** Last update Sat Oct 14 16:51:29 2017 Benjamin Viguier
 */
 
 #include "libmy.h"
@@ -41,7 +41,7 @@ int	__libmy_sb_flush(t_strbuilder *sb)
 
 int	__libmy_sb_need_flush(t_strbuilder *sb)
 {
-  if (!(sb->len < MY_FD_BUFF_LEN))
+  if (!(sb->len < IO_BUFF_LEN))
     {
       return (__libmy_sb_flush(sb));
     }

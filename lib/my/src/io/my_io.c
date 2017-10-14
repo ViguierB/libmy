@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Dec 22 16:23:15 2016 Benjamin Viguier
-** Last update Fri Mar  3 13:53:24 2017 Benjamin Viguier
+** Last update Sat Oct 14 16:50:43 2017 Benjamin Viguier
 */
 
 #include <sys/types.h>
@@ -16,16 +16,16 @@
 #include "internal.h"
 
 #ifdef ALLOW_OPEN
-t_my_fd		*my_fopen(char *path, int flags, ...)
+t_io		*my_fopen(char *path, int flags, ...)
 {
-  t_my_fd	*res;
+  t_io	*res;
   va_list	va;
   mode_t	mode;
 
-  res = malloc(sizeof(t_my_fd));
+  res = malloc(sizeof(t_io));
   if (!res)
     return (NULL);
-  my_memset(res, 0, sizeof(t_my_fd));
+  my_memset(res, 0, sizeof(t_io));
   if (flags & O_CREAT)
     {
       va_start(va, flags);
@@ -39,7 +39,7 @@ t_my_fd		*my_fopen(char *path, int flags, ...)
   return (res);
 }
 
-void	my_fclose(t_my_fd *to_free)
+void	my_fclose(t_io *to_free)
 {
   if (to_free)
     {
@@ -51,14 +51,14 @@ void	my_fclose(t_my_fd *to_free)
 }
 #endif /* !ALLOW_OPEN */
 
-t_my_fd		*my_fd_from_fd(const int fd)
+t_io		*my_io_from_fd(const int fd)
 {
-  t_my_fd	*res;
+  t_io	*res;
 
-  res = malloc(sizeof(t_my_fd));
+  res = malloc(sizeof(t_io));
   if (!res)
     return (NULL);
-  my_memset(res, 0, sizeof(t_my_fd));
+  my_memset(res, 0, sizeof(t_io));
   res->fd = fd;
   if (res->fd < 0)
     return (NULL);

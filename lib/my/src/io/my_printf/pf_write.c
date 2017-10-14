@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Feb 24 10:51:48 2017 Benjamin Viguier
-** Last update Sat May 20 19:52:20 2017 Benjamin Viguier
+** Last update Sat Oct 14 16:34:18 2017 Benjamin Viguier
 */
 
 #include "internal.h"
@@ -18,7 +18,7 @@ int	__pf_flush(t_pf_data *data)
     }
   else
     {
-      return (my_fflush(data->fd));
+      return (my_fflush(data->io_buf));
     }
 }
 
@@ -31,7 +31,7 @@ int	__pf_write(t_pf_data *data, void *ptr, size_t size)
     }
   else
     {
-      return (my_fwrite(data->fd, ptr, size));
+      return (my_fwrite(data->io_buf, ptr, size));
     }
 }
 
@@ -44,6 +44,6 @@ int	__pf_putchar(t_pf_data *data, char c)
     }
   else
     {
-      return (my_fwrite(data->fd, &c, 1));
+      return (my_fwrite(data->io_buf, &c, 1));
     }
 }
