@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Apr 27 16:42:10 2017 Benjamin Viguier
-** Last update Thu Apr 27 16:59:07 2017 Benjamin Viguier
+** Last update Mon Oct 16 23:12:54 2017 Benjamin Viguier
 */
 
 #include <stdlib.h>
@@ -14,13 +14,15 @@
 
 t_hashmap	*hashmap_create(size_t len, t_hash_fct fct)
 {
-  t_hashmap     *res;
+  t_hashmap     *hashmap_result;
 
-  res = malloc(sizeof(*res) + (sizeof(t_hashmap_tab) * len));
-  my_memset(res->tab, 0, len);
-  res->size = MAX(len, MIN_TAB_SIZE);
-  res->hfct = fct;
-  res->dim = 0;
-  res->itm_nbr = 0;
-  return (res);
+  hashmap_result = malloc(sizeof(t_hashmap) + (t_hashmap_value * len));
+  if (!hashmap_result) {
+    return NULL;
+  }
+  my_memset(hashmap_result->map, 0, t_hashmap_value * len);
+  hashmap_result->hash_fct = fct;
+  hashmap_result->size = len;
+  hashmap_result->avalaible = 0;
+  return hashmap_result;
 }
