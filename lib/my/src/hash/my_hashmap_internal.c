@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 **
 ** Started on  Sun Oct 22 13:07:23 2017 Benjamin Viguier
-** Last update Sun Oct 22 13:11:20 2017 Benjamin Viguier
+** Last update Sun Oct 22 21:56:14 2017 Benjamin Viguier
 */
 
 #include "libmy.h"
@@ -22,8 +22,8 @@ uint32_t __libmy_get_hashed_key(t_hashmap *hm, t_hashmap_value *value)
   {
     hashed = hm->hash_fct(value->key, value->key_len, seed) % hm->size;
     cur = hm->map + hashed; 
-    if (cur->key == NULL || (cur->key_len == value.key_len &&
-        my_memcmp(cur->key, value.key, value.key_len))
+    if (cur->key == NULL || (cur->key_len == value->key_len &&
+        !my_memcmp(cur->key, value->key, value->key_len)))
       return (hashed);
     else
       seed++;

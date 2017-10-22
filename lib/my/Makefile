@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Sat Oct 14 16:43:06 2017 Benjamin Viguier
+## Last update Sun Oct 22 22:02:44 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -72,7 +72,9 @@ PFSRC	=	my_printf.c	\
 
 HSRC	=	murmur.c		\
 		my_hashmap_create.c	\
-		my_hashmap_push.c
+		my_hashmap_push.c \
+		my_hashmap_internal.c \
+		my_hashmap_remove.c
 
 MLCSRC	=	my_malloc.c		\
 		my_malloc_internal.c	\

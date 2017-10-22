@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Wed Apr 26 15:27:18 2017 Benjamin Viguier
-** Last update Sun Oct 22 13:11:36 2017 Benjamin Viguier
+** Last update Sun Oct 22 22:01:17 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_HASH_H_
@@ -29,11 +29,11 @@ typedef uint32_t	(*t_hash_fct)(const void*, size_t, uint32_t);
 
 typedef enum  e_hashmap_result
 {
-  HM_SUCCESS  = 0b000
-  HM_ERROR    = 0b001
-  HM_FULL     = 0b010
+  HM_SUCCESS  = 0b000,
+  HM_ERROR    = 0b001,
+  HM_FULL     = 0b010,
   HM_EMPTY    = 0b100
-}             t_hashmap_result
+}             t_hashmap_result;
 
 typedef struct  s_hashmap_value
 {
@@ -51,10 +51,13 @@ typedef struct    s_hashmap
   t_hashmap_value map[];
 }                 t_hashmap;
 
-t_hashmap         hashmap_create(size_t len, t_hash_fct fct);
-t_hashmap_result  *get_hashmap_value(void *key, uint32_t key_len, 
-                                      void *value, uint32_t value_len);
-
+t_hashmap         *hashmap_create(size_t len, t_hash_fct fct);
+t_hashmap_result  hashmap_remove(t_hashmap *hm, t_hashmap_value *key,
+                                    void (*free_fct)(t_hashmap_value *));
+t_hashmap_value   *get_hashmap_value(void *key, const size_t key_len, 
+                                      void *value, const size_t value_len);
+t_hashmap_value   *hm_f_ss(char *key, char *value);
+t_hashmap_value   *hm_f_sh(char *key, void *value, const size_t value_len);
 
 /*
 ** Hash Functions
