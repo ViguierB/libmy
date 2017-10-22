@@ -5,13 +5,14 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Sat Oct 14 16:44:49 2017 Benjamin Viguier
+** Last update Sun Oct 22 13:11:24 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
 # define INTERNAL_H_
 
 # include "libmy.h"
+# include "libmy_hash.h"
 
 # define IS_NUM(c) (((c) >= '0') && ((c) <= '9'))
 # define PF_NBR_BUF_LEN sizeof(long long int) * 8
@@ -128,5 +129,10 @@ int	__pf_oct(t_pf_data *pf, t_pf_prm *fmt);
 int	__pf_ptr(t_pf_data *pf, t_pf_prm *fmt);
 int	__pf_str(t_pf_data *pf, t_pf_prm *fmt);
 int	__pf_udec(t_pf_data *pf, t_pf_prm *fmt);
+
+/*
+** my_hashmap internal functions
+*/
+uint32_t __libmy_get_hashed_key(t_hashmap *hm, t_hashmap_value *value);
 
 #endif /* !INTERNAL_H_ */
