@@ -1,11 +1,11 @@
 #!/bin/sh
 
-cd ../lib/my/; make $1 ; cd -
+make -C ../../lib/my/ $@
 echo "gen"
 gcc -g gen.c -o gen;
 #echo "av"
 #gcc -03 -o av av.c -L../lib/my/ -lmy
 echo "avq"
 gcc -O3 -c -o avq.o avq.c -g
-gcc -o avq avq.o -L../lib/my/ -lmy
+gcc -o avq avq.o -L../../lib/my/ -lmy
 rm avq.o
