@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Apr 10 13:42:28 2017 Benjamin Viguier
-** Last update Thu Apr 27 16:55:40 2017 Benjamin Viguier
+** Last update Tue Oct 31 19:24:08 2017 Benjamin Viguier
 */
 
 #include <stdint.h>
@@ -19,7 +19,7 @@ static uint32_t		murmur3_32_case2(const uint8_t **key, size_t len,
 
   i = len & 3;
   k = 0;
-  *key = key[i - 1];
+  *key = &(*key)[i - 1];
   while (--i)
     {
       k <<= 8;

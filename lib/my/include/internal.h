@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Thu Feb 23 15:09:08 2017 Benjamin Viguier
-** Last update Sun Oct 22 13:11:24 2017 Benjamin Viguier
+** Last update Wed Nov 01 19:58:00 2017 Benjamin Viguier
 */
 
 #ifndef INTERNAL_H_
@@ -133,6 +133,7 @@ int	__pf_udec(t_pf_data *pf, t_pf_prm *fmt);
 /*
 ** my_hashmap internal functions
 */
-uint32_t __libmy_get_hashed_key(t_hashmap *hm, t_hashmap_value *value);
+uint32_t          __libmy_get_hashed_key(t_hashmap *hm, t_hashmap_element *val);
+t_hashmap_result  __libmy_hashmap_check_for_rehash(t_hashmap *hm);
 
 #endif /* !INTERNAL_H_ */

@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.net>
 ## 
 ## Started on  Tue Nov  8 18:23:40 2016 Benjamin Viguier
-## Last update Sun Oct 22 22:02:44 2017 Benjamin Viguier
+## Last update Wed Nov 01 19:43:06 2017 Benjamin Viguier
 ##
 
 include ./include/depend.mk
@@ -22,63 +22,65 @@ ifeq	($(ALLOW_ISATTY), true)
  CFLAGS	+=	-D ALLOW_ISATTY
 endif
 
-SRC	=	my_strlen.c		\
-		my_strcpy.c		\
-		my_strcmp.c		\
-		my_split.c		\
-		my_atoi.c		\
+SRC	=	my_strlen.c			\
+		my_strcpy.c			\
+		my_strcmp.c			\
+		my_split.c			\
+		my_atoi.c			\
 		my_basic_funct.c	\
 		my_strconca.c		\
-		my_trim.c		\
-		my_clist.c		\
+		my_trim.c			\
+		my_clist.c			\
 		my_clist_rem.c		\
 		my_clist_sort.c		\
 		my_clist_qsort.c	\
 		my_showmem.c		\
 		my_putnbr_base.c	\
-		my_put.c		\
-		my_memset.c		\
-		my_memcpy.c		\
-		my_memcmp.c		\
+		my_put.c			\
+		my_memset.c			\
+		my_memcpy.c			\
+		my_memcmp.c			\
 		my_memisempty.c		\
-		my_isnum.c		\
-		my_errno.c		\
+		my_isnum.c			\
+		my_errno.c			\
 		my_strbuilder.c		\
 		my_strbuilder_ext.c
 
-IOSRC	=	my_io.c		\
-		my_getdelim.c	\
-		my_getline.c	\
-		my_fread.c	\
-		my_io_write.c	\
-		my_io_std.c
+IOSRC	=	my_io.c			\
+			my_getdelim.c	\
+			my_getline.c	\
+			my_fread.c		\
+			my_io_write.c	\
+			my_io_std.c
 
-PFSRC	=	my_printf.c	\
-		my_vfprintf.c	\
-		pf_flags.c	\
-		pf_modifier.c	\
-		pf_write.c	\
-		pf_format.c	\
-		pf_modif_va.c	\
-		pf_wandp_ud.c	\
-		pf_str.c	\
-		pf_extstr.c	\
-		pf_char.c	\
-		pf_dec.c	\
-		pf_hexa.c	\
-		pf_bin.c	\
-		pf_oct.c	\
-		pf_nflag.c
+PFSRC	=	my_printf.c		\
+			my_vfprintf.c	\
+			pf_flags.c		\
+			pf_modifier.c	\
+			pf_write.c		\
+			pf_format.c		\
+			pf_modif_va.c	\
+			pf_wandp_ud.c	\
+			pf_str.c		\
+			pf_extstr.c		\
+			pf_char.c		\
+			pf_dec.c		\
+			pf_hexa.c		\
+			pf_bin.c		\
+			pf_oct.c		\
+			pf_nflag.c
 
-HSRC	=	murmur.c		\
-		my_hashmap_create.c	\
-		my_hashmap_push.c \
-		my_hashmap_internal.c \
-		my_hashmap_remove.c
+HSRC	=	murmur.c				\
+			my_hashmap_create.c		\
+			my_hashmap_push.c 		\
+			my_hashmap_internal.c 	\
+			my_hashmap_remove.c		\
+			my_hashmap_rehash.c		\
+			my_hashmap_utils.c
 
-MLCSRC	=	my_malloc.c		\
-		my_malloc_internal.c	\
-		my_calloc.c
+MLCSRC	=	my_malloc.c				\
+			my_malloc_internal.c	\
+			my_calloc.c
 
 SIODIR	=	$(SDIR)/io
 OIODIR	=	$(ODIR)
